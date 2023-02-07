@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header bg-light">
+            <h1><b>{{pegawai.nama}}</b></h1>
+        </div>
+        <div class="card-body">
+            <form method="POST" action="{% url 'pegawai:detailpangkat' gol.id %}" role="form">
+                {% csrf_token %}
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="namaasn" class="form-control-label">Nama Golongan:</label>
+                        <input id="namaasn" name="nama" class="form-control" value="{{gol.nama}}" readonly />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label">Terhitung Mulai Tanggal :</label>
+						<input id="nip" name="nip" class="form-control" value="{{ gol.tanggal}}" readonly />
+                    </div>
+                    <div class="form-group">
+                        <label for="tglpenetapan" class="form-control-label">Tanggal Penetapan :</label>
+                        <input type = "date" id="tglpenetapan" name="tglpenetapan" class="form-control" value="{{ gol.tglpenetapan }}"  />
+                    </div>
+                </div>
+                
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="pejabat" class="form-control-label">Ditetapkan Oleh</label>
+                        <input  id="pejabat" name="pejabat" class="form-control" value="{{ gol.pejabat }}" />
+                    </div>
+                    <div class="form-group">
+                        <label for="masa_kerja" class="form-control-label">Masa Kerja :</label>
+                        <input id="masa_kerja" name="masa_kerja" class="form-control" value="{{gol.mk_tahun}} Tahun {{gol.mk_bulan}} Bulan" />
+                    </div>
+                    <td>
+                        <button class="btn btn-primary my-4" type="submit" name="" value="simpan" >Simpan</button>
+                    </td>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

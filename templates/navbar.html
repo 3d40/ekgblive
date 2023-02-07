@@ -1,0 +1,25 @@
+{% load static %}
+<nav class="navbar page-header">
+    <a href="#" class="btn btn-link sidebar-mobilehttps://github.com/sigit1986/ekgbbkd2.git-toggle d-md-none mr-auto">
+        <i class="fa fa-bars"></i>
+    </a>
+    <a class="navbar-brand" href="#">
+        <img style="max-width:140px"class="img-responsive" src="{% static 'images' %}/logo1.png" alt="logo">
+    </a>
+    <a href="#" class="btn btn-link sidebar-toggle d-md-down-none">
+        <i class="fa fa-bars"></i>
+    </a>
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="{% static 'pagestatic' %}/assets/images/noavatar.png" class="avatar avatar-sm" alt="logo">
+                <span class="small ml-1 d-md-down-none">{{user.username}}</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a href="{% url 'pegawai:logout' %}" class="dropdown-item">
+                    <i class="fa fa-lock"></i> Keluar</a>
+            </div>
+        </li>
+    </ul>
+</nav>
+    

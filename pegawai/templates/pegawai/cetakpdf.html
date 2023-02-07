@@ -1,0 +1,348 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+    @page {
+        size: 21cm 33cm;
+        margin-bottom: 1,29cm;
+        margin-top: 1,01cm;
+        margin-right: 1,19cm;
+        margin-left: 1,85cm;
+        margin: 1cm;
+        spacing: 2cm;
+    }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{data.nama}}| e-KGB - BKD</title>
+</head>
+<body>
+    <table width="100%">
+        <tr>
+            <td width=68 align="center"><img src="static/images/Logo.png" width="10%"></td>
+            <td align="center">
+                <b>
+                    <font style=font-size:18pt face="Arial" color=#000000>PEMERINTAH PROVINSI JAMBI</font>
+                </b><br />
+                <b>
+                    <font style=font-size:20pt face="Times New Roman" color=#000000>BADAN KEPEGAWAIAN DAERAH</font>
+                </b><br />
+                <font style=font-size:10pt face="Times New Roman" color=#000000 >Jalan RM. Noer Admadibrat No. 02 Telanaipura Telp/Fax. 0741 667691</font><br />
+                <font style=font-size:10pt face="Times New Roman" color=#000000>Website : http://bkd.jambiprov.go.id ; e-mail : datinfo.bkd.jambiprov@gmail.com</font><br />
+            </td>
+        </tr>
+    </table>
+    <hr size="5px" width="100%" align="left">
+    <table border=0 cellspacing=0 cellpadding=0>
+        <tr height=10>
+            <td width=80 align=left></td>
+            <td width=80 align=left></td>
+            <td width=200 align=left bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000></font></td>
+            <td width=9 align=center bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000></font></td>
+            <td align=left bgcolor=#ffffff><font style=font-size:10pt face="arial" color=#000000>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jambi, {{tanggal}}</font></td>
+            <td></td>
+        </tr>
+        <tr height=10>
+            <td width=80 align=left></td>
+            <td width=80 align=left></td>
+            <td width=200 align=left bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000></font></td>
+            <td width=9 align=center bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000></font></td>
+            <td align=left bgcolor=#ffffff><font style=font-size:10pt face="arial" color=#000000>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></td>
+            <td></td>
+        </tr>
+
+        <tr height=10>
+            <td width=80 align=left></td>
+            <td width=80 align=left><font style=font-size:10pt face="arial narrow" color=#000000>Nomor</font></td>
+            <td width=200 align=center bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>:</font></td>
+            <td width=9 align=left bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>S-{{nominatif.id}}/BKD-3.1/{{rom}}/{{rim}}</font></td>
+            <td align=left bgcolor=#ffffff><font style=font-size:10pt face="arial" color=#000000>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Kepada :</font></td>
+            <td></td>
+        </tr>
+
+        <tr height=10>
+            <td width=80 align=left></td>
+            <td width=80 align=left><font style=font-size:10pt face="arial narrow" color=#000000>Sifat</font></td>
+            <td width=200 align=center bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>:</font></td>
+            <td width=9 align=left bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>Biasa</font></td>
+            <td align=left bgcolor=#ffffff><font style=font-size:10pt face="arial" color=#000000>Yth. Kepala Badan Pengelolaan Keuangan</font></td>
+        </tr>
+        <tr height=10>
+            <td width=80 align=left></td>
+            <td width=80 align=left><font style=font-size:10pt face="arial narrow" color=#000000>Lampiran</font></td>
+            <td width=200 align=center bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>:</font></td>
+            <td width=9 align=left bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>-</font></td>
+            <td align=left bgcolor=#ffffff><font style=font-size:10pt face="arial" color=#000000>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dan Pendapatan Daerah</font></td>
+        </tr>
+
+        <tr height=10>
+            <td width=80 align=left></td>
+            <td width=80 align=left><font style=font-size:10pt face="arial narrow" color=#000000></font></td>
+            <td width=200 align=center bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000></font></td>
+            <td width=9 align=left bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000></font></td>
+            <td align=left bgcolor=#ffffff><font style=font-size:10pt face="arial" color=#000000>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Provinsi Jambi</font></td>
+        </tr>
+
+        <tr height=10>
+            <td width=80 align=left></td>
+            <td width=80 align=left><font style=font-size:10pt face="arial narrow" color=#000000>Hal</font></td>
+            <td width=200 align=center bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>:</font></td>
+            <td width=9 align=left bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>Kenaikan Gaji Berkala</font></td>
+            <td align=left bgcolor=#ffffff><font style=font-size:10pt face="arial" color=#000000>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Di-</font></td>
+        </tr>
+
+        <tr height=10>
+            <td width=80 align=left></td>
+            <td width=80 align=left><font style=font-size:10pt face="arial narrow" color=#000000></font></td>
+            <td width=200 align=center bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000></font></td>
+            <td width=9 align=left bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>An. {{data.nama}}</font></td>
+            <td align=left bgcolor=#ffffff><b><font style=font-size:10pt face="arial narrow" color=#000000>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;J A M B I</font></b></td>
+        </tr>
+
+        <tr height=15>
+            <td width=5></td>
+            <td width=57></td>
+            <td width=15></td>
+            <td width=375 align=left>
+                <font style=font-size:10pt face="arial narrow" color=#000000></font>
+            </td>
+            <td width=250 align=left bgcolor=#ffffff><b>
+                <font style=font-size:10pt face="arial narrow" color=#000000></font>
+            </b>
+        </td>
+        </tr>
+    </table>
+    <br>
+    <br />
+    <table border=0 cellspacing=0 cellpadding=0>
+        <tr height=10>
+            <td width=65></td>
+            <td align=left bgcolor=#ffffff>
+                <font style=font-size:10pt face="arial narrow" color=#000000>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dengan ini diberitahukan, bahwa sehubungan dengan telah dipenuhi masa kerja dan syarat-syarat lainnya maka kepada :</font>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <table border=0 cellspacing=0 cellpadding=0>
+        <tr height=10>
+            <td width=80 align=left></td>
+            <td width=215 align=left bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>1.&nbsp;&nbsp;Nama</font></td>
+            <td width=9 align=center bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>:</font></td>
+            <td align=left bgcolor=#ffffff><font style=font-size:10pt face="arial" color=#000000>&nbsp;{{data.nama}}</font></td>
+        </tr>
+
+        <tr height=10>
+            <td width=80 align=left></td>
+            <td width=200 align=left bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>2.&nbsp;&nbsp;NIP/Tempat/Tanggal Lahir</font></td>
+            <td width=9 align=center bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>:</font></td>
+            <td align=left bgcolor=#ffffff><font style=font-size:10pt face="arial" color=#000000>&nbsp;{{data.nip}}/{{data.tempat_lahir}}, {{data.tgllahir|date:"d-m-Y"}}</font></td>
+        </tr>
+
+
+        <tr height=10>
+            <td width=80 align=left></td>
+            <td width=215 align=left bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>3.&nbsp;&nbsp;Pangkat/Golongan</font></td>
+            <td width=9 align=center bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>:</font></td>
+            <td align=left bgcolor=#ffffff><font style=font-size:10pt face="arial" color=#000000>&nbsp;{{data.golongan}}/({{simbol.simbol}})</font></td>
+        </tr>
+
+        <tr height=10>
+            <td width=80 align=left></td>
+            <td width=215 align=left bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>3.&nbsp;&nbsp;Unit Kerja</font></td>
+            <td width=9 align=center bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>:</font></td>
+            <td align=left bgcolor=#ffffff><font style=font-size:10pt face="arial" color=#000000>&nbsp;{{data.opd}}</font></td>
+        </tr>
+
+
+        <tr height=10>
+            <td width=80 align=left></td>
+            <td width=215 align=left bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>5.&nbsp;&nbsp;Gaji Pokok Lama</font></td>
+            <td width=9 align=center bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>:</font></td>
+            <td align=left bgcolor=#ffffff><font style=font-size:10pt face="arial" color=#000000>&nbsp;Rp. {{gajilama.tbgaji_currency|intcomma}}</font></td>
+        </tr>
+    </table>
+    <br>
+
+    <table border=0 cellspacing=0 cellpadding=0>
+        <tr height=10>
+            <td width=65></td>
+            <td align=left bgcolor=#ffffff>
+                <font style=font-size:10pt face="arial narrow" color=#000000>Atas dasar Surat Keputusan terakhir tentang gaji/ pangkat yang ditetapkan :</font>
+            </td>
+        </tr>
+    </table>
+    <br>
+
+    <table border=0 cellspacing=0 cellpadding=0>
+        <tr height=10>
+            <td width=80 align=left></td>
+            <td width=215 align=left bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>a.&nbsp;&nbsp;Oleh Pejabat</font></td>
+            <td width=9 align=center bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>:</font></td>
+            <td align=left bgcolor=#ffffff><font style=font-size:10pt face="arial" color=#000000>&nbsp;Gubernur Jambi</font></td>
+        </tr>
+
+        <tr height=10>
+            <td width=80 align=left></td>
+            <td width=215 align=left bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>b.&nbsp;&nbsp;Tanggal</font></td>
+            <td width=9 align=center bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>:</font></td>
+            <td align=left bgcolor=#ffffff><font style=font-size:10pt face="arial" color=#000000>&nbsp;{{pangkat.tglpenetapan}}</font></td>
+        </tr>
+
+
+        <tr height=10>
+            <td width=80 align=left></td>
+            <td width=215 align=left bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>c.&nbsp;&nbsp;Nomor</font></td>
+            <td width=9 align=center bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>:</font></td>
+            <td align=left bgcolor=#ffffff><font style=font-size:10pt face="arial" color=#000000>&nbsp;{{pangkat.nomor_sk}}</font></td>
+        </tr>
+
+
+        <tr height=10>
+            <td width=80 align=left></td>
+            <td width=215 align=left bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>d.&nbsp;&nbsp;Tanggal mulai berlakunya gaji tersebut</font></td>
+            <td width=9 align=center bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>:</font></td>
+            <td align=left bgcolor=#ffffff><font style=font-size:10pt face="arial" color=#000000>&nbsp;{{pangkat.tanggal}}</font></td>
+        </tr>
+
+        <tr height=10>
+            <td width=80 align=left></td>
+            <td width=215 align=left bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>e.&nbsp;&nbsp;Masa kerja golongan pada tanggal tersebut</font></td>
+            <td width=9 align=center bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>:</font></td>
+            <td align=left bgcolor=#ffffff><font style=font-size:10pt face="arial" color=#000000>&nbsp;{{nominatif.mk_tahun}} Tahun {{nominatif.mk_bulan}} Bulan</font></td>
+        </tr>
+
+    </table>
+    <br>
+    <table border=0 cellspacing=0 cellpadding=0>
+        <tr height=10>
+            <td width=65></td>
+            <td align=left bgcolor=#ffffff>
+                <font style=font-size:10pt face="arial narrow" color=#000000>Diberikan kenaikan gaji berkala hingga memperoleh :</font>
+            </td>
+        </tr>
+    </table>
+    <br>
+
+    <table border=0 cellspacing=0 cellpadding=0>
+        <tr height=10>
+            <td width=80 align=left></td>
+            <td width=215 align=left bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>6.&nbsp;&nbsp;Gaji Pokok Baru</font></td>
+            <td width=9 align=center bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>:</font></td>
+            <td align=left bgcolor=#ffffff><font style=font-size:10pt face="arial" color=#000000>&nbsp;Rp. {{gajibaru.tbgaji_currency|intcomma}}</font></td>
+        </tr>
+        <tr height=10>
+            <td width=80 align=left></td>
+            <td width=215 align=left bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000></font></td>
+            <td width=9 align=center bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000></font></td>
+            <td align=left bgcolor=#ffffff><font style=font-size:10pt face="arial" color=#000000>({{gajibaru.terbilang}})</font></td>
+        </tr>
+
+        <tr height=10>
+            <td width=80 align=left></td>
+            <td width=215 align=left bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>7.&nbsp;&nbsp;Berdasarkan Masa Kerja</font></td>
+            <td width=9 align=center bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>:</font></td>
+            <td align=left bgcolor=#ffffff><font style=font-size:10pt face="arial" color=#000000>&nbsp;{{nominatif.mkb_tahun}} Tahun {{nominatif.mkb_bulan}} Bulan</font></td>
+
+
+        <tr height=10>
+            <td width=80 align=left></td>
+            <td width=215 align=left bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>8.&nbsp;&nbsp;Dalam Golongan</font></td>
+            <td width=9 align=center bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>:</font></td>
+            <td align=left bgcolor=#ffffff><font style=font-size:10pt face="arial" color=#000000>&nbsp;{{data.golongan}}/({{simbol.simbol}})</font></td>
+        </tr>
+
+        <tr height=10>
+            <td width=80 align=left></td>
+            <td width=215 align=left bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>9.&nbsp;&nbsp;Mulai Tanggal</font></td>
+            <td width=9 align=center bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>:</font></td>
+            <td align=left bgcolor=#ffffff><font style=font-size:10pt face="arial" color=#000000>&nbsp;{{nominatif.tmt_kgb}}</font></td>
+        </tr>
+
+        <tr height=10>
+            <td width=80 align=left></td>
+            <td width=215 align=left bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>10.&nbsp;&nbsp;Kenaikan gaji yang akan datang</font></td>
+            <td width=9 align=center bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>:</font></td>
+            {% if pensiun == True %}
+            <td align=left bgcolor=#ffffff><font style=font-size:10pt face="arial" color=#000000>&nbsp;PENSIUN</font></td>
+            {% else %}
+            <td align=left bgcolor=#ffffff><font style=font-size:10pt face="arial" color=#000000>&nbsp;{{kgbnext}}</font></td>
+            {% endif %}
+        </tr>
+
+
+    </table>
+    <br />
+    <table border=0 cellspacing=0 cellpadding=0>
+        <tr height=10>
+            <td width=65></td>
+            <td align=left bgcolor=#ffffff>
+                <font style=font-size:10pt face="arial narrow" color=#000000>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Diharapkan agar sesuai dengan Peraturan Pemerintah Nomor 15 Tahun 2019 kepada Pegawai tersebut dapat dibayarkan penghasilannya berdasarkan gaji pokoknya yang baru.</font>
+            </td>
+        </tr>
+    </table>
+    <br>
+
+    <table border=0 cellspacing=0 cellpadding=0>
+        <tr height=10>
+            <td width=430 align=left></td>
+            <td width=315  bgcolor=#ffffff>
+                <b><font style=font-size:10pt face="arial narrow" color=#000000>a.n. GUBERNUR JAMBI</font></b>
+            </td>
+        </tr>
+    </table>
+    <table border=0 cellspacing=0 cellpadding=0>
+        <tr height=10>
+            {% if  cekplt is True %}
+            <td width=430 align=right><b><font style=font-size:10pt face="arial narrow" color=#000000>Plt.&nbsp;</b></font></td>
+            {% else %}
+            <td width=430 align=left></td>
+            {% endif %}
+            <td width=270 bgcolor=#ffffff>
+                <b><font style=font-size:10pt face="arial narrow" color=#000000> KEPALA BADAN,</font></b>
+            </td>
+        </tr>
+    </table>
+    <br /><br /><br /></br>
+    <table border=0 cellspacing=0 cellpadding=0>
+        <tr height=9>
+            <td width=430 align=left></td>
+            <td width=270 bgcolor=#ffffff><b><u>
+                <font style=font-size:10pt face="arial narrow" color=#000000>{{kepalabkd.nama}}</font></b></u></td>
+        </tr>
+        <tr height=9>
+            <td width=430 align=left></td>
+            <td width=270 bgcolor=#ffffff>
+                <font style=font-size:10pt face="arial narrow" color=#000000>{{kepalabkd.golongan}}</font>
+            </td>
+        </tr>
+        <tr height=9>
+            <td width=430 align=left></td>
+            <td width=270 bgcolor=#ffffff>
+                <font style=font-size:10pt face="arial narrow" color=#000000> NIP. {{kepalabkd.nip}}</font>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <table border=0 cellspacing=0 cellpadding=0>
+        <tr height=10>
+            <td width=5 align=left> <br></td>
+            <td align=left bgcolor=#ffffff>
+                <font style=font-size:9pt face="arial narrow" color=#000000>Tembusan :</font><br />
+                <font style=font-size:9pt face="arial narrow" color=#000000>1. Menteri Dalam Negeri RI</font><br />
+                <font style=font-size:9pt face="arial narrow" color=#000000>2. Ketua Badan Pemeriksa Keuangan RI</font><br />
+                <font style=font-size:9pt face="arial narrow" color=#000000>3. Kepala {{data.opd}} Provinsi Jambi</font><br />
+                <font style=font-size:9pt face="arial narrow" color=#000000>4. Kepala Dinas Komunikasi dan Informatika Provinsi Jambi</font><br />
+                <font style=font-size:9pt face="arial narrow" color=#000000>5. Kepala Kantor Cabang PT.Taspen (Persero) Jambi</font><br />
+                <font style=font-size:9pt face="arial narrow" color=#000000>6. Bendaharawan Gaji Pegawai Yang Bersangkutan</font><br />
+                <font style=font-size:9pt face="arial narrow" color=#000000>7. Yang Bersangkutan</font><br />
+                <font style=font-size:9pt face="arial narrow" color=#000000>8. --- ARSIP ---</font><br />
+            </td>
+        </tr>
+    </table>
+</body>
+
+</html>
+

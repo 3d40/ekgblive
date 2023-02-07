@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="col-md-12">
+    <h1>Halaman Usulan KGB yang Ditunda</h1>
+    <div class="card">
+        <div class="card-header bg-light">
+            <h3>{{pegawai.nama}}</h3>
+            <h6>{{pegawai.nip}}</h6>
+        </div>
+        <div class="card-body">
+            <form action = "" method = "post">
+                {% csrf_token %}
+                <!-- <label for="gol">Golongan: </label>
+                <input id="gol" type="text" name="gol" value="{{data.golongan}}"><br>
+                <label for="gaji">Gaji: </label>
+                <input id="gaji" type="text" name="gaji" value="{{data.gaji}}"> -->
+                {{form.as_ul}}
+                <input type="submit" value="Tunda">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

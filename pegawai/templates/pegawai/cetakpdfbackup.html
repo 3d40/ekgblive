@@ -1,0 +1,33 @@
+{% load static %}
+<header>
+    <img src="static/images/kop_bkd_crophead.jpg" />
+</header>
+<style type="text/css">
+    .left    { text-align: left;}
+    .right   { text-align: right;}
+    .center  { text-align: center;}
+    .justify { text-align: justify;}
+ </style>
+ <p class="right">Jambi : {{nominatif.tanggal}}</p><br>
+{{data.nama}}
+<br>
+{{data.nip}}
+<br>
+{{data.opd}}
+<br>
+({{simbol.simbol}}).{{data.golongan}}
+<br>
+{{nominatif.mk_tahun}}, {{nominatif.mk_bulan}} Masa Kerja Lama
+<br>
+{{gajilama.tbgaji_currency}} {{gajilama.terbilang}}
+<br>
+{{nominatif.mkb_tahun}}, {{nominatif.mkb_bulan}} Masa Kerja Lama
+<br>
+{{gajibaru.tbgaji_currency}} {{gajibaru.terbilang}}
+<br>
+{{kepelaopd}}
+<br>
+{{nominatif.tmt_kgb}}
+<br>
+{{kgbnext}}
+

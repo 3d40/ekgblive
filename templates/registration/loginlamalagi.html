@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Masuk | e-KGB - BKD</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=3">
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'pegawai:login' %}/img/brand/favicon.png" type="image/png">
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700">
+    <!-- Icons -->
+    <link rel="stylesheet" href="{% static 'login' %}/css/bootstrap/OpenSans.css" type="text/css">
+    <link rel="stylesheet" href="{% static 'login' %}/vendor/nucleo/css/nucleo.css" type="text/css">
+    <link rel="stylesheet" href="{% static 'login' %}/vendor/@fortawesome/fontawesome-free/css/all.min.css" type="text/css">
+    <!-- Page plugins -->
+    <!-- Argon CSS -->
+    <link rel="stylesheet" href="{% static 'login' %}/css/argon.css" type="text/css">
+
+    <!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="{% static 'pagestatic' %}/assets/images/icons/favicon.ico">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="{% static 'pagestatic' %}/assets/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="{% static 'pagestatic' %}/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="{% static 'pagestatic' %}/assets/vendor/animate/animate.css">
+    <!--===============================================================================================-->	
+        <link rel="stylesheet" type="text/css" href="{% static 'pagestatic' %}/assets/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="{% static 'pagestatic' %}/assets/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+        <link rel="stylesheet" type="text/css" href="{% static 'pagestatic' %}/assets/css/util.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'pagestatic' %}/assets/css/main.css">
+    <!--===============================================================================================-->
+
+
+</head>
+<body>
+
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<div class="login100-pic js-tilt" data-tilt>
+					<img src="{% static '/images/logogajiberkala12345.png' %}" alt="Badan Kepegawaian Daerah Provinsi Jambi">
+				</div>
+				
+				<form class="login100-form validate-form" id="login-form" method="post" action="{% url 'pegawai:login'  %}" >
+                    {% csrf_token %}
+					<span class="login100-form-title">e-KGB JAMBI</span>
+					<div class="wrap-input100 validate-input" data-validate = "Nama pengguna tidak boleh kosong!">
+						<input class="input100" type="text" name="username" placeholder="Nama Pengguna">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-user" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate = "Kata sandi tidak boleh kosong!">
+						<input class="input100" type="password" name="password" placeholder="Kata Sandi">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
+					
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn" type="submit" name="submit" value="login">
+							Masuk
+						</button>
+					</div>					
+
+					<div class="text-center p-t-12">
+						<span class="txt2">
+						</span>						
+					</div>
+
+					<div class="text-center p-t-136">
+						<a class="txt2" href="#">
+							BKD Provinsi Jambi						
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	
+
+	
+<!--===============================================================================================-->	
+	<script src="{% static 'pagestatic' %}/assets/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'pagestatic' %}/assets/vendor/bootstrap/js/popper.js"></script>
+	<script src="{% static 'pagestatic' %}/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'pagestatic' %}/assets/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'pagestatic' %}/assets/vendor/tilt/tilt.jquery.min.js"></script>
+	<script >$('.js-tilt').tilt({scale: 1.1})</script>
+<!--===============================================================================================-->
+	<script src="{% static 'pagestatic' %}/assets/js/main.js"></script>
+
+</body>
+</html>

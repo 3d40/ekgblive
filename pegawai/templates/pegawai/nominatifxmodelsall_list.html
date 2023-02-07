@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- search -->
+<div class="form-group">
+  <form action="#" method="POST">
+    {% csrf_token %}
+    <input type="date" name ="tmtkgb" value="{{tmtkgb_date}}" >
+    <button class="btn">Cari</button>
+  </form>
+</div>
+
+<table class="table" >
+    <thead class="thead-dark" >
+      <tr>
+        <th scope="col" rowspan="2">Nomor</th>
+        <th scope="col" rowspan="2">NIP</th>
+        <th scope="col" rowspan="2">Nama</th>
+        <th scope="col" rowspan="2">Unit Kerja</th>
+        <th scope="col" rowspan="2">TMT KGB</th>
+        <th scope="col" colspan="3">Kelengkapan Berkas</th>
+        <th scope="col" rowspan="2">Aksi</th>
+        <tr>
+          <th>Pangkat</th>
+          <th>KGB</th>
+          <th>SKP</th>
+        </tr>
+        
+      </tr>
+    </thead>
+    <tbody>
+      
+        {% for x in object_list %}
+        <th scope="row" >{{forloop.counter}}</th>
+        <td><a href="{% url 'pegawai:detail' x.pegawai_id %}">{{x.pegawai}}</a></td>
+        <td><a href="{% url 'pegawai:detail' x.pegawai_id %}">{{x.pegawai}}</a></td>
+        <td>{{x.opd}}</a></td>
+        <td>{{tmtkgb_date}}</td>
+        <td>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="skpangkat" checked>
+            <label class="form-check-label" for="skpangkat"></label>
+          </div>
+        </td>
+        <td>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="skkgb" checked>
+            <label class="form-check-label" for="skkgb"></label>
+          </div>
+        </td>
+        <td>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" id="skp" checked>
+            <label class="form-check-label" for="skp"></label>
+          </div>
+        </td>
+        <td>
+          <a class="btn btn-sm btn-info"href="{%url 'pegawai:nominatifdetail' x.pegawai_id %}">Detail</a>
+        </td>
+      </tr>
+        {% endfor %}
+      </tbody>
+      <td>
+        <a class="btn btn-sm btn-info"href="#">Cetak Daftar Nominatif</a>
+      </td>
+  </table>
+  {% include 'paginator.html'  %}
+  {% endblock %}
+        

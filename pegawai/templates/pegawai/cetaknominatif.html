@@ -1,0 +1,158 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+  @page {
+    size: 21cm 33cm ;
+    margin: 2cm;
+    spacing: 2cm;
+  }
+  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pemerintah Provinsi Jambi| e-KGB - BKD</title>
+</head>
+
+<body>
+  <table border=0 cellspacing=0 cellpadding=0>
+    <tr height=10>
+        <td width=80 align=left  bgcolor=#ffffff ><font style=font-size:10pt face="arial narrow" color=#000000>Lampiran</font></td>
+        <td width=9 align=center bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000>:</font></td>
+        <td align=left bgcolor=#ffffff><font style=font-size:10pt face="arial" color=#000000 >Daftar Usulan Keniakan Gaji Berkal (KGB) Pegawai Negeri Sipil (PNS) Di Lingkup</font></td>
+    </tr> 
+    <tr height=10>
+      <td width=80 align=left  bgcolor=#ffffff ><font style=font-size:10pt face="arial narrow" color=#000000></font></td>
+      <td width=9 align=center bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000></font></td>
+      <td align=left bgcolor=#ffffff><font style=font-size:10pt face="arial" color=#000000 >{{datapegawai.opd}} Provinsi Jambi</font></td>
+  </tr>
+</table>
+<table border=0 cellspacing=0 cellpadding=0>
+  <tr height=5>
+    <td width=80 align=right position=bottom bgcolor=#ffffff ><font style=font-size:10pt face="arial narrow" color=#000000></font></td>
+    <td width=9 align=center bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000></font></td>
+    <td width=50><font style=font-size:10pt face="arial narrow" color=#000000>Nomor</font></p></td>
+    
+    <td width=9>:</font></p></td>
+</tr>
+<tr height=10>
+  <td width=80 align=right position=bottom bgcolor=#ffffff ><font style=font-size:10pt face="arial narrow" color=#000000></font></td>
+  <td width=9 align=center bgcolor=#ffffff><font style=font-size:10pt face="arial narrow" color=#000000></font></td>
+  <td align=left bgcolor=#ffffff><font class="text-" style=font-size:10pt face="arial" color=#000000 >Tanggal  </font></p></td>
+  <td align=left bgcolor=#ffffff><font class="text-" style=font-size:10pt face="arial" color=#000000 >:</font></p></td>
+  <td align=left bgcolor=#ffffff><font class="text-" style=font-size:10pt face="arial" color=#000000 ></font></p></td>
+</tr>
+  </table>
+  <br>
+
+  <table class ='table'  border="1">
+    <thead class="thead-dark">
+      <th width= 30 >NO</th>
+      <th width= 150 >NAMA/NIP</th>
+      <th width= 100 align="center">PANGKAT/GOLONGAN RUANG</th>
+      <th>JABATAN </th>
+      <th>PERIODE</th>
+    </thead>
+    <thead class="thead-dark">
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+    </thead>
+    <tbody >
+        {% for x in nominatiflist %}
+        <td align="center">{{forloop.counter}}</td>
+        <td>{{x.pegawai}}<br>NIP. {{x.pegawai.nip}}</td>
+        <td align="center">{{x.golongan}}&nbsp;&nbsp;{{simbol}} </a></td>
+        <td align="center">{{x.jabatan}}</a></td>
+        <td align="center">{{x.tmt_kgb}}</a></td>
+      </tbody>
+        {% endfor %}
+ </table>
+ <br>
+
+ <table border="0" >
+  <thead class="thead-dark">
+    <th width= 30 ></th>
+    <th width= 50 ></th>
+    <th width= 80 ></th>
+    {% if cekplt is True %} 
+      <th align=right>Plt.&nbsp;</th>
+    {% else %}
+    <th></th>
+    {% endif %}
+    <th align=left class= besar ><font  style=font-size:8pt >Kepala {{datapegawai.opd}} </font></th>
+  </thead>
+
+  <thead class="thead-dark">
+    <th width= 30 ></th>
+    <th width= 50 ></th>
+    <th width= 80 ></th>
+    <th></th>
+    <th align=left></th>
+  </thead>
+
+  <thead class="thead-dark">
+    <th width= 30 ><font >.</font></th>
+    <th width= 50 ></th>
+    <th width= 80 ></th>
+    <th></th>
+    <th align=left></th>
+  </thead>
+
+  <thead class="thead-dark">
+    <th width= 30 ><font color=#00000>.</font></th>
+    <th width= 50 ></th>
+    <th width= 80 ></th>
+    <th></th>
+    <th align=left></th>
+  </thead>
+
+  <thead class="thead-dark">
+    <th width= 30 ><font color=#00000 size=>.</font></th>
+    <th width= 50 ></th>
+    <th width= 80 ></th>
+    <th></th>
+    <th align=left></th>
+  </thead>
+
+  <thead class="thead-dark">
+    <th width= 30 ><font color=#00000>.</font></th>
+    <th width= 50 ></th>
+    <th width= 80 ></th>
+    <th></th>
+    <th align=left></th>
+  </thead>
+
+  <thead class="thead-dark">
+    <th width= 30 >.</th>
+    <th width= 50 ></th>
+    <th width= 80 ></th>
+    <th></th>
+    <th align=left style=text-indent><u>{{kepalaopd.nama}}</u></th>
+  </thead>
+  <thead class="thead-dark">
+    <th width= 30 ></th>
+    <th width= 50 ></th>
+    <th width= 80 ></th>
+    <th></th>
+    <th align=left style=text-indent>{{kepalaopd.golongan}}</th>
+  </thead>
+  <thead class="thead-dark">
+    <th width= 30 ></th>
+    <th width= 50 ></th>
+    <th width= 80 ></th>
+    <th></th>
+    <th align=left style=text-indent>NIP. {{kepalaopd.nip}}</th>
+  </thead>
+
+ </table>
+
+        
+</body>
+
+</html>
+

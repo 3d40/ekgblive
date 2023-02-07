@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div>
+    <H2>Halaman Edit Jenjang Jabatan</H2>
+</div>
+<div>
+    <form action="#" method='POST'>
+        {% csrf_token %}
+        <div>
+            <select name="jenis" id="jenis">
+                {% for jabatan in jabatan %}
+                <option value="{{jabatan.id}}">{{jabatan.nama}}--({{jabatan.jenis}})</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Simpan" class="btn btn-primary">
+        </div>
+       
+    </form>
+</div>
+
+{% endblock %}

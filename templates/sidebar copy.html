@@ -1,0 +1,82 @@
+{% if user.is_authenticated %}
+<div class="sidebar">
+    <nav class="sidebar-nav">
+        <ul class="nav">
+            <li class="nav-title">Menu</li>
+            <li class="nav-item">
+                <a href="{% url 'index' %}" class="nav-link">
+                 <i class="icon icon-speedometer"></i> Dashboard
+                </a>
+            </li>
+            {% endif %}
+            {%if user.is_authenticated and user.is_staff %}
+            <li class="nav-item">
+                <a href="{% url 'detail' %}" class="nav-link">
+                 <i class="icon icon-user-following"></i> Pegawai
+                </a>
+            </li>
+            
+            <li class="nav-item nav-dropdown">
+                <a href="#" class="nav-link nav-dropdown-toggle">
+                    <i class="icon icon-people"></i> Nominatif <i class="fa fa-caret-left"></i>
+                </a>
+              
+                <ul class="nav-dropdown-items">
+                    detail                        <a href="<?php echo site_url('daftar-nominatif" class="nav-link">
+                            <i class="icon icon-user-following"></i> Daftar Nominatif
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?php echo site_url('nominatif-manual" class="nav-link">
+                            <i class="icon icon-user-follow"></i> Nominatif Manual
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        detail                            <i class="icon icon-user-unfollow"></i> Nominatif Tertunda
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            {% endif %}
+            {%if user.is_authenticated and user.is_superuser %}
+            <li class="nav-item">
+                <a href="<?php echo site_url('riwayat-kgb" class="nav-link">
+                    <i class="icon icon-info"></i> Riwayat KGB
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="<?php echo site_url('riwayat-proses" class="nav-link">
+                    <i class="icon icon-graph"></i> Riwayat Proses KGB
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="<?php echo site_url('riwayat-proses/pegawai/' .$this->session->userdata('nip')); ?>" class="nav-link">
+                    <i class="icon icon-graph"></i> Riwayat Proses KGB
+                </a>
+            </li>
+            <li class="nav-item nav-dropdown">
+                <a href="#" class="nav-link nav-dropdown-toggle">
+                    <i class="icon icon-options-vertical"></i> Master <i class="fa fa-caret-left"></i>
+                </a>
+                <ul class="nav-dropdown-items">
+                    detail                    </li>
+                </ul>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a href="<?php echo site_url('gaji-pokok" class="nav-link">
+                            <i class="icon icon-layers"></i> Gaji Pokok
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="<?php echo site_url('laporan" class="nav-link">
+                    <i class="icon icon-book-open"></i> Laporan
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+<div>
+</div>
+{%endif %}

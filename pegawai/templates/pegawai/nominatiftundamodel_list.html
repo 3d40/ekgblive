@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1><a ul>PROSES KENAIKAN GAJI BERKALA YANG DITUNDA</a></h1>
+<table class="table" >
+    <thead class="thead-dark" >
+      <tr>
+        <th scope="col" rowspan="2">Nomor</th>
+        <th scope="col" rowspan="2">NIP</th>
+        <th scope="col" rowspan="2">Nama</th>
+        <th scope="col" rowspan="2">Unit Kerja</th>
+        <th scope="col" rowspan="2">Keterangan</th>
+        <th scope="col" rowspan="2">Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+        {% for x in object_list %}
+        <th scope="row" >{{forloop.counter}}</th>
+        <td><a href="{% url 'pegawai:detail' x.pegawai_id %}">{{x.pegawai}}</a></td>
+        <td><a href="{% url 'pegawai:detail' x.pegawai_id %}">{{x.pegawai}}</a></td>
+        <td>{{x.opd}}</a></td>
+        <td>{{x.keterangan}}</td>
+        <td>
+          <a class="btn btn-sm btn-info"href="{%url 'pegawai:tundadelete' x.id %}">Perbaharui Proses</a>
+        </td>
+      </tr>
+        {% endfor %}
+      </tbody>
+  </table>
+  {% include 'paginator.html'  %}
+  {% endblock %}
+        

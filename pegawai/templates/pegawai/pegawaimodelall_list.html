@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- search -->
+<div class="form-group">
+    <form action="{% url 'pegawai:cari'  %}" method="GET">
+      <input type="text" name ="search" value="{{ request.GET.search }}" placeholder="Search..">
+    </form>
+</div>
+
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Nomor</th>
+        <th scope="col">NIP</th>
+        <th scope="col">Nama</th>
+        <th scope="col">Unit Kerja</th>
+        <th scope="col">TMT CPNS</th>
+        <th scope="col">Aksi</th>
+
+      </tr>
+    </thead>
+    <tbody>
+        {% for data in object_list %}
+        <th scope="row" >{{forloop.counter}}</th>
+        <td><a href="{% url 'pegawai:detail' data.id %}">{{data.nip}}</a></td>
+        <td><a href="{% url 'pegawai:detail' data.id %}">{{data.nama}}</a></td>
+        <td>{{data.opd}}</td>
+        <td>{{data.tmt_pns}}</td>
+        <td><a class="btn btn-sm btn-info"href="{% url 'pegawai:riwayatpangkat' data.nip %}">Riwayat Pangkat</a></td>
+      </tr>
+      {% endfor %}
+  </table>
+    <div class="justify col-lg-12">
+      {% include "paginator.html" %}
+    </div>
+</div>
+    {% endblock %}

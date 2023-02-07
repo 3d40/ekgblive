@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header bg-light">
+            Data Pegawai
+        </div>
+        <div class="card-body">
+            <form class="row" id="tambah-nominatif-form" method="post" action="">
+                {% csrf_token %}
+				<div class="col-md-2">
+					<img src="{{pegawai.fhoto}}" class="img-thumbnail" width="155px" height="150px">
+                    <br>
+                    <div class="form-group">
+                        <label class="form-control-label">NIP</label>
+						<input id="jnsjab" name="nip" class="form-control" value="{{pegawai.nip}}" readonly />
+                    </div>
+                    <div class="form-group">
+                        <label class="form-control-label">Tanggal Lahir</label>
+						<input id="tgllahir" name="tgllahir" class="form-control" value="{{pegawai.tgllahir}}" readonly />
+                    </div>
+				</div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="namaasn" class="form-control-label">Nama :</label>
+                        <input id="namaasn" name="nama" class="form-control" value="{{pegawai.nama}}" readonly />
+                    </div>
+                    <div>
+                        <label for="jabatan" class="form-control-label">Jenis Jabatan</label>
+                        <input id="jabatan" name="jabatan" class="form-control" value="{{pegawai.jabatan}}" readonly />
+                        <a class="btn btn-sm btn-info"href="{% url 'pegawai:editjabatan' pegawai.id %}">Edit Jabatan</a>
+                    </div>
+                    <div class="form-group">
+                        <label for="jabterakhir" class="form-control-label">Jabatan Terakhir :</label>
+                        <input id="jabterakhir" name="nama" class="form-control" value="{{ pegawai.jabatan_data }}" readonly />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="golterakhir" class="form-control-label">Pangkat/Golong Terakhir :</label>
+                        <input id="golterakhir" name="pangol" class="form-control" value="{{ pegawai.golongan }}" readonly />
+                    </div>
+                    <div class="form-group">
+                        <label for="skpdasn" class="form-control-label">SKPD :</label>
+                        <input id="skpdasn" name="skpdasn" class="form-control" value="{{ pegawai.opd }}" readonly />
+                    </div>
+                     <div class="form-group">
+                        <label for="pendidikanterakhir" class="form-control-label">Pendidikan Terakhir :</label>
+                        <input id="pendidikanterakhir" name="pendidikanterakhir" class="form-control" value="{{ pegawai.pddk_terakhir }}" readonly />
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="tmptlahir" class="form-control-label">Tempat Lahir :</label>
+                        <input id="tmptlahir" name="tmptlahir" class="form-control" value="{{ pegawai.tempat_lahir }}" readonly />
+                    </div>
+                    <div class="form-group">
+                        <label for="jnsklmn" class="form-control-label">Jenis Kelamin :</label>
+                        <input id="jnsklmn" name="jnsklmn" class="form-control" value="{{ pegawai.jenis_kelamin }}" readonly />
+                    </div>  
+                    <div class="form-group">
+                        <label for="tmt_pns" class="form-control-label">TMT CPNS :</label>
+                        <input id="tmt_pns" name="tmt_pns" class="form-control" value="{{ pegawai.tmt_cpns}}" readonly />
+                    </div>
+                    <div>
+		</form>
+                    <td>
+                        <a class="btn btn-sm btn-info"href="{% url 'pegawai:riwayatpangkat' pegawai.nip %}">Riwayat Pangkat</a>
+                    </td>
+<td>
+                        <a class="btn btn-sm btn-info"href="{% url 'pegawai:update' pegawai.id %}">Update Pegawai</a>
+                    </td>
+
+                    </div>
+                </div>
+                <div class="col-md-12">
+                </div>  
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

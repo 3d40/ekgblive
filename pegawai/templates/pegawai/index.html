@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+{% if pegawai %}
+
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Nomor</th>
+        <th scope="col">NIP</th>
+        <th scope="col">Nama</th>
+        <th scope="col">Unit Kerja</th>
+        <th scope="col">TMT CPNS</th>
+        <th scope="col">Aksi</th>
+
+      </tr>
+    </thead>
+    <tbody>
+        {% for data in pegawai%}
+        <th scope="row" >{{forloop.counter}}</th>
+        <td> <li> <a href="{% url 'pegawai:detail' data.id %}">{{data.nama}}</a></li></td>
+        <td>{{data.nip}}</td>
+        <td>{{data.opd}}</td>
+        <td>{{data.tmt_cpns}}</td>
+        <td><a class="btn btn-sm btn-info"href="{% url 'pegawai:riwayatpangkat' data.id %}">Riwayat Pangkat</a></td>
+      </tr>
+      {% endfor %}
+  </table>
+{% endif %}
+{% endblock %}    

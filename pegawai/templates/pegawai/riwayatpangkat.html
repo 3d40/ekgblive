@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="col-md-12">
+    <div class="card-header bg-light">
+        Riwayat Pangkat
+        <hr>
+        Nama : {{pegawai.nama}}
+        <br>
+        NIP  : {{pegawai.nip}}
+    </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="myTable" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Jenis Kenaikan Pangkat</th>
+                        <th>Jenjang Golongan</th>
+                        <th>Nomor SK</th>
+                        <th>Terhitung Mulai Tanggal</th>
+                        <th>Tanggal Penetapan</th>
+                        <th>Masa Kerja</th>
+                        <th>Aksi</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        {% for pangkat in object_list %}
+                        <tr>
+                            <td>{{forloop.counter}}</a></td>
+                            <td><a href="{% url 'pegawai:detailpangkat' pangkat.id %}">{{pangkat.jenis}}</a></td>
+                            <td><a href="{% url 'pegawai:detailpangkat' pangkat.id %}">{{pangkat.nama}}</a></td>
+                            <td>{{pangkat.nomor_sk}}</td>
+                            <td>{{pangkat.tanggal}}</td>
+                            <th>{{pangkat.tglpenetapan}}</th>
+                            <td>{{pangkat.mk_tahun}} Tahun {{pangkat.mk_bulan}} Bulan</td>
+                            <td><a class="btn btn-sm btn-info" href="{% url 'pegawai:pangkat' pangkat.id %}">Hitung Masa Kerja</a> 
+                                <a class="btn btn-sm btn-info" href="{% url 'pegawai:deletepangkat' pangkat.id %}">Remove</a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

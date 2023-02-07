@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>LOAD DATA PEGAWAI</h1>
+<div class="table-responsive">
+    <div class="card-body">
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Nomor</th>
+                <th scope="col">Nama OPD</th>
+                <th scope="col">Kepela Opd</th>
+		<th scope="col">Operator</th>
+                <th scope="col">Aksi</th>
+            </tr>
+            </thead>
+            
+            <tbody>  
+            {% for i in object_list %}
+            <tr>
+                <td>{{ forloop.counter }}</td>  
+                <td>{{i.nama}}</td>
+                <td>{{i.kepala_opd}}</td>
+		<td>{{i.operator.akun}}</td>
+                <td><a href="{% url 'pegawai:loadpegawai' i.id %}">Load Pegawai</a></td>
+            </tr>
+            </tbody>
+            {%endfor%}
+        </table>
+    </div>
+</div>
+    
+{% endblock %}  

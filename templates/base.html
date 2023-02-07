@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>{{data.judul}}| e-KGB - LEni BKD</title>
+        <link rel="icon" type="image/png" href="{% static 'pagestatic' %}/assets/images/icons/favicon.ico"/>
+
+        <!-- CSS  -->
+        <link href="{% static 'pagestatic' %}/assets/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet"/>
+        <link href="{% static 'pagestatic' %}/assets/vendor/font-awesome/css/fontawesome-all.min.css" rel="stylesheet"/>
+        <link href="{% static 'pagestatic' %}/assets/css/styles.css" rel="stylesheet"/>
+        <link href="{% static 'pagestatic' %}/assets/vendor/datatables/datatables.css" rel="stylesheet"/>
+
+    </head>
+    
+    <body class="sidebar-fixed header-fixed">
+        {% csrf_token %}
+        <div class="page-wrapper">
+            {% include 'navbar.html' %}
+        <section class = "content">
+            <div class = "container-fluid"><br>
+                <div class ="row">
+                    {% block content %} 
+                    {% endblock %}
+                </div>
+                
+            </div>
+        </section>
+        </div>
+        {% include 'sidebar.html' %}
+
+
+        <!-- JS  -->
+        <script src="{% static 'pagestatic' %}/assets/vendor/jquery/jquery.min.js"></script>
+        <script src="{% static 'pagestatic' %}/assets/vendor/popper.js/popper.min.js"></script>
+        <script src="{% static 'pagestatic' %}/assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script src="{% static 'pagestatic' %}/assets/vendor/datatables/datatables.js"></script>
+        <script src="{% static 'pagestatic' %}/assets/vendor/mask/jquery.mask.js"></script>
+        <script src="{% static 'pagestatic' %}/assets/vendor/mask/jquery.maskMoney.min.js"></script>
+        <script src="{% static 'pagestatic' %}/assets/vendor/chart.js/chart.min.js"></script>
+        <script src="{% static 'pagestatic' %}/assets/js/carbon.js"></script>
+        <script src="{% static 'pagestatic' %}/assets/js/demo.js"></script>
+    </body>
+</html>

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block content %}
+{% if data %}
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header bg-light">
+            {{data.nama}} {{data.nip}}
+        </div>
+        <div class="card-body">
+            <form class="row" id="tambah-nominatif-form" method="post" action="">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="form-control-label">Dinas Instansi</label>
+						<input id="nip" name="nip" class="form-control" value="{{ data.opd }}" readonly />
+                    </div>
+                    <div class="form-group">
+                        <label for="golterakhir" class="form-control-label">Pangkat/Golong Terakhir :</label>
+                        <input id="golterakhir" name="pangol" class="form-control" value="{{ data.golongan }}" readonly />
+                    </div>
+                    <div class="form-group">
+                        <label for="jnsklmn" class="form-control-label">SK Acuan :</label>
+                        <input id="jnsklmn" name="skpd" class="form-control" value="{{ pangkat.nama }} | {{pangkat.jenis}} | {{pangkat.tanggal}}" size=auto readonly />
+                    </div> 
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label for="tmtpns" class="form-control-label">TMT CPNS :</label>
+                        <input id="tmtpns" name="skpd" class="form-control" value="{{ data.tmt_cpns}}" readonly />
+                    </div>
+                    <div class="form-group">
+                        <label for="jnsklmn" class="form-control-label">Masa Kerja Lama :</label>
+                        <input id="jnsklmn" name="skpd" class="form-control" value="{{nom.mk_tahun}} Tahun {{nom.mk_bulan}} Bulan" size=auto readonly />
+                    </div>  
+            
+                    <div class="form-group">
+                        <label for="jnsklmn" class="form-control-label">Masa Kerja Baru :</label>
+                        <input id="jnsklmn" name="skpd" class="form-control" value="{{nom.mkb_tahun}} Tahun {{nom.mkb_bulan}} Bulan" " readonly />
+                    </div> 
+                </div>
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <label for="tmtpns" class="form-control-label">Besaran Gaji  :</label>
+                        <input id="tmtpns" name="skpd" class="form-control" value="{{gaji.tbgaji_currency}} ( {{gaji.terbilang}} )" readonly />
+                    </div>
+                    <td>
+                        {% if opdakses == "operator" or opdakses == "admin" %}
+                        <a class="btn btn-sm btn-info"href="{%url 'pegawai:CetakBerkala' data.id %}">Cetak</a>
+                        <a class="btn btn-sm btn-info"href="{%url 'pegawai:selesai' %}">Kembali</a>
+                        {% else %}
+                        <a class="btn btn-sm btn-info"href="{%url 'pegawai:selesai' %}">Kembali</a>
+                        {% endif %}
+                    </td>
+                </div>
+                <div class="col-md-12">
+                    <hr>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+
+{% endblock %}

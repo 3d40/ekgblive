@@ -1,0 +1,3413 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 12.7 (Ubuntu 12.7-0ubuntu0.20.04.1)
+-- Dumped by pg_dump version 12.7 (Ubuntu 12.7-0ubuntu0.20.04.1)
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: auth_group; Type: TABLE; Schema: public; Owner: datainfo
+--
+
+CREATE TABLE public.auth_group (
+    id integer NOT NULL,
+    name character varying(150) NOT NULL
+);
+
+
+ALTER TABLE public.auth_group OWNER TO datainfo;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE; Schema: public; Owner: datainfo
+--
+
+CREATE SEQUENCE public.auth_group_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_group_id_seq OWNER TO datainfo;
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: datainfo
+--
+
+ALTER SEQUENCE public.auth_group_id_seq OWNED BY public.auth_group.id;
+
+
+--
+-- Name: auth_group_permissions; Type: TABLE; Schema: public; Owner: datainfo
+--
+
+CREATE TABLE public.auth_group_permissions (
+    id integer NOT NULL,
+    group_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_group_permissions OWNER TO datainfo;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: datainfo
+--
+
+CREATE SEQUENCE public.auth_group_permissions_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_group_permissions_id_seq OWNER TO datainfo;
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: datainfo
+--
+
+ALTER SEQUENCE public.auth_group_permissions_id_seq OWNED BY public.auth_group_permissions.id;
+
+
+--
+-- Name: auth_permission; Type: TABLE; Schema: public; Owner: datainfo
+--
+
+CREATE TABLE public.auth_permission (
+    id integer NOT NULL,
+    name character varying(255) NOT NULL,
+    content_type_id integer NOT NULL,
+    codename character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.auth_permission OWNER TO datainfo;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE; Schema: public; Owner: datainfo
+--
+
+CREATE SEQUENCE public.auth_permission_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_permission_id_seq OWNER TO datainfo;
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: datainfo
+--
+
+ALTER SEQUENCE public.auth_permission_id_seq OWNED BY public.auth_permission.id;
+
+
+--
+-- Name: auth_user; Type: TABLE; Schema: public; Owner: datainfo
+--
+
+CREATE TABLE public.auth_user (
+    id integer NOT NULL,
+    password character varying(128) NOT NULL,
+    last_login timestamp with time zone,
+    is_superuser boolean NOT NULL,
+    username character varying(150) NOT NULL,
+    first_name character varying(150) NOT NULL,
+    last_name character varying(150) NOT NULL,
+    email character varying(254) NOT NULL,
+    is_staff boolean NOT NULL,
+    is_active boolean NOT NULL,
+    date_joined timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.auth_user OWNER TO datainfo;
+
+--
+-- Name: auth_user_groups; Type: TABLE; Schema: public; Owner: datainfo
+--
+
+CREATE TABLE public.auth_user_groups (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    group_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_user_groups OWNER TO datainfo;
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE; Schema: public; Owner: datainfo
+--
+
+CREATE SEQUENCE public.auth_user_groups_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_user_groups_id_seq OWNER TO datainfo;
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: datainfo
+--
+
+ALTER SEQUENCE public.auth_user_groups_id_seq OWNED BY public.auth_user_groups.id;
+
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE; Schema: public; Owner: datainfo
+--
+
+CREATE SEQUENCE public.auth_user_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_user_id_seq OWNER TO datainfo;
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: datainfo
+--
+
+ALTER SEQUENCE public.auth_user_id_seq OWNED BY public.auth_user.id;
+
+
+--
+-- Name: auth_user_user_permissions; Type: TABLE; Schema: public; Owner: datainfo
+--
+
+CREATE TABLE public.auth_user_user_permissions (
+    id integer NOT NULL,
+    user_id integer NOT NULL,
+    permission_id integer NOT NULL
+);
+
+
+ALTER TABLE public.auth_user_user_permissions OWNER TO datainfo;
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE; Schema: public; Owner: datainfo
+--
+
+CREATE SEQUENCE public.auth_user_user_permissions_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.auth_user_user_permissions_id_seq OWNER TO datainfo;
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: datainfo
+--
+
+ALTER SEQUENCE public.auth_user_user_permissions_id_seq OWNED BY public.auth_user_user_permissions.id;
+
+
+--
+-- Name: django_admin_log; Type: TABLE; Schema: public; Owner: datainfo
+--
+
+CREATE TABLE public.django_admin_log (
+    id integer NOT NULL,
+    action_time timestamp with time zone NOT NULL,
+    object_id text,
+    object_repr character varying(200) NOT NULL,
+    action_flag smallint NOT NULL,
+    change_message text NOT NULL,
+    content_type_id integer,
+    user_id integer NOT NULL,
+    CONSTRAINT django_admin_log_action_flag_check CHECK ((action_flag >= 0))
+);
+
+
+ALTER TABLE public.django_admin_log OWNER TO datainfo;
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE; Schema: public; Owner: datainfo
+--
+
+CREATE SEQUENCE public.django_admin_log_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_admin_log_id_seq OWNER TO datainfo;
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: datainfo
+--
+
+ALTER SEQUENCE public.django_admin_log_id_seq OWNED BY public.django_admin_log.id;
+
+
+--
+-- Name: django_content_type; Type: TABLE; Schema: public; Owner: datainfo
+--
+
+CREATE TABLE public.django_content_type (
+    id integer NOT NULL,
+    app_label character varying(100) NOT NULL,
+    model character varying(100) NOT NULL
+);
+
+
+ALTER TABLE public.django_content_type OWNER TO datainfo;
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE; Schema: public; Owner: datainfo
+--
+
+CREATE SEQUENCE public.django_content_type_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_content_type_id_seq OWNER TO datainfo;
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: datainfo
+--
+
+ALTER SEQUENCE public.django_content_type_id_seq OWNED BY public.django_content_type.id;
+
+
+--
+-- Name: django_migrations; Type: TABLE; Schema: public; Owner: datainfo
+--
+
+CREATE TABLE public.django_migrations (
+    id integer NOT NULL,
+    app character varying(255) NOT NULL,
+    name character varying(255) NOT NULL,
+    applied timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.django_migrations OWNER TO datainfo;
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE; Schema: public; Owner: datainfo
+--
+
+CREATE SEQUENCE public.django_migrations_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.django_migrations_id_seq OWNER TO datainfo;
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: datainfo
+--
+
+ALTER SEQUENCE public.django_migrations_id_seq OWNED BY public.django_migrations.id;
+
+
+--
+-- Name: django_session; Type: TABLE; Schema: public; Owner: datainfo
+--
+
+CREATE TABLE public.django_session (
+    session_key character varying(40) NOT NULL,
+    session_data text NOT NULL,
+    expire_date timestamp with time zone NOT NULL
+);
+
+
+ALTER TABLE public.django_session OWNER TO datainfo;
+
+--
+-- Name: pegawai_akunmodel; Type: TABLE; Schema: public; Owner: datainfo
+--
+
+CREATE TABLE public.pegawai_akunmodel (
+    id integer NOT NULL,
+    pegawai character varying(50),
+    jenis_akun character varying(20) NOT NULL,
+    akun_id integer,
+    opd_akses_id integer
+);
+
+
+ALTER TABLE public.pegawai_akunmodel OWNER TO datainfo;
+
+--
+-- Name: pegawai_akunmodel_id_seq; Type: SEQUENCE; Schema: public; Owner: datainfo
+--
+
+CREATE SEQUENCE public.pegawai_akunmodel_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pegawai_akunmodel_id_seq OWNER TO datainfo;
+
+--
+-- Name: pegawai_akunmodel_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: datainfo
+--
+
+ALTER SEQUENCE public.pegawai_akunmodel_id_seq OWNED BY public.pegawai_akunmodel.id;
+
+
+--
+-- Name: pegawai_berkalahistorymodel; Type: TABLE; Schema: public; Owner: datainfo
+--
+
+CREATE TABLE public.pegawai_berkalahistorymodel (
+    id integer NOT NULL,
+    username character varying(255),
+    kgb_nomor character varying(255),
+    kgb_tanggal timestamp with time zone,
+    tmt date,
+    tmt_baru date,
+    golongan character varying(5) NOT NULL,
+    pejabat_ttd character varying(255) NOT NULL,
+    mk_lama_tahun integer,
+    mk_lama_bulan integer,
+    kgb_image character varying(100),
+    mk_baru_tahun integer,
+    mk_baru_bulan integer,
+    nilai integer,
+    dokumen character varying(100)
+);
+
+
+ALTER TABLE public.pegawai_berkalahistorymodel OWNER TO datainfo;
+
+--
+-- Name: pegawai_berkalahistorymodel_id_seq; Type: SEQUENCE; Schema: public; Owner: datainfo
+--
+
+CREATE SEQUENCE public.pegawai_berkalahistorymodel_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pegawai_berkalahistorymodel_id_seq OWNER TO datainfo;
+
+--
+-- Name: pegawai_berkalahistorymodel_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: datainfo
+--
+
+ALTER SEQUENCE public.pegawai_berkalahistorymodel_id_seq OWNED BY public.pegawai_berkalahistorymodel.id;
+
+
+--
+-- Name: pegawai_daftarnominatifmodel; Type: TABLE; Schema: public; Owner: datainfo
+--
+
+CREATE TABLE public.pegawai_daftarnominatifmodel (
+    id integer NOT NULL
+);
+
+
+ALTER TABLE public.pegawai_daftarnominatifmodel OWNER TO datainfo;
+
+--
+-- Name: pegawai_daftarnominatifmodel_id_seq; Type: SEQUENCE; Schema: public; Owner: datainfo
+--
+
+CREATE SEQUENCE public.pegawai_daftarnominatifmodel_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pegawai_daftarnominatifmodel_id_seq OWNER TO datainfo;
+
+--
+-- Name: pegawai_daftarnominatifmodel_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: datainfo
+--
+
+ALTER SEQUENCE public.pegawai_daftarnominatifmodel_id_seq OWNED BY public.pegawai_daftarnominatifmodel.id;
+
+
+--
+-- Name: pegawai_gajimodel; Type: TABLE; Schema: public; Owner: datainfo
+--
+
+CREATE TABLE public.pegawai_gajimodel (
+    id integer NOT NULL,
+    masa_kerja integer NOT NULL,
+    tbgaji_currency character varying(255),
+    terbilang character varying(255),
+    golongan_id integer
+);
+
+
+ALTER TABLE public.pegawai_gajimodel OWNER TO datainfo;
+
+--
+-- Name: pegawai_gajimodel_id_seq; Type: SEQUENCE; Schema: public; Owner: datainfo
+--
+
+CREATE SEQUENCE public.pegawai_gajimodel_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pegawai_gajimodel_id_seq OWNER TO datainfo;
+
+--
+-- Name: pegawai_gajimodel_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: datainfo
+--
+
+ALTER SEQUENCE public.pegawai_gajimodel_id_seq OWNED BY public.pegawai_gajimodel.id;
+
+
+--
+-- Name: pegawai_golonganhistorymodel; Type: TABLE; Schema: public; Owner: datainfo
+--
+
+CREATE TABLE public.pegawai_golonganhistorymodel (
+    id integer NOT NULL,
+    pengguna integer,
+    nip character varying(50),
+    nomor_sk character varying(150),
+    jenis character varying(50),
+    tanggal date,
+    dokumen character varying(100),
+    nama_id integer,
+    mk_bulan integer,
+    mk_tahun integer,
+    dasarnominatif boolean,
+    tglpenetapan date,
+    pejabat character varying(50)
+);
+ALTER TABLE ONLY public.pegawai_golonganhistorymodel ALTER COLUMN tglpenetapan SET STATISTICS 1;
+
+
+ALTER TABLE public.pegawai_golonganhistorymodel OWNER TO datainfo;
+
+--
+-- Name: pegawai_golonganhistorymodel_id_seq; Type: SEQUENCE; Schema: public; Owner: datainfo
+--
+
+CREATE SEQUENCE public.pegawai_golonganhistorymodel_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pegawai_golonganhistorymodel_id_seq OWNER TO datainfo;
+
+--
+-- Name: pegawai_golonganhistorymodel_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: datainfo
+--
+
+ALTER SEQUENCE public.pegawai_golonganhistorymodel_id_seq OWNED BY public.pegawai_golonganhistorymodel.id;
+
+
+--
+-- Name: pegawai_golonganmodel; Type: TABLE; Schema: public; Owner: datainfo
+--
+
+CREATE TABLE public.pegawai_golonganmodel (
+    id integer NOT NULL,
+    nama character varying(50) NOT NULL,
+    nilai integer NOT NULL,
+    simbol character varying(10),
+    grade integer
+);
+
+
+ALTER TABLE public.pegawai_golonganmodel OWNER TO datainfo;
+
+--
+-- Name: pegawai_golonganmodel_id_seq; Type: SEQUENCE; Schema: public; Owner: datainfo
+--
+
+CREATE SEQUENCE public.pegawai_golonganmodel_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pegawai_golonganmodel_id_seq OWNER TO datainfo;
+
+--
+-- Name: pegawai_golonganmodel_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: datainfo
+--
+
+ALTER SEQUENCE public.pegawai_golonganmodel_id_seq OWNED BY public.pegawai_golonganmodel.id;
+
+
+--
+-- Name: pegawai_jabatanmodel; Type: TABLE; Schema: public; Owner: datainfo
+--
+
+CREATE TABLE public.pegawai_jabatanmodel (
+    id integer NOT NULL,
+    bup integer NOT NULL,
+    jenjang character varying(30) NOT NULL,
+    jenis character varying(20),
+    nama character varying(150)
+);
+
+
+ALTER TABLE public.pegawai_jabatanmodel OWNER TO datainfo;
+
+--
+-- Name: pegawai_jabatanmodel_id_seq; Type: SEQUENCE; Schema: public; Owner: datainfo
+--
+
+CREATE SEQUENCE public.pegawai_jabatanmodel_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pegawai_jabatanmodel_id_seq OWNER TO datainfo;
+
+--
+-- Name: pegawai_jabatanmodel_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: datainfo
+--
+
+ALTER SEQUENCE public.pegawai_jabatanmodel_id_seq OWNED BY public.pegawai_jabatanmodel.id;
+
+
+--
+-- Name: pegawai_nominatifselesaimodels; Type: TABLE; Schema: public; Owner: datainfo
+--
+
+CREATE TABLE public.pegawai_nominatifselesaimodels (
+    id integer NOT NULL,
+    mk_tahun integer,
+    mk_bulan integer,
+    mkb_tahun integer,
+    mkb_bulan integer,
+    tanggal timestamp with time zone NOT NULL,
+    tmt_kgb date,
+    gaji_id integer,
+    golongan_id integer,
+    jabatan_id integer,
+    opd_id integer,
+    pegawai_id integer NOT NULL
+);
+
+
+ALTER TABLE public.pegawai_nominatifselesaimodels OWNER TO datainfo;
+
+--
+-- Name: pegawai_nominatifselesaimodels_id_seq; Type: SEQUENCE; Schema: public; Owner: datainfo
+--
+
+CREATE SEQUENCE public.pegawai_nominatifselesaimodels_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pegawai_nominatifselesaimodels_id_seq OWNER TO datainfo;
+
+--
+-- Name: pegawai_nominatifselesaimodels_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: datainfo
+--
+
+ALTER SEQUENCE public.pegawai_nominatifselesaimodels_id_seq OWNED BY public.pegawai_nominatifselesaimodels.id;
+
+
+--
+-- Name: pegawai_nominatiftundamodel; Type: TABLE; Schema: public; Owner: datainfo
+--
+
+CREATE TABLE public.pegawai_nominatiftundamodel (
+    id integer NOT NULL,
+    mk_tahun integer,
+    mk_bulan integer,
+    mkb_tahun integer,
+    mkb_bulan integer,
+    tanggal timestamp with time zone NOT NULL,
+    tmt_kgb date,
+    keterangan character varying(20),
+    gaji_id integer,
+    golongan_id integer,
+    jabatan_id integer,
+    opd_id integer,
+    pegawai_id integer NOT NULL
+);
+
+
+ALTER TABLE public.pegawai_nominatiftundamodel OWNER TO datainfo;
+
+--
+-- Name: pegawai_nominatiftundamodel_id_seq; Type: SEQUENCE; Schema: public; Owner: datainfo
+--
+
+CREATE SEQUENCE public.pegawai_nominatiftundamodel_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pegawai_nominatiftundamodel_id_seq OWNER TO datainfo;
+
+--
+-- Name: pegawai_nominatiftundamodel_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: datainfo
+--
+
+ALTER SEQUENCE public.pegawai_nominatiftundamodel_id_seq OWNED BY public.pegawai_nominatiftundamodel.id;
+
+
+--
+-- Name: pegawai_nominatifxmodels; Type: TABLE; Schema: public; Owner: datainfo
+--
+
+CREATE TABLE public.pegawai_nominatifxmodels (
+    id integer NOT NULL,
+    mk_tahun integer,
+    mk_bulan integer,
+    mkb_tahun integer,
+    mkb_bulan integer,
+    tanggal timestamp with time zone NOT NULL,
+    tmt_kgb date,
+    bahan character varying(20) NOT NULL,
+    gaji_id integer,
+    jabatan_id integer,
+    pegawai_id integer NOT NULL,
+    golongan_id integer,
+    opd_id integer
+);
+
+
+ALTER TABLE public.pegawai_nominatifxmodels OWNER TO datainfo;
+
+--
+-- Name: pegawai_nominatifxmodels_id_seq; Type: SEQUENCE; Schema: public; Owner: datainfo
+--
+
+CREATE SEQUENCE public.pegawai_nominatifxmodels_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pegawai_nominatifxmodels_id_seq OWNER TO datainfo;
+
+--
+-- Name: pegawai_nominatifxmodels_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: datainfo
+--
+
+ALTER SEQUENCE public.pegawai_nominatifxmodels_id_seq OWNED BY public.pegawai_nominatifxmodels.id;
+
+
+--
+-- Name: pegawai_opdmodel; Type: TABLE; Schema: public; Owner: datainfo
+--
+
+CREATE TABLE public.pegawai_opdmodel (
+    id integer NOT NULL,
+    nama character varying(255) NOT NULL,
+    kepala_opd_id integer,
+    alamat character varying(255),
+    email character varying(255),
+    telpon character varying(255),
+    website character varying(255),
+    operator_id integer,
+    plt boolean NOT NULL
+);
+
+
+ALTER TABLE public.pegawai_opdmodel OWNER TO datainfo;
+
+--
+-- Name: pegawai_opdmodel_id_seq; Type: SEQUENCE; Schema: public; Owner: datainfo
+--
+
+CREATE SEQUENCE public.pegawai_opdmodel_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pegawai_opdmodel_id_seq OWNER TO datainfo;
+
+--
+-- Name: pegawai_opdmodel_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: datainfo
+--
+
+ALTER SEQUENCE public.pegawai_opdmodel_id_seq OWNED BY public.pegawai_opdmodel.id;
+
+
+--
+-- Name: pegawai_pegawaimodel; Type: TABLE; Schema: public; Owner: datainfo
+--
+
+CREATE TABLE public.pegawai_pegawaimodel (
+    id integer NOT NULL,
+    nama character varying(100) NOT NULL,
+    nip character varying(100),
+    pengguna integer,
+    alamat character varying(255) NOT NULL,
+    telpon character varying(30) NOT NULL,
+    gaji_skrg integer,
+    tmt_cpns date,
+    fhoto character varying(100) NOT NULL,
+    golongan_id integer,
+    jabatan_id integer,
+    opd_id integer,
+    nominasi boolean NOT NULL,
+    jenis_kelamin character varying(30),
+    tempat_lahir character varying(100),
+    jabatan_data character varying(100),
+    jenis_jabatan character varying(100),
+    pddk_terakhir character varying(100),
+    tmt_pns date,
+    tgllahir date
+);
+
+
+ALTER TABLE public.pegawai_pegawaimodel OWNER TO datainfo;
+
+--
+-- Name: pegawai_pegawaimodel_id_seq; Type: SEQUENCE; Schema: public; Owner: datainfo
+--
+
+CREATE SEQUENCE public.pegawai_pegawaimodel_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pegawai_pegawaimodel_id_seq OWNER TO datainfo;
+
+--
+-- Name: pegawai_pegawaimodel_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: datainfo
+--
+
+ALTER SEQUENCE public.pegawai_pegawaimodel_id_seq OWNED BY public.pegawai_pegawaimodel.id;
+
+
+--
+-- Name: pegawai_prosesberkalamodel; Type: TABLE; Schema: public; Owner: datainfo
+--
+
+CREATE TABLE public.pegawai_prosesberkalamodel (
+    id integer NOT NULL,
+    tanggal timestamp with time zone NOT NULL,
+    status character varying(20) NOT NULL,
+    pegawai_id integer,
+    gaji_id integer,
+    jabatan_id integer,
+    mk_bulan integer,
+    mk_tahun integer,
+    golongan_id integer,
+    mkb_bulan integer,
+    mkb_tahun integer,
+    opd_id integer,
+    tmt_kgb date
+);
+
+
+ALTER TABLE public.pegawai_prosesberkalamodel OWNER TO datainfo;
+
+--
+-- Name: pegawai_prosesberkalamodel_id_seq; Type: SEQUENCE; Schema: public; Owner: datainfo
+--
+
+CREATE SEQUENCE public.pegawai_prosesberkalamodel_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.pegawai_prosesberkalamodel_id_seq OWNER TO datainfo;
+
+--
+-- Name: pegawai_prosesberkalamodel_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: datainfo
+--
+
+ALTER SEQUENCE public.pegawai_prosesberkalamodel_id_seq OWNED BY public.pegawai_prosesberkalamodel.id;
+
+
+--
+-- Name: auth_group id; Type: DEFAULT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.auth_group ALTER COLUMN id SET DEFAULT nextval('public.auth_group_id_seq'::regclass);
+
+
+--
+-- Name: auth_group_permissions id; Type: DEFAULT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.auth_group_permissions ALTER COLUMN id SET DEFAULT nextval('public.auth_group_permissions_id_seq'::regclass);
+
+
+--
+-- Name: auth_permission id; Type: DEFAULT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.auth_permission ALTER COLUMN id SET DEFAULT nextval('public.auth_permission_id_seq'::regclass);
+
+
+--
+-- Name: auth_user id; Type: DEFAULT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.auth_user ALTER COLUMN id SET DEFAULT nextval('public.auth_user_id_seq'::regclass);
+
+
+--
+-- Name: auth_user_groups id; Type: DEFAULT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.auth_user_groups ALTER COLUMN id SET DEFAULT nextval('public.auth_user_groups_id_seq'::regclass);
+
+
+--
+-- Name: auth_user_user_permissions id; Type: DEFAULT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions ALTER COLUMN id SET DEFAULT nextval('public.auth_user_user_permissions_id_seq'::regclass);
+
+
+--
+-- Name: django_admin_log id; Type: DEFAULT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.django_admin_log ALTER COLUMN id SET DEFAULT nextval('public.django_admin_log_id_seq'::regclass);
+
+
+--
+-- Name: django_content_type id; Type: DEFAULT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.django_content_type ALTER COLUMN id SET DEFAULT nextval('public.django_content_type_id_seq'::regclass);
+
+
+--
+-- Name: django_migrations id; Type: DEFAULT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.django_migrations ALTER COLUMN id SET DEFAULT nextval('public.django_migrations_id_seq'::regclass);
+
+
+--
+-- Name: pegawai_akunmodel id; Type: DEFAULT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_akunmodel ALTER COLUMN id SET DEFAULT nextval('public.pegawai_akunmodel_id_seq'::regclass);
+
+
+--
+-- Name: pegawai_berkalahistorymodel id; Type: DEFAULT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_berkalahistorymodel ALTER COLUMN id SET DEFAULT nextval('public.pegawai_berkalahistorymodel_id_seq'::regclass);
+
+
+--
+-- Name: pegawai_daftarnominatifmodel id; Type: DEFAULT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_daftarnominatifmodel ALTER COLUMN id SET DEFAULT nextval('public.pegawai_daftarnominatifmodel_id_seq'::regclass);
+
+
+--
+-- Name: pegawai_gajimodel id; Type: DEFAULT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_gajimodel ALTER COLUMN id SET DEFAULT nextval('public.pegawai_gajimodel_id_seq'::regclass);
+
+
+--
+-- Name: pegawai_golonganhistorymodel id; Type: DEFAULT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_golonganhistorymodel ALTER COLUMN id SET DEFAULT nextval('public.pegawai_golonganhistorymodel_id_seq'::regclass);
+
+
+--
+-- Name: pegawai_golonganmodel id; Type: DEFAULT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_golonganmodel ALTER COLUMN id SET DEFAULT nextval('public.pegawai_golonganmodel_id_seq'::regclass);
+
+
+--
+-- Name: pegawai_jabatanmodel id; Type: DEFAULT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_jabatanmodel ALTER COLUMN id SET DEFAULT nextval('public.pegawai_jabatanmodel_id_seq'::regclass);
+
+
+--
+-- Name: pegawai_nominatifselesaimodels id; Type: DEFAULT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_nominatifselesaimodels ALTER COLUMN id SET DEFAULT nextval('public.pegawai_nominatifselesaimodels_id_seq'::regclass);
+
+
+--
+-- Name: pegawai_nominatiftundamodel id; Type: DEFAULT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_nominatiftundamodel ALTER COLUMN id SET DEFAULT nextval('public.pegawai_nominatiftundamodel_id_seq'::regclass);
+
+
+--
+-- Name: pegawai_nominatifxmodels id; Type: DEFAULT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_nominatifxmodels ALTER COLUMN id SET DEFAULT nextval('public.pegawai_nominatifxmodels_id_seq'::regclass);
+
+
+--
+-- Name: pegawai_opdmodel id; Type: DEFAULT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_opdmodel ALTER COLUMN id SET DEFAULT nextval('public.pegawai_opdmodel_id_seq'::regclass);
+
+
+--
+-- Name: pegawai_pegawaimodel id; Type: DEFAULT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_pegawaimodel ALTER COLUMN id SET DEFAULT nextval('public.pegawai_pegawaimodel_id_seq'::regclass);
+
+
+--
+-- Name: pegawai_prosesberkalamodel id; Type: DEFAULT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_prosesberkalamodel ALTER COLUMN id SET DEFAULT nextval('public.pegawai_prosesberkalamodel_id_seq'::regclass);
+
+
+--
+-- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: datainfo
+--
+
+COPY public.auth_group (id, name) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: datainfo
+--
+
+COPY public.auth_group_permissions (id, group_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_permission; Type: TABLE DATA; Schema: public; Owner: datainfo
+--
+
+COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
+1	Can add log entry	1	add_logentry
+2	Can change log entry	1	change_logentry
+3	Can delete log entry	1	delete_logentry
+4	Can view log entry	1	view_logentry
+5	Can add permission	2	add_permission
+6	Can change permission	2	change_permission
+7	Can delete permission	2	delete_permission
+8	Can view permission	2	view_permission
+9	Can add group	3	add_group
+10	Can change group	3	change_group
+11	Can delete group	3	delete_group
+12	Can view group	3	view_group
+13	Can add user	4	add_user
+14	Can change user	4	change_user
+15	Can delete user	4	delete_user
+16	Can view user	4	view_user
+17	Can add content type	5	add_contenttype
+18	Can change content type	5	change_contenttype
+19	Can delete content type	5	delete_contenttype
+20	Can view content type	5	view_contenttype
+21	Can add session	6	add_session
+22	Can change session	6	change_session
+23	Can delete session	6	delete_session
+24	Can view session	6	view_session
+25	Can add berkala history model	7	add_berkalahistorymodel
+26	Can change berkala history model	7	change_berkalahistorymodel
+27	Can delete berkala history model	7	delete_berkalahistorymodel
+28	Can view berkala history model	7	view_berkalahistorymodel
+29	Can add daftar nominatif model	8	add_daftarnominatifmodel
+30	Can change daftar nominatif model	8	change_daftarnominatifmodel
+31	Can delete daftar nominatif model	8	delete_daftarnominatifmodel
+32	Can view daftar nominatif model	8	view_daftarnominatifmodel
+33	Can add golongan model	9	add_golonganmodel
+34	Can change golongan model	9	change_golonganmodel
+35	Can delete golongan model	9	delete_golonganmodel
+36	Can view golongan model	9	view_golonganmodel
+37	Can add jabatan model	10	add_jabatanmodel
+38	Can change jabatan model	10	change_jabatanmodel
+39	Can delete jabatan model	10	delete_jabatanmodel
+40	Can view jabatan model	10	view_jabatanmodel
+41	Can add opd model	11	add_opdmodel
+42	Can change opd model	11	change_opdmodel
+43	Can delete opd model	11	delete_opdmodel
+44	Can view opd model	11	view_opdmodel
+45	Can add pegawai model	12	add_pegawaimodel
+46	Can change pegawai model	12	change_pegawaimodel
+47	Can delete pegawai model	12	delete_pegawaimodel
+48	Can view pegawai model	12	view_pegawaimodel
+49	Can add proses berkala model	13	add_prosesberkalamodel
+50	Can change proses berkala model	13	change_prosesberkalamodel
+51	Can delete proses berkala model	13	delete_prosesberkalamodel
+52	Can view proses berkala model	13	view_prosesberkalamodel
+53	Can add golongan history model	14	add_golonganhistorymodel
+54	Can change golongan history model	14	change_golonganhistorymodel
+55	Can delete golongan history model	14	delete_golonganhistorymodel
+56	Can view golongan history model	14	view_golonganhistorymodel
+57	Can add gaji model	15	add_gajimodel
+58	Can change gaji model	15	change_gajimodel
+59	Can delete gaji model	15	delete_gajimodel
+60	Can view gaji model	15	view_gajimodel
+61	Can add akun model	16	add_akunmodel
+62	Can change akun model	16	change_akunmodel
+63	Can delete akun model	16	delete_akunmodel
+64	Can view akun model	16	view_akunmodel
+65	Can add nominatifx models	17	add_nominatifxmodels
+66	Can change nominatifx models	17	change_nominatifxmodels
+67	Can delete nominatifx models	17	delete_nominatifxmodels
+68	Can view nominatifx models	17	view_nominatifxmodels
+69	Can add nominatif selesai models	18	add_nominatifselesaimodels
+70	Can change nominatif selesai models	18	change_nominatifselesaimodels
+71	Can delete nominatif selesai models	18	delete_nominatifselesaimodels
+72	Can view nominatif selesai models	18	view_nominatifselesaimodels
+73	Can add nominatif tunda model	19	add_nominatiftundamodel
+74	Can change nominatif tunda model	19	change_nominatiftundamodel
+75	Can delete nominatif tunda model	19	delete_nominatiftundamodel
+76	Can view nominatif tunda model	19	view_nominatiftundamodel
+\.
+
+
+--
+-- Data for Name: auth_user; Type: TABLE DATA; Schema: public; Owner: datainfo
+--
+
+COPY public.auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
+9	pbkdf2_sha256$216000$F9Xsxmzj3neb$B9dF7tqRvaefZp+KP3Gq5RAFfCpESva6hzkXTOtJ0hw=	2021-08-12 13:23:32.706118+07	f	kesbangpol				t	t	2021-08-10 11:42:07+07
+4	pbkdf2_sha256$216000$inORUcE6JlEN$urJLczYdGKQiDovYS99JcpFLD9LHENUP9qo09g7sPOw=	2021-06-15 10:27:50.611924+07	f	kepegawaianpu				t	t	2021-03-24 09:29:45+07
+8	pbkdf2_sha256$216000$Jxejc3bUurZ9$ZorMOSBU610fxCFv02bYHFnydV8U4IM5wTNIhPd//to=	2021-08-05 10:49:05.75374+07	f	kepegawaianbpsdm	kepegawaianbpsdm	kepegawaianbpsdm	clonibug_cod@yahoo.com	t	t	2021-08-05 10:47:48+07
+6	pbkdf2_sha256$216000$KCujg4gRN4Ed$KTsaYlEwTpO7DrHzj1fw2qRl05WX3JluAoxcXjHKrbQ=	2021-06-30 08:34:08.550076+07	f	tubpbd	Badan Penanggulangan Bencana Daerah		asdasdasd@gmail.com	t	t	2021-06-30 08:30:22+07
+5	pbkdf2_sha256$216000$HFfxgPeeKuLI$56a2qSwwf+l5FNYRcXscvhY7Q9DQnxJ1v0BNl+yWv/g=	2021-06-16 15:30:32.327038+07	f	kominfo				t	t	2021-06-15 10:30:41+07
+2	pbkdf2_sha256$216000$gHPFk2VHMJup$1R3TeyDilGCGN8VQeadmlf7l79waez4mjB4yhX7cNw4=	2021-08-12 13:52:09.625281+07	f	kepegawaianbkd	Tata Usaha BKD		bkdjambi@jambiprov.go.id	t	t	2021-03-18 11:40:11+07
+10	pbkdf2_sha256$216000$YfdiqxCeIMV3$PwnGMWjFOA4hdIkGijXeb+3943Pu805R6/26T0eGIzk=	2021-08-12 13:53:06.347224+07	f	operator01				t	t	2021-08-10 15:12:17+07
+11	pbkdf2_sha256$216000$8f7nSKCEjL2D$sTbar2bRld19p3Zynb9WUwLGLd981rTMleMplRg9ESM=	2021-08-12 13:53:59.002415+07	t	super				t	t	2021-08-10 21:53:19+07
+7	pbkdf2_sha256$216000$i6aou71bUysS$OyHfzE6hhYxUmHm4nRMAs1jWoCI9PWE/L8WrRdRe7Mk=	2021-07-01 15:36:02.322914+07	f	tubpbdjambi				t	t	2021-07-01 12:02:25+07
+1	pbkdf2_sha256$216000$U5Evnakr5opE$G3Pgz4NA6K+aLz1CKxvzdqYIM63VpGom9zBgCGFs0LM=	2021-08-12 11:53:23.91933+07	t	admin			admin@gmail.com	t	t	2021-03-18 11:38:00.758325+07
+\.
+
+
+--
+-- Data for Name: auth_user_groups; Type: TABLE DATA; Schema: public; Owner: datainfo
+--
+
+COPY public.auth_user_groups (id, user_id, group_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_user_user_permissions; Type: TABLE DATA; Schema: public; Owner: datainfo
+--
+
+COPY public.auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: django_admin_log; Type: TABLE DATA; Schema: public; Owner: datainfo
+--
+
+COPY public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) FROM stdin;
+1	2021-03-24 09:16:55.138475+07	2	kepegawaianbkd	2	[{"changed": {"fields": ["password"]}}]	4	1
+2	2021-03-24 09:24:25.626505+07	3	AkunModel object (3)	1	[{"added": {}}]	16	1
+3	2021-03-24 09:29:46.012861+07	4	kepegawaianpu	1	[{"added": {}}]	4	1
+4	2021-03-24 09:30:13.850346+07	4	AkunModel object (4)	1	[{"added": {}}]	16	1
+5	2021-06-15 10:25:56.919377+07	4	kepegawaianpu	2	[{"changed": {"fields": ["password"]}}]	4	1
+6	2021-06-15 10:27:09.546247+07	4	kepegawaianpu	2	[{"changed": {"fields": ["Staff status"]}}]	4	1
+7	2021-06-15 10:30:42.00594+07	5	kominfo	1	[{"added": {}}]	4	1
+8	2021-06-15 10:31:06.591644+07	5	kominfo	2	[{"changed": {"fields": ["Staff status"]}}]	4	1
+9	2021-06-15 10:33:02.905497+07	4	AkunModel object (4)	2	[{"changed": {"fields": ["Akun", "Pegawai", "Opd akses"]}}]	16	1
+10	2021-06-16 15:30:13.365907+07	5	kominfo	2	[{"changed": {"fields": ["password"]}}]	4	1
+11	2021-06-30 08:30:22.288296+07	6	tubpbd	1	[{"added": {}}]	4	1
+12	2021-06-30 08:31:10.908017+07	5	AkunModel object (5)	1	[{"added": {}}]	16	1
+13	2021-06-30 08:31:29.691787+07	6	tubpbd	2	[{"changed": {"fields": ["Staff status"]}}]	4	1
+14	2021-06-30 08:32:11.972911+07	6	tubpbd	2	[{"changed": {"fields": ["First name", "Email address"]}}]	4	1
+15	2021-07-01 12:02:26.052353+07	7	tubpbdjambi	1	[{"added": {}}]	4	1
+16	2021-07-01 12:03:05.18736+07	6	AkunModel object (6)	1	[{"added": {}}]	16	1
+17	2021-07-01 12:05:39.664684+07	7	tubpbdjambi	2	[{"changed": {"fields": ["Staff status"]}}]	4	1
+18	2021-07-22 15:28:36.774757+07	1	ALL	1	[{"added": {}}]	11	1
+19	2021-07-22 15:29:20.665022+07	7	AkunModel object (7)	1	[{"added": {}}]	16	1
+20	2021-08-02 16:03:24.153809+07	8	jpt	1	[{"added": {}}]	10	1
+21	2021-08-02 16:03:34.450365+07	9	struktural	1	[{"added": {}}]	10	1
+22	2021-08-02 16:03:42.780607+07	10	jft1	1	[{"added": {}}]	10	1
+23	2021-08-02 16:03:52.335985+07	11	jft2	1	[{"added": {}}]	10	1
+24	2021-08-02 16:04:00.662813+07	12	jft3	1	[{"added": {}}]	10	1
+25	2021-08-02 16:04:09.607299+07	13	jft4	1	[{"added": {}}]	10	1
+26	2021-08-02 16:04:19.776417+07	13	jft4	2	[{"changed": {"fields": ["Bup"]}}]	10	1
+27	2021-08-02 16:04:28.482535+07	14	jft5	1	[{"added": {}}]	10	1
+28	2021-08-02 16:04:35.969573+07	15	jft6	1	[{"added": {}}]	10	1
+29	2021-08-02 16:05:15.105929+07	16	jft6	1	[{"added": {}}]	10	1
+30	2021-08-05 10:47:48.757074+07	8	kepegawaianbpsdm	1	[{"added": {}}]	4	1
+31	2021-08-05 10:48:07.652835+07	8	kepegawaianbpsdm	2	[{"changed": {"fields": ["First name", "Last name", "Email address", "Staff status"]}}]	4	1
+32	2021-08-05 10:48:39.760211+07	8	AkunModel object (8)	1	[{"added": {}}]	16	1
+33	2021-08-09 12:20:59.203055+07	3	AkunModel object (3)	2	[{"changed": {"fields": ["Pegawai", "Jenis akun"]}}]	16	1
+34	2021-08-09 13:22:42.300633+07	937	Badan Kepegawaian Daerah	2	[{"changed": {"fields": ["Plt"]}}]	11	1
+35	2021-08-10 11:05:19.787811+07	942	Badan Kesatuan Bangsa dan Politik	2	[{"changed": {"fields": ["Kepala opd"]}}]	11	1
+36	2021-08-10 11:42:07.240381+07	9	kesbangpol	1	[{"added": {}}]	4	1
+37	2021-08-10 11:42:16.375738+07	9	kesbangpol	2	[{"changed": {"fields": ["Staff status"]}}]	4	1
+38	2021-08-10 11:43:10.47546+07	9	AkunModel object (9)	1	[{"added": {}}]	16	1
+39	2021-08-10 11:44:17.453842+07	7	AkunModel object (7)	2	[{"changed": {"fields": ["Akun"]}}]	16	1
+40	2021-08-10 11:44:23.795903+07	942	Badan Kesatuan Bangsa dan Politik	2	[{"changed": {"fields": ["Operator"]}}]	11	1
+41	2021-08-10 11:51:14.174505+07	9	AkunModel object (9)	2	[]	16	1
+42	2021-08-10 11:51:24.909088+07	942	Badan Kesatuan Bangsa dan Politik	2	[{"changed": {"fields": ["Operator"]}}]	11	1
+43	2021-08-10 15:12:17.636078+07	10	operator01	1	[{"added": {}}]	4	1
+44	2021-08-10 15:12:25.51046+07	10	operator01	2	[{"changed": {"fields": ["Staff status"]}}]	4	1
+45	2021-08-10 15:13:53.593409+07	10	AkunModel object (10)	1	[{"added": {}}]	16	1
+46	2021-08-10 15:14:35.42713+07	937	Badan Kepegawaian Daerah	2	[{"changed": {"fields": ["Operator"]}}]	11	1
+47	2021-08-10 15:27:49.128085+07	942	Badan Kesatuan Bangsa dan Politik	2	[{"changed": {"fields": ["Operator"]}}]	11	1
+48	2021-08-10 21:53:20.051024+07	11	super	1	[{"added": {}}]	4	1
+49	2021-08-10 21:53:26.295587+07	11	super	2	[{"changed": {"fields": ["Staff status", "Superuser status"]}}]	4	1
+50	2021-08-12 11:53:45.643821+07	2	kepegawaianbkd	2	[]	4	1
+\.
+
+
+--
+-- Data for Name: django_content_type; Type: TABLE DATA; Schema: public; Owner: datainfo
+--
+
+COPY public.django_content_type (id, app_label, model) FROM stdin;
+1	admin	logentry
+2	auth	permission
+3	auth	group
+4	auth	user
+5	contenttypes	contenttype
+6	sessions	session
+7	pegawai	berkalahistorymodel
+8	pegawai	daftarnominatifmodel
+9	pegawai	golonganmodel
+10	pegawai	jabatanmodel
+11	pegawai	opdmodel
+12	pegawai	pegawaimodel
+13	pegawai	prosesberkalamodel
+14	pegawai	golonganhistorymodel
+15	pegawai	gajimodel
+16	pegawai	akunmodel
+17	pegawai	nominatifxmodels
+18	pegawai	nominatifselesaimodels
+19	pegawai	nominatiftundamodel
+\.
+
+
+--
+-- Data for Name: django_migrations; Type: TABLE DATA; Schema: public; Owner: datainfo
+--
+
+COPY public.django_migrations (id, app, name, applied) FROM stdin;
+1	contenttypes	0001_initial	2021-03-24 09:01:31.003967+07
+2	auth	0001_initial	2021-03-24 09:01:31.324357+07
+3	admin	0001_initial	2021-03-24 09:01:31.796807+07
+4	admin	0002_logentry_remove_auto_add	2021-03-24 09:01:31.88115+07
+5	admin	0003_logentry_add_action_flag_choices	2021-03-24 09:01:31.895836+07
+6	contenttypes	0002_remove_content_type_name	2021-03-24 09:01:31.920891+07
+7	auth	0002_alter_permission_name_max_length	2021-03-24 09:01:31.944553+07
+8	auth	0003_alter_user_email_max_length	2021-03-24 09:01:31.978541+07
+9	auth	0004_alter_user_username_opts	2021-03-24 09:01:32.004378+07
+10	auth	0005_alter_user_last_login_null	2021-03-24 09:01:32.020207+07
+11	auth	0006_require_contenttypes_0002	2021-03-24 09:01:32.024137+07
+12	auth	0007_alter_validators_add_error_messages	2021-03-24 09:01:32.038219+07
+13	auth	0008_alter_user_username_max_length	2021-03-24 09:01:32.081286+07
+14	auth	0009_alter_user_last_name_max_length	2021-03-24 09:01:32.104693+07
+15	auth	0010_alter_group_name_max_length	2021-03-24 09:01:32.12196+07
+16	auth	0011_update_proxy_permissions	2021-03-24 09:01:32.137099+07
+17	auth	0012_alter_user_first_name_max_length	2021-03-24 09:01:32.14625+07
+18	pegawai	0001_initial	2021-03-24 09:01:32.669238+07
+19	sessions	0001_initial	2021-03-24 09:01:33.034403+07
+20	pegawai	0002_auto_20210324_0905	2021-03-24 09:05:33.98968+07
+21	pegawai	0003_auto_20210324_0908	2021-03-24 09:08:06.497886+07
+22	pegawai	0004_auto_20210325_1604	2021-03-25 16:04:59.010835+07
+23	pegawai	0002_auto_20210423_1501	2021-04-23 15:01:38.933626+07
+24	pegawai	0003_auto_20210429_0722	2021-04-29 07:22:57.630376+07
+25	pegawai	0004_nominatifxmodels	2021-05-24 14:35:51.825956+07
+26	pegawai	0005_nominatifxmodels_golongan	2021-05-25 10:39:22.795477+07
+27	pegawai	0006_auto_20210615_0944	2021-06-15 09:44:38.455677+07
+28	pegawai	0007_nominatifxmodels_opd	2021-06-17 09:05:01.984591+07
+29	pegawai	0008_golonganhistorymodel_dasarnominatif	2021-06-25 09:25:24.497122+07
+30	pegawai	0009_nominatifselesaimodels	2021-07-01 10:08:01.112567+07
+31	pegawai	0010_auto_20210701_1447	2021-07-01 14:56:43.984811+07
+32	pegawai	0011_auto_20210701_1531	2021-07-01 15:31:38.83118+07
+33	pegawai	0012_auto_20210701_1550	2021-07-01 15:50:24.998264+07
+34	pegawai	0002_auto_20210706_1225	2021-07-06 12:26:04.787789+07
+35	pegawai	0003_auto_20210706_1235	2021-07-06 12:35:59.815787+07
+36	pegawai	0004_pegawaimodel_pddk_terakhir	2021-07-06 12:42:25.746983+07
+37	pegawai	0005_pegawaimodel_tmt_pns	2021-07-06 13:18:34.246358+07
+38	pegawai	0006_golonganhistorymodel_pejabat	2021-07-08 12:34:07.081498+07
+39	pegawai	0007_auto_20210709_0251	2021-07-09 09:51:49.712587+07
+40	pegawai	0002_auto_20210709_0412	2021-07-09 11:12:56.495645+07
+41	pegawai	0003_nominatiftundamodel	2021-07-16 08:29:33.283077+07
+42	pegawai	0004_auto_20210722_0346	2021-07-22 10:47:02.375179+07
+43	pegawai	0002_auto_20210727_0641	2021-07-27 13:41:33.321034+07
+44	pegawai	0003_auto_20210727_0712	2021-07-27 14:12:38.674977+07
+45	pegawai	0004_auto_20210727_0841	2021-07-27 15:41:10.369374+07
+46	pegawai	0002_auto_20210802_0902	2021-08-02 16:02:36.772111+07
+47	pegawai	0002_auto_20210803_0909	2021-08-03 16:09:08.165548+07
+48	pegawai	0002_auto_20210805_0840	2021-08-05 15:40:12.383116+07
+49	pegawai	0003_auto_20210805_0840	2021-08-05 15:40:52.873312+07
+50	pegawai	0002_auto_20210809_0556	2021-08-09 12:56:59.017914+07
+\.
+
+
+--
+-- Data for Name: django_session; Type: TABLE DATA; Schema: public; Owner: datainfo
+--
+
+COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
+la9ke2u1hh0p6ma5i7g3h3pff6ougner	.eJxVzE0OgyAQBeC7sDYG-RHosvuegQwwqKVFI5oumt69mLhx9zLvm_cl8xIspIKF3AxXDdkLrhneSG4k4YIDfGCC7FIgDbGwb6M9hJ1CBex6c-AT5qMIT8jD3Po5b-vk2oO0Z1vaxxzwdT_tZWCEMtZvpTGidlopzYykVMpIOVfRGM2wB9Mbr3gvQQhOha8oCu-xBipZ51xHfn8XKkXa:1lbdcf:IUOW9XZIvQyFeDrKb7reRNPjk62bSrTHWWSbhLKjQlo	2021-05-12 13:24:33.422603+07
+i1nhkbmyffyxbn7sf2xyk82pr4g6of0g	.eJxVjMsOwiAURP-FtSGURwGX7v2G5gIXW1FoShsXxn-XJt10N5lzZr6kzGGAVLGSa8u4wFqW1pEL2SouGd7YQMIZH_CBCbJLOxtgW8dhN4YpNIGfOwc-Yd5BeEJ-FOpLXpfJ0V2hB630XgK-bod7Ohihjm2tDUY0zmhtuFWMKRWZEDpaazj2YHvrtegVSCmY9E2K0ntsgSneOdeR3x_B7Uoq:1mE4ZV:X_udVi_t2szAbFcjDdFYll_HxVncXVLIFnwblzAwieE	2021-08-26 13:52:09.633889+07
+\.
+
+
+--
+-- Data for Name: pegawai_akunmodel; Type: TABLE DATA; Schema: public; Owner: datainfo
+--
+
+COPY public.pegawai_akunmodel (id, pegawai, jenis_akun, akun_id, opd_akses_id) FROM stdin;
+8	kepegawaianbpsdm	operatoropd	8	938
+4	kominfo	operatoropd	4	918
+6	tubpbd	operatoropd	6	941
+9	kesbangpol	operatoropd	9	942
+10	Operator01	operator	10	\N
+2	kepegawaianbkd	operatoropd	2	937
+7	admin	admin	7	\N
+11	super	admin	11	\N
+\.
+
+
+--
+-- Data for Name: pegawai_berkalahistorymodel; Type: TABLE DATA; Schema: public; Owner: datainfo
+--
+
+COPY public.pegawai_berkalahistorymodel (id, username, kgb_nomor, kgb_tanggal, tmt, tmt_baru, golongan, pejabat_ttd, mk_lama_tahun, mk_lama_bulan, kgb_image, mk_baru_tahun, mk_baru_bulan, nilai, dokumen) FROM stdin;
+\.
+
+
+--
+-- Data for Name: pegawai_daftarnominatifmodel; Type: TABLE DATA; Schema: public; Owner: datainfo
+--
+
+COPY public.pegawai_daftarnominatifmodel (id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: pegawai_gajimodel; Type: TABLE DATA; Schema: public; Owner: datainfo
+--
+
+COPY public.pegawai_gajimodel (id, masa_kerja, tbgaji_currency, terbilang, golongan_id) FROM stdin;
+1	0	1486500	Satu Juta Empat Ratus Delapan Puluh Enam Ribu Lima Ratus Rupiah	31
+2	1	1486500	Satu Juta Empat Ratus Delapan Puluh Enam Ribu Lima Ratus Rupiah	31
+3	2	1533400	Satu Juta Lima Ratus Tiga Puluh Tiga Ribu Empat Ratus Rupiah	31
+4	3	1533400	Satu Juta Lima Ratus Tiga Puluh Tiga Ribu Empat Ratus Rupiah	31
+5	4	1581700	Satu Juta Lima Ratus Delapan Puluh Satu Ribu Tujuh Ratus Rupiah	31
+6	5	1581700	Satu Juta Lima Ratus Delapan Puluh Satu Ribu Tujuh Ratus Rupiah	31
+7	6	1631500	Satu Juta Enam Ratus Tiga Puluh Satu Ribu Lima Ratus Rupiah	31
+8	7	1631500	Satu Juta Enam Ratus Tiga Puluh Satu Ribu Lima Ratus Rupiah	31
+9	8	1682900	Satu Juta Enam Ratus Delapan Puluh Dua Ribu Sembilan Ratus Rupiah	31
+10	9	1682900	Satu Juta Enam Ratus Delapan Puluh Dua Ribu Sembilan Ratus Rupiah	31
+11	10	1735900	Satu Juta Tujuh Ratus Tiga Puluh Lima Ribu Sembilan Ratus Rupiah	31
+12	11	1735900	Satu Juta Tujuh Ratus Tiga Puluh Lima Ribu Sembilan Ratus Rupiah	31
+13	12	1790500	Satu Juta Tujuh Ratus Sembilan Puluh Ribu Lima Ratus Rupiah	31
+14	13	1790500	Satu Juta Tujuh Ratus Sembilan Puluh Ribu Lima Ratus Rupiah	31
+15	14	1846900	Satu Juta Delapan Ratus Empat Puluh Enam Ribu Sembilan Ratus Rupiah	31
+16	15	1846900	Satu Juta Delapan Ratus Empat Puluh Enam Ribu Sembilan Ratus Rupiah	31
+17	16	1905100	Satu Juta Sembilan Ratus Lima Ribu Seratus Rupiah	31
+18	17	1905100	Satu Juta Sembilan Ratus Lima Ribu Seratus Rupiah	31
+19	18	1965100	Satu Juta Sembilan Ratus Enam Puluh Lima Ribu Seratus Rupiah	31
+20	19	1965100	Satu Juta Sembilan Ratus Enam Puluh Lima Ribu Seratus Rupiah	31
+21	20	2027000	Dua Juta Dua Puluh Tujuh Ribu Rupiah	31
+22	21	2027000	Dua Juta Dua Puluh Tujuh Ribu Rupiah	31
+23	22	2090800	Dua Juta Sembilan Puluh Ribu Delapan Ratus Rupiah	31
+24	23	2090800	Dua Juta Sembilan Puluh Ribu Delapan Ratus Rupiah	31
+25	24	2156700	Dua Juta Seratus Lima Puluh Enam Ribu Tujuh Ratus Rupiah	31
+26	25	2156700	Dua Juta Seratus Lima Puluh Enam Ribu Tujuh Ratus Rupiah	31
+27	26	2224600	Dua Juta Dua Ratus Dua Puluh Empat Ribu Enam Ratus Rupiah	31
+28	27	2224600	Dua Juta Dua Ratus Dua Puluh Empat Ribu Enam Ratus Rupiah	31
+29	28	\N	Nol Rupiah	31
+30	29	\N	Nol Rupiah	31
+31	30	\N	Nol Rupiah	31
+32	31	\N	Nol Rupiah	31
+33	32	\N	Nol Rupiah	31
+34	33	\N	Nol Rupiah	31
+35	0	\N	Nol Rupiah	32
+36	1	\N	Nol Rupiah	32
+37	2	\N	Nol Rupiah	32
+38	3	1623400	Satu Juta Enam Ratus Dua Puluh Tiga Ribu Empat Ratus Rupiah	32
+39	4	1623400	Satu Juta Enam Ratus Dua Puluh Tiga Ribu Empat Ratus Rupiah	32
+40	5	1674500	Satu Juta Enam Ratus Tujuh Puluh Empat Ribu Lima Ratus Rupiah	32
+41	6	1674500	Satu Juta Enam Ratus Tujuh Puluh Empat Ribu Lima Ratus Rupiah	32
+42	7	1727300	Satu Juta Tujuh Ratus Dua Puluh Tujuh Ribu Tiga Ratus Rupiah	32
+43	8	1727300	Satu Juta Tujuh Ratus Dua Puluh Tujuh Ribu Tiga Ratus Rupiah	32
+44	9	1781700	Satu Juta Tujuh Ratus Delapan Puluh Satu Ribu Tujuh Ratus Rupiah	32
+45	10	1781700	Satu Juta Tujuh Ratus Delapan Puluh Satu Ribu Tujuh Ratus Rupiah	32
+46	11	1837800	Satu Juta Delapan Ratus Tiga Puluh Tujuh Ribu Delapan Ratus Rupiah	32
+47	12	1837800	Satu Juta Delapan Ratus Tiga Puluh Tujuh Ribu Delapan Ratus Rupiah	32
+48	13	1895700	Satu Juta Delapan Ratus Sembilan Puluh Lima Ribu Tujuh Ratus Rupiah	32
+49	14	1895700	Satu Juta Delapan Ratus Sembilan Puluh Lima Ribu Tujuh Ratus Rupiah	32
+50	15	1955400	Satu Juta Sembilan Ratus Lima Puluh Lima Ribu Empat Ratus Rupiah	32
+51	16	1955400	Satu Juta Sembilan Ratus Lima Puluh Lima Ribu Empat Ratus Rupiah	32
+52	17	2016900	Dua Juta Enam Belas Ribu Sembilan Ratus Rupiah	32
+53	18	2016900	Dua Juta Enam Belas Ribu Sembilan Ratus Rupiah	32
+54	19	2080500	Dua Juta Delapan Puluh Ribu Lima Ratus Rupiah	32
+55	20	2080500	Dua Juta Delapan Puluh Ribu Lima Ratus Rupiah	32
+56	21	2146000	Dua Juta Seratus Empat Puluh Enam Ribu Rupiah	32
+57	22	2146000	Dua Juta Seratus Empat Puluh Enam Ribu Rupiah	32
+58	23	2213600	Dua Juta Dua Ratus Tiga Belas Ribu Enam Ratus Rupiah	32
+59	24	2213600	Dua Juta Dua Ratus Tiga Belas Ribu Enam Ratus Rupiah	32
+60	25	2283300	Dua Juta Dua Ratus Delapan Puluh Tiga Ribu Tiga Ratus Rupiah	32
+61	26	2283300	Dua Juta Dua Ratus Delapan Puluh Tiga Ribu Tiga Ratus Rupiah	32
+62	27	2355200	Dua Juta Tiga Ratus Lima Puluh Lima Ribu Dua Ratus Rupiah	32
+63	28	2355200	Dua Juta Tiga Ratus Lima Puluh Lima Ribu Dua Ratus Rupiah	32
+64	29	\N	Nol Rupiah	32
+65	30	\N	Nol Rupiah	32
+66	31	\N	Nol Rupiah	32
+67	32	\N	Nol Rupiah	32
+68	33	\N	Nol Rupiah	32
+69	0	\N	Nol Rupiah	33
+70	1	\N	Nol Rupiah	33
+71	2	\N	Nol Rupiah	33
+72	3	1692100	Satu Juta Enam Ratus Sembilan Puluh Dua Ribu Seratus Rupiah	33
+73	4	1692100	Satu Juta Enam Ratus Sembilan Puluh Dua Ribu Seratus Rupiah	33
+74	5	1745400	Satu Juta Tujuh Ratus Empat Puluh Lima Ribu Empat Ratus Rupiah	33
+75	6	1745400	Satu Juta Tujuh Ratus Empat Puluh Lima Ribu Empat Ratus Rupiah	33
+76	7	1800300	Satu Juta Delapan Ratus Ribu Tiga Ratus Rupiah	33
+77	8	1800300	Satu Juta Delapan Ratus Ribu Tiga Ratus Rupiah	33
+78	9	1857000	Satu Juta Delapan Ratus Lima Puluh Tujuh Ribu Rupiah	33
+79	10	1857000	Satu Juta Delapan Ratus Lima Puluh Tujuh Ribu Rupiah	33
+80	11	1915500	Satu Juta Sembilan Ratus Lima Belas Ribu Lima Ratus Rupiah	33
+81	12	1915500	Satu Juta Sembilan Ratus Lima Belas Ribu Lima Ratus Rupiah	33
+82	13	1975800	Satu Juta Sembilan Ratus Tujuh Puluh Lima Ribu Delapan Ratus Rupiah	33
+83	14	1975800	Satu Juta Sembilan Ratus Tujuh Puluh Lima Ribu Delapan Ratus Rupiah	33
+84	15	2038100	Dua Juta Tiga Puluh Delapan Ribu Seratus Rupiah	33
+85	16	2038100	Dua Juta Tiga Puluh Delapan Ribu Seratus Rupiah	33
+86	17	2102300	Dua Juta Seratus Dua Ribu Tiga Ratus Rupiah	33
+87	18	2102300	Dua Juta Seratus Dua Ribu Tiga Ratus Rupiah	33
+88	19	2168500	Dua Juta Seratus Enam Puluh Delapan Ribu Lima Ratus Rupiah	33
+89	20	2168500	Dua Juta Seratus Enam Puluh Delapan Ribu Lima Ratus Rupiah	33
+90	21	2236800	Dua Juta Dua Ratus Tiga Puluh Enam Ribu Delapan Ratus Rupiah	33
+91	22	2236800	Dua Juta Dua Ratus Tiga Puluh Enam Ribu Delapan Ratus Rupiah	33
+92	23	2307200	Dua Juta Tiga Ratus Tujuh Ribu Dua Ratus Rupiah	33
+93	24	2307200	Dua Juta Tiga Ratus Tujuh Ribu Dua Ratus Rupiah	33
+94	25	2379900	Dua Juta Tiga Ratus Tujuh Puluh Sembilan Ribu Sembilan Ratus Rupiah	33
+95	26	2379900	Dua Juta Tiga Ratus Tujuh Puluh Sembilan Ribu Sembilan Ratus Rupiah	33
+96	27	2454800	Dua Juta Empat Ratus Lima Puluh Empat Ribu Delapan Ratus Rupiah	33
+97	28	2454800	Dua Juta Empat Ratus Lima Puluh Empat Ribu Delapan Ratus Rupiah	33
+98	29	\N	Nol Rupiah	33
+99	30	\N	Nol Rupiah	33
+100	31	\N	Nol Rupiah	33
+101	32	\N	Nol Rupiah	33
+102	33	\N	Nol Rupiah	33
+103	0	\N	Nol Rupiah	34
+104	1	\N	Nol Rupiah	34
+105	2	\N	Nol Rupiah	34
+106	3	1763600	Satu Juta Tujuh Ratus Enam Puluh Tiga Ribu Enam Ratus Rupiah	34
+107	4	1763600	Satu Juta Tujuh Ratus Enam Puluh Tiga Ribu Enam Ratus Rupiah	34
+108	5	1819200	Satu Juta Delapan Ratus Sembilan Belas Ribu Dua Ratus Rupiah	34
+109	6	1819200	Satu Juta Delapan Ratus Sembilan Belas Ribu Dua Ratus Rupiah	34
+110	7	1876500	Satu Juta Delapan Ratus Tujuh Puluh Enam Ribu Lima Ratus Rupiah	34
+111	8	1876500	Satu Juta Delapan Ratus Tujuh Puluh Enam Ribu Lima Ratus Rupiah	34
+112	9	1935600	Satu Juta Sembilan Ratus Tiga Puluh Lima Ribu Enam Ratus Rupiah	34
+113	10	1935600	Satu Juta Sembilan Ratus Tiga Puluh Lima Ribu Enam Ratus Rupiah	34
+114	11	1996500	Satu Juta Sembilan Ratus Sembilan Puluh Enam Ribu Lima Ratus Rupiah	34
+115	12	1996500	Satu Juta Sembilan Ratus Sembilan Puluh Enam Ribu Lima Ratus Rupiah	34
+116	13	2059400	Dua Juta Lima Puluh Sembilan Ribu Empat Ratus Rupiah	34
+117	14	2059400	Dua Juta Lima Puluh Sembilan Ribu Empat Ratus Rupiah	34
+118	15	2124300	Dua Juta Seratus Dua Puluh Empat Ribu Tiga Ratus Rupiah	34
+119	16	2124300	Dua Juta Seratus Dua Puluh Empat Ribu Tiga Ratus Rupiah	34
+120	17	2191200	Dua Juta Seratus Sembilan Puluh Satu Ribu Dua Ratus Rupiah	34
+121	18	2191200	Dua Juta Seratus Sembilan Puluh Satu Ribu Dua Ratus Rupiah	34
+122	19	2260200	Dua Juta Dua Ratus Enam Puluh Ribu Dua Ratus Rupiah	34
+123	20	2260200	Dua Juta Dua Ratus Enam Puluh Ribu Dua Ratus Rupiah	34
+124	21	2331400	Dua Juta Tiga Ratus Tiga Puluh Satu Ribu Empat Ratus Rupiah	34
+125	22	2331400	Dua Juta Tiga Ratus Tiga Puluh Satu Ribu Empat Ratus Rupiah	34
+126	23	2404800	Dua Juta Empat Ratus Empat Ribu Delapan Ratus Rupiah	34
+127	24	2404800	Dua Juta Empat Ratus Empat Ribu Delapan Ratus Rupiah	34
+128	25	2480500	Dua Juta Empat Ratus Delapan Puluh Ribu Lima Ratus Rupiah	34
+129	26	2480500	Dua Juta Empat Ratus Delapan Puluh Ribu Lima Ratus Rupiah	34
+130	27	2558700	Dua Juta Lima Ratus Lima Puluh Delapan Ribu Tujuh Ratus Rupiah	34
+131	28	2558700	Dua Juta Lima Ratus Lima Puluh Delapan Ribu Tujuh Ratus Rupiah	34
+132	29	\N	Nol Rupiah	34
+133	30	\N	Nol Rupiah	34
+134	31	\N	Nol Rupiah	34
+135	32	\N	Nol Rupiah	34
+136	33	\N	Nol Rupiah	34
+137	0	1926000	Satu Juta Sembilan Ratus Dua Puluh Enam Ribu Rupiah	18
+138	1	1956300	Satu Juta Sembilan Ratus Lima Puluh Enam Ribu Tiga Ratus Rupiah	18
+139	2	1956300	Satu Juta Sembilan Ratus Lima Puluh Enam Ribu Tiga Ratus Rupiah	18
+140	3	2017900	Dua Juta Tujuh Belas Ribu Sembilan Ratus Rupiah	18
+141	4	2017900	Dua Juta Tujuh Belas Ribu Sembilan Ratus Rupiah	18
+142	5	2081500	Dua Juta Delapan Puluh Satu Ribu Lima Ratus Rupiah	18
+143	6	2081500	Dua Juta Delapan Puluh Satu Ribu Lima Ratus Rupiah	18
+144	7	2147000	Dua Juta Seratus Empat Puluh Tujuh Ribu Rupiah	18
+145	8	2147000	Dua Juta Seratus Empat Puluh Tujuh Ribu Rupiah	18
+146	9	2214700	Dua Juta Dua Ratus Empat Belas Ribu Tujuh Ratus Rupiah	18
+147	10	2214700	Dua Juta Dua Ratus Empat Belas Ribu Tujuh Ratus Rupiah	18
+148	11	2284400	Dua Juta Dua Ratus Delapan Puluh Empat Ribu Empat Ratus Rupiah	18
+149	12	2284400	Dua Juta Dua Ratus Delapan Puluh Empat Ribu Empat Ratus Rupiah	18
+150	13	2356400	Dua Juta Tiga Ratus Lima Puluh Enam Ribu Empat Ratus Rupiah	18
+151	14	2356400	Dua Juta Tiga Ratus Lima Puluh Enam Ribu Empat Ratus Rupiah	18
+152	15	2430600	Dua Juta Empat Ratus Tiga Puluh Ribu Enam Ratus Rupiah	18
+153	16	2430600	Dua Juta Empat Ratus Tiga Puluh Ribu Enam Ratus Rupiah	18
+154	17	2507100	Dua Juta Lima Ratus Tujuh Ribu Seratus Rupiah	18
+155	18	2507100	Dua Juta Lima Ratus Tujuh Ribu Seratus Rupiah	18
+156	19	2586100	Dua Juta Lima Ratus Delapan Puluh Enam Ribu Seratus Rupiah	18
+157	20	2586100	Dua Juta Lima Ratus Delapan Puluh Enam Ribu Seratus Rupiah	18
+158	21	2667500	Dua Juta Enam Ratus Enam Puluh Tujuh Ribu Lima Ratus Rupiah	18
+159	22	2667500	Dua Juta Enam Ratus Enam Puluh Tujuh Ribu Lima Ratus Rupiah	18
+160	23	2751600	Dua Juta Tujuh Ratus Lima Puluh Satu Ribu Enam Ratus Rupiah	18
+161	24	2751600	Dua Juta Tujuh Ratus Lima Puluh Satu Ribu Enam Ratus Rupiah	18
+162	25	2838200	Dua Juta Delapan Ratus Tiga Puluh Delapan Ribu Dua Ratus Rupiah	18
+163	26	2838200	Dua Juta Delapan Ratus Tiga Puluh Delapan Ribu Dua Ratus Rupiah	18
+164	27	2927600	Dua Juta Sembilan Ratus Dua Puluh Tujuh Ribu Enam Ratus Rupiah	18
+245	6	2357000	Dua Juta Tiga Ratus Lima Puluh Tujuh Ribu Rupiah	21
+165	28	2927600	Dua Juta Sembilan Ratus Dua Puluh Tujuh Ribu Enam Ratus Rupiah	18
+166	29	3019800	Tiga Juta Sembilan Belas Ribu Delapan Ratus Rupiah	18
+167	30	3019800	Tiga Juta Sembilan Belas Ribu Delapan Ratus Rupiah	18
+168	31	3114900	Tiga Juta Seratus Empat Belas Ribu Sembilan Ratus Rupiah	18
+169	32	3114900	Tiga Juta Seratus Empat Belas Ribu Sembilan Ratus Rupiah	18
+170	33	3213000	Tiga Juta Dua Ratus Tiga Belas Ribu Rupiah	18
+171	0	\N	Nol Rupiah	19
+172	1	\N	Nol Rupiah	19
+173	2	\N	Nol Rupiah	19
+174	3	2103300	Dua Juta Seratus Tiga Ribu Tiga Ratus Rupiah	19
+175	4	2103300	Dua Juta Seratus Tiga Ribu Tiga Ratus Rupiah	19
+176	5	2169500	Dua Juta Seratus Enam Puluh Sembilan Ribu Lima Ratus Rupiah	19
+177	6	2169500	Dua Juta Seratus Enam Puluh Sembilan Ribu Lima Ratus Rupiah	19
+178	7	2237900	Dua Juta Dua Ratus Tiga Puluh Tujuh Ribu Sembilan Ratus Rupiah	19
+179	8	2237900	Dua Juta Dua Ratus Tiga Puluh Tujuh Ribu Sembilan Ratus Rupiah	19
+180	9	2308300	Dua Juta Tiga Ratus Delapan Ribu Tiga Ratus Rupiah	19
+181	10	2308300	Dua Juta Tiga Ratus Delapan Ribu Tiga Ratus Rupiah	19
+182	11	2381100	Dua Juta Tiga Ratus Delapan Puluh Satu Ribu Seratus Rupiah	19
+183	12	2381100	Dua Juta Tiga Ratus Delapan Puluh Satu Ribu Seratus Rupiah	19
+184	13	2456000	Dua Juta Empat Ratus Lima Puluh Enam Ribu Rupiah	19
+185	14	2456000	Dua Juta Empat Ratus Lima Puluh Enam Ribu Rupiah	19
+186	15	2533400	Dua Juta Lima Ratus Tiga Puluh Tiga Ribu Empat Ratus Rupiah	19
+187	16	2533400	Dua Juta Lima Ratus Tiga Puluh Tiga Ribu Empat Ratus Rupiah	19
+188	17	2613200	Dua Juta Enam Ratus Tiga Belas Ribu Dua Ratus Rupiah	19
+189	18	2613200	Dua Juta Enam Ratus Tiga Belas Ribu Dua Ratus Rupiah	19
+190	19	2695500	Dua Juta Enam Ratus Sembilan Puluh Lima Ribu Lima Ratus Rupiah	19
+191	20	2695500	Dua Juta Enam Ratus Sembilan Puluh Lima Ribu Lima Ratus Rupiah	19
+192	21	2780400	Dua Juta Tujuh Ratus Delapan Puluh Ribu Empat Ratus Rupiah	19
+193	22	2780400	Dua Juta Tujuh Ratus Delapan Puluh Ribu Empat Ratus Rupiah	19
+194	23	2867900	Dua Juta Delapan Ratus Enam Puluh Tujuh Ribu Sembilan Ratus Rupiah	19
+195	24	2867900	Dua Juta Delapan Ratus Enam Puluh Tujuh Ribu Sembilan Ratus Rupiah	19
+196	25	2958300	Dua Juta Sembilan Ratus Lima Puluh Delapan Ribu Tiga Ratus Rupiah	19
+197	26	2958300	Dua Juta Sembilan Ratus Lima Puluh Delapan Ribu Tiga Ratus Rupiah	19
+198	27	3051400	Tiga Juta Lima Puluh Satu Ribu Empat Ratus Rupiah	19
+199	28	3051400	Tiga Juta Lima Puluh Satu Ribu Empat Ratus Rupiah	19
+200	29	3147600	Tiga Juta Seratus Empat Puluh Tujuh Ribu Enam Ratus Rupiah	19
+201	30	3147600	Tiga Juta Seratus Empat Puluh Tujuh Ribu Enam Ratus Rupiah	19
+202	31	3246700	Tiga Juta Dua Ratus Empat Puluh Enam Ribu Tujuh Ratus Rupiah	19
+203	32	3246700	Tiga Juta Dua Ratus Empat Puluh Enam Ribu Tujuh Ratus Rupiah	19
+204	33	3348900	Tiga Juta Tiga Ratus Empat Puluh Delapan Ribu Sembilan Ratus Rupiah	19
+205	0	\N	Nol Rupiah	20
+206	1	\N	Nol Rupiah	20
+207	2	\N	Nol Rupiah	20
+208	3	2192300	Dua Juta Seratus Sembilan Puluh Dua Ribu Tiga Ratus Rupiah	20
+209	4	2192300	Dua Juta Seratus Sembilan Puluh Dua Ribu Tiga Ratus Rupiah	20
+210	5	2261300	Dua Juta Dua Ratus Enam Puluh Satu Ribu Tiga Ratus Rupiah	20
+211	6	2261300	Dua Juta Dua Ratus Enam Puluh Satu Ribu Tiga Ratus Rupiah	20
+212	7	2332500	Dua Juta Tiga Ratus Tiga Puluh Dua Ribu Lima Ratus Rupiah	20
+213	8	2332500	Dua Juta Tiga Ratus Tiga Puluh Dua Ribu Lima Ratus Rupiah	20
+214	9	2406000	Dua Juta Empat Ratus Enam Ribu Rupiah	20
+215	10	2406000	Dua Juta Empat Ratus Enam Ribu Rupiah	20
+216	11	2481800	Dua Juta Empat Ratus Delapan Puluh Satu Ribu Delapan Ratus Rupiah	20
+217	12	2481800	Dua Juta Empat Ratus Delapan Puluh Satu Ribu Delapan Ratus Rupiah	20
+218	13	2559900	Dua Juta Lima Ratus Lima Puluh Sembilan Ribu Sembilan Ratus Rupiah	20
+219	14	2559900	Dua Juta Lima Ratus Lima Puluh Sembilan Ribu Sembilan Ratus Rupiah	20
+220	15	2640600	Dua Juta Enam Ratus Empat Puluh Ribu Enam Ratus Rupiah	20
+221	16	2640600	Dua Juta Enam Ratus Empat Puluh Ribu Enam Ratus Rupiah	20
+222	17	2723700	Dua Juta Tujuh Ratus Dua Puluh Tiga Ribu Tujuh Ratus Rupiah	20
+223	18	2723700	Dua Juta Tujuh Ratus Dua Puluh Tiga Ribu Tujuh Ratus Rupiah	20
+224	19	2809500	Dua Juta Delapan Ratus Sembilan Ribu Lima Ratus Rupiah	20
+225	20	2809500	Dua Juta Delapan Ratus Sembilan Ribu Lima Ratus Rupiah	20
+226	21	2898000	Dua Juta Delapan Ratus Sembilan Puluh Delapan Ribu Rupiah	20
+227	22	2898000	Dua Juta Delapan Ratus Sembilan Puluh Delapan Ribu Rupiah	20
+228	23	2989300	Dua Juta Sembilan Ratus Delapan Puluh Sembilan Ribu Tiga Ratus Rupiah	20
+229	24	2989300	Dua Juta Sembilan Ratus Delapan Puluh Sembilan Ribu Tiga Ratus Rupiah	20
+230	25	3083400	Tiga Juta Delapan Puluh Tiga Ribu Empat Ratus Rupiah	20
+231	26	3083400	Tiga Juta Delapan Puluh Tiga Ribu Empat Ratus Rupiah	20
+232	27	3180500	Tiga Juta Seratus Delapan Puluh Ribu Lima Ratus Rupiah	20
+233	28	3180500	Tiga Juta Seratus Delapan Puluh Ribu Lima Ratus Rupiah	20
+234	29	3280700	Tiga Juta Dua Ratus Delapan Puluh Ribu Tujuh Ratus Rupiah	20
+235	30	3280700	Tiga Juta Dua Ratus Delapan Puluh Ribu Tujuh Ratus Rupiah	20
+236	31	3384000	Tiga Juta Tiga Ratus Delapan Puluh Empat Ribu Rupiah	20
+237	32	3384000	Tiga Juta Tiga Ratus Delapan Puluh Empat Ribu Rupiah	20
+238	33	3490600	Tiga Juta Empat Ratus Sembilan Puluh Ribu Enam Ratus Rupiah	20
+239	0	\N	Nol Rupiah	21
+240	1	\N	Nol Rupiah	21
+241	2	\N	Nol Rupiah	21
+242	3	2285000	Dua Juta Dua Ratus Delapan Puluh Lima Ribu Rupiah	21
+243	4	2285000	Dua Juta Dua Ratus Delapan Puluh Lima Ribu Rupiah	21
+244	5	2357000	Dua Juta Tiga Ratus Lima Puluh Tujuh Ribu Rupiah	21
+246	7	2431200	Dua Juta Empat Ratus Tiga Puluh Satu Ribu Dua Ratus Rupiah	21
+247	8	2431200	Dua Juta Empat Ratus Tiga Puluh Satu Ribu Dua Ratus Rupiah	21
+248	9	2507800	Dua Juta Lima Ratus Tujuh Ribu Delapan Ratus Rupiah	21
+249	10	2507800	Dua Juta Lima Ratus Tujuh Ribu Delapan Ratus Rupiah	21
+250	11	2586700	Dua Juta Lima Ratus Delapan Puluh Enam Ribu Tujuh Ratus Rupiah	21
+251	12	2586700	Dua Juta Lima Ratus Delapan Puluh Enam Ribu Tujuh Ratus Rupiah	21
+252	13	2668200	Dua Juta Enam Ratus Enam Puluh Delapan Ribu Dua Ratus Rupiah	21
+253	14	2668200	Dua Juta Enam Ratus Enam Puluh Delapan Ribu Dua Ratus Rupiah	21
+254	15	2752300	Dua Juta Tujuh Ratus Lima Puluh Dua Ribu Tiga Ratus Rupiah	21
+255	16	2752300	Dua Juta Tujuh Ratus Lima Puluh Dua Ribu Tiga Ratus Rupiah	21
+256	17	2838900	Dua Juta Delapan Ratus Tiga Puluh Delapan Ribu Sembilan Ratus Rupiah	21
+257	18	2838900	Dua Juta Delapan Ratus Tiga Puluh Delapan Ribu Sembilan Ratus Rupiah	21
+258	19	2928300	Dua Juta Sembilan Ratus Dua Puluh Delapan Ribu Tiga Ratus Rupiah	21
+259	20	2928300	Dua Juta Sembilan Ratus Dua Puluh Delapan Ribu Tiga Ratus Rupiah	21
+260	21	3020600	Tiga Juta Dua Puluh Ribu Enam Ratus Rupiah	21
+261	22	3020600	Tiga Juta Dua Puluh Ribu Enam Ratus Rupiah	21
+262	23	3115700	Tiga Juta Seratus Lima Belas Ribu Tujuh Ratus Rupiah	21
+263	24	3115700	Tiga Juta Seratus Lima Belas Ribu Tujuh Ratus Rupiah	21
+264	25	3213800	Tiga Juta Dua Ratus Tiga Belas Ribu Delapan Ratus Rupiah	21
+265	26	3213800	Tiga Juta Dua Ratus Tiga Belas Ribu Delapan Ratus Rupiah	21
+266	27	3315100	Tiga Juta Tiga Ratus Lima Belas Ribu Seratus Rupiah	21
+267	28	3315100	Tiga Juta Tiga Ratus Lima Belas Ribu Seratus Rupiah	21
+268	29	3419500	Tiga Juta Empat Ratus Sembilan Belas Ribu Lima Ratus Rupiah	21
+269	30	3419500	Tiga Juta Empat Ratus Sembilan Belas Ribu Lima Ratus Rupiah	21
+270	31	3527200	Tiga Juta Lima Ratus Dua Puluh Tujuh Ribu Dua Ratus Rupiah	21
+271	32	3527200	Tiga Juta Lima Ratus Dua Puluh Tujuh Ribu Dua Ratus Rupiah	21
+272	33	3638200	Tiga Juta Enam Ratus Tiga Puluh Delapan Ribu Dua Ratus Rupiah	21
+273	0	2579400	Dua Juta Lima Ratus Tujuh Puluh Sembilan Ribu Empat Ratus Rupiah	22
+274	1	2579400	Dua Juta Lima Ratus Tujuh Puluh Sembilan Ribu Empat Ratus Rupiah	22
+275	2	2660700	Dua Juta Enam Ratus Enam Puluh Ribu Tujuh Ratus Rupiah	22
+276	3	2660700	Dua Juta Enam Ratus Enam Puluh Ribu Tujuh Ratus Rupiah	22
+277	4	2744500	Dua Juta Tujuh Ratus Empat Puluh Empat Ribu Lima Ratus Rupiah	22
+278	5	2744500	Dua Juta Tujuh Ratus Empat Puluh Empat Ribu Lima Ratus Rupiah	22
+279	6	2830900	Dua Juta Delapan Ratus Tiga Puluh Ribu Sembilan Ratus Rupiah	22
+280	7	2830900	Dua Juta Delapan Ratus Tiga Puluh Ribu Sembilan Ratus Rupiah	22
+281	8	2920100	Dua Juta Sembilan Ratus Dua Puluh Ribu Seratus Rupiah	22
+282	9	2920100	Dua Juta Sembilan Ratus Dua Puluh Ribu Seratus Rupiah	22
+283	10	3012000	Tiga Juta Dua Belas Ribu Rupiah	22
+284	11	3012000	Tiga Juta Dua Belas Ribu Rupiah	22
+285	12	3106900	Tiga Juta Seratus Enam Ribu Sembilan Ratus Rupiah	22
+286	13	3106900	Tiga Juta Seratus Enam Ribu Sembilan Ratus Rupiah	22
+287	14	3204700	Tiga Juta Dua Ratus Empat Ribu Tujuh Ratus Rupiah	22
+288	15	3204700	Tiga Juta Dua Ratus Empat Ribu Tujuh Ratus Rupiah	22
+289	16	3305700	Tiga Juta Tiga Ratus Lima Ribu Tujuh Ratus Rupiah	22
+290	17	3305700	Tiga Juta Tiga Ratus Lima Ribu Tujuh Ratus Rupiah	22
+291	18	3409800	Tiga Juta Empat Ratus Sembilan Ribu Delapan Ratus Rupiah	22
+292	19	3409800	Tiga Juta Empat Ratus Sembilan Ribu Delapan Ratus Rupiah	22
+293	20	3517200	Tiga Juta Lima Ratus Tujuh Belas Ribu Dua Ratus Rupiah	22
+294	21	3517200	Tiga Juta Lima Ratus Tujuh Belas Ribu Dua Ratus Rupiah	22
+295	22	3627900	Tiga Juta Enam Ratus Dua Puluh Tujuh Ribu Sembilan Ratus Rupiah	22
+296	23	3627900	Tiga Juta Enam Ratus Dua Puluh Tujuh Ribu Sembilan Ratus Rupiah	22
+297	24	3742200	Tiga Juta Tujuh Ratus Empat Puluh Dua Ribu Dua Ratus Rupiah	22
+298	25	3742200	Tiga Juta Tujuh Ratus Empat Puluh Dua Ribu Dua Ratus Rupiah	22
+299	26	3860100	Tiga Juta Delapan Ratus Enam Puluh Ribu Seratus Rupiah	22
+300	27	3860100	Tiga Juta Delapan Ratus Enam Puluh Ribu Seratus Rupiah	22
+301	28	3981600	Tiga Juta Sembilan Ratus Delapan Puluh Satu Ribu Enam Ratus Rupiah	22
+302	29	3981600	Tiga Juta Sembilan Ratus Delapan Puluh Satu Ribu Enam Ratus Rupiah	22
+303	30	4107000	Empat Juta Seratus Tujuh Ribu Rupiah	22
+304	31	4107000	Empat Juta Seratus Tujuh Ribu Rupiah	22
+305	32	4236400	Empat Juta Dua Ratus Tiga Puluh Enam Ribu Empat Ratus Rupiah	22
+306	33	4236400	Empat Juta Dua Ratus Tiga Puluh Enam Ribu Empat Ratus Rupiah	22
+307	0	2688500	Dua Juta Enam Ratus Delapan Puluh Delapan Ribu Lima Ratus Rupiah	23
+308	1	2688500	Dua Juta Enam Ratus Delapan Puluh Delapan Ribu Lima Ratus Rupiah	23
+309	2	2773200	Dua Juta Tujuh Ratus Tujuh Puluh Tiga Ribu Dua Ratus Rupiah	23
+310	3	2773200	Dua Juta Tujuh Ratus Tujuh Puluh Tiga Ribu Dua Ratus Rupiah	23
+311	4	2860500	Dua Juta Delapan Ratus Enam Puluh Ribu Lima Ratus Rupiah	23
+312	5	2860500	Dua Juta Delapan Ratus Enam Puluh Ribu Lima Ratus Rupiah	23
+313	6	2950600	Dua Juta Sembilan Ratus Lima Puluh Ribu Enam Ratus Rupiah	23
+314	7	2950600	Dua Juta Sembilan Ratus Lima Puluh Ribu Enam Ratus Rupiah	23
+315	8	3043600	Tiga Juta Empat Puluh Tiga Ribu Enam Ratus Rupiah	23
+316	9	3043600	Tiga Juta Empat Puluh Tiga Ribu Enam Ratus Rupiah	23
+317	10	3139400	Tiga Juta Seratus Tiga Puluh Sembilan Ribu Empat Ratus Rupiah	23
+318	11	3139400	Tiga Juta Seratus Tiga Puluh Sembilan Ribu Empat Ratus Rupiah	23
+319	12	3238300	Tiga Juta Dua Ratus Tiga Puluh Delapan Ribu Tiga Ratus Rupiah	23
+320	13	3238300	Tiga Juta Dua Ratus Tiga Puluh Delapan Ribu Tiga Ratus Rupiah	23
+321	14	3340300	Tiga Juta Tiga Ratus Empat Puluh Ribu Tiga Ratus Rupiah	23
+322	15	3340300	Tiga Juta Tiga Ratus Empat Puluh Ribu Tiga Ratus Rupiah	23
+323	16	3445500	Tiga Juta Empat Ratus Empat Puluh Lima Ribu Lima Ratus Rupiah	23
+324	17	3445500	Tiga Juta Empat Ratus Empat Puluh Lima Ribu Lima Ratus Rupiah	23
+325	18	3554000	Tiga Juta Lima Ratus Lima Puluh Empat Ribu Rupiah	23
+326	19	3554000	Tiga Juta Lima Ratus Lima Puluh Empat Ribu Rupiah	23
+327	20	3665900	Tiga Juta Enam Ratus Enam Puluh Lima Ribu Sembilan Ratus Rupiah	23
+328	21	3665900	Tiga Juta Enam Ratus Enam Puluh Lima Ribu Sembilan Ratus Rupiah	23
+329	22	3781400	Tiga Juta Tujuh Ratus Delapan Puluh Satu Ribu Empat Ratus Rupiah	23
+330	23	3781400	Tiga Juta Tujuh Ratus Delapan Puluh Satu Ribu Empat Ratus Rupiah	23
+331	24	3900500	Tiga Juta Sembilan Ratus Ribu Lima Ratus Rupiah	23
+332	25	3900500	Tiga Juta Sembilan Ratus Ribu Lima Ratus Rupiah	23
+333	26	4023300	Empat Juta Dua Puluh Tiga Ribu Tiga Ratus Rupiah	23
+334	27	4023300	Empat Juta Dua Puluh Tiga Ribu Tiga Ratus Rupiah	23
+335	28	4150100	Empat Juta Seratus Lima Puluh Ribu Seratus Rupiah	23
+336	29	4150100	Empat Juta Seratus Lima Puluh Ribu Seratus Rupiah	23
+337	30	4280800	Empat Juta Dua Ratus Delapan Puluh Ribu Delapan Ratus Rupiah	23
+338	31	4280800	Empat Juta Dua Ratus Delapan Puluh Ribu Delapan Ratus Rupiah	23
+339	32	4415600	Empat Juta Empat Ratus Lima Belas Ribu Enam Ratus Rupiah	23
+340	33	4415600	Empat Juta Empat Ratus Lima Belas Ribu Enam Ratus Rupiah	23
+341	0	2802300	Dua Juta Delapan Ratus Dua Ribu Tiga Ratus Rupiah	24
+342	1	2802300	Dua Juta Delapan Ratus Dua Ribu Tiga Ratus Rupiah	24
+343	2	2890500	Dua Juta Delapan Ratus Sembilan Puluh Ribu Lima Ratus Rupiah	24
+344	3	2890500	Dua Juta Delapan Ratus Sembilan Puluh Ribu Lima Ratus Rupiah	24
+345	4	2981500	Dua Juta Sembilan Ratus Delapan Puluh Satu Ribu Lima Ratus Rupiah	24
+346	5	2981500	Dua Juta Sembilan Ratus Delapan Puluh Satu Ribu Lima Ratus Rupiah	24
+347	6	3075500	Tiga Juta Tujuh Puluh Lima Ribu Lima Ratus Rupiah	24
+348	7	3075500	Tiga Juta Tujuh Puluh Lima Ribu Lima Ratus Rupiah	24
+349	8	3172300	Tiga Juta Seratus Tujuh Puluh Dua Ribu Tiga Ratus Rupiah	24
+350	9	3172300	Tiga Juta Seratus Tujuh Puluh Dua Ribu Tiga Ratus Rupiah	24
+351	10	3272200	Tiga Juta Dua Ratus Tujuh Puluh Dua Ribu Dua Ratus Rupiah	24
+352	11	3272200	Tiga Juta Dua Ratus Tujuh Puluh Dua Ribu Dua Ratus Rupiah	24
+353	12	3375300	Tiga Juta Tiga Ratus Tujuh Puluh Lima Ribu Tiga Ratus Rupiah	24
+354	13	3375300	Tiga Juta Tiga Ratus Tujuh Puluh Lima Ribu Tiga Ratus Rupiah	24
+355	14	3481600	Tiga Juta Empat Ratus Delapan Puluh Satu Ribu Enam Ratus Rupiah	24
+356	15	3481600	Tiga Juta Empat Ratus Delapan Puluh Satu Ribu Enam Ratus Rupiah	24
+357	16	3591200	Tiga Juta Lima Ratus Sembilan Puluh Satu Ribu Dua Ratus Rupiah	24
+358	17	3591200	Tiga Juta Lima Ratus Sembilan Puluh Satu Ribu Dua Ratus Rupiah	24
+359	18	3704300	Tiga Juta Tujuh Ratus Empat Ribu Tiga Ratus Rupiah	24
+360	19	3704300	Tiga Juta Tujuh Ratus Empat Ribu Tiga Ratus Rupiah	24
+361	20	3821000	Tiga Juta Delapan Ratus Dua Puluh Satu Ribu Rupiah	24
+362	21	3821000	Tiga Juta Delapan Ratus Dua Puluh Satu Ribu Rupiah	24
+363	22	3941400	Tiga Juta Sembilan Ratus Empat Puluh Satu Ribu Empat Ratus Rupiah	24
+364	23	3941400	Tiga Juta Sembilan Ratus Empat Puluh Satu Ribu Empat Ratus Rupiah	24
+365	24	4065500	Empat Juta Enam Puluh Lima Ribu Lima Ratus Rupiah	24
+366	25	4065500	Empat Juta Enam Puluh Lima Ribu Lima Ratus Rupiah	24
+367	26	4193500	Empat Juta Seratus Sembilan Puluh Tiga Ribu Lima Ratus Rupiah	24
+368	27	4193500	Empat Juta Seratus Sembilan Puluh Tiga Ribu Lima Ratus Rupiah	24
+369	28	4325600	Empat Juta Tiga Ratus Dua Puluh Lima Ribu Enam Ratus Rupiah	24
+370	29	4325600	Empat Juta Tiga Ratus Dua Puluh Lima Ribu Enam Ratus Rupiah	24
+371	30	4461800	Empat Juta Empat Ratus Enam Puluh Satu Ribu Delapan Ratus Rupiah	24
+372	31	4461800	Empat Juta Empat Ratus Enam Puluh Satu Ribu Delapan Ratus Rupiah	24
+373	32	4602400	Empat Juta Enam Ratus Dua Ribu Empat Ratus Rupiah	24
+374	33	4602400	Empat Juta Enam Ratus Dua Ribu Empat Ratus Rupiah	24
+375	0	2920800	Dua Juta Sembilan Ratus Dua Puluh Ribu Delapan Ratus Rupiah	25
+376	1	2920800	Dua Juta Sembilan Ratus Dua Puluh Ribu Delapan Ratus Rupiah	25
+377	2	3012800	Tiga Juta Dua Belas Ribu Delapan Ratus Rupiah	25
+378	3	3012800	Tiga Juta Dua Belas Ribu Delapan Ratus Rupiah	25
+379	4	3107700	Tiga Juta Seratus Tujuh Ribu Tujuh Ratus Rupiah	25
+380	5	3107700	Tiga Juta Seratus Tujuh Ribu Tujuh Ratus Rupiah	25
+381	6	3205500	Tiga Juta Dua Ratus Lima Ribu Lima Ratus Rupiah	25
+382	7	3205500	Tiga Juta Dua Ratus Lima Ribu Lima Ratus Rupiah	25
+383	8	3306500	Tiga Juta Tiga Ratus Enam Ribu Lima Ratus Rupiah	25
+384	9	3306500	Tiga Juta Tiga Ratus Enam Ribu Lima Ratus Rupiah	25
+385	10	3410600	Tiga Juta Empat Ratus Sepuluh Ribu Enam Ratus Rupiah	25
+386	11	3410600	Tiga Juta Empat Ratus Sepuluh Ribu Enam Ratus Rupiah	25
+387	12	3518100	Tiga Juta Lima Ratus Delapan Belas Ribu Seratus Rupiah	25
+388	13	3518100	Tiga Juta Lima Ratus Delapan Belas Ribu Seratus Rupiah	25
+389	14	3628900	Tiga Juta Enam Ratus Dua Puluh Delapan Ribu Sembilan Ratus Rupiah	25
+390	15	3628900	Tiga Juta Enam Ratus Dua Puluh Delapan Ribu Sembilan Ratus Rupiah	25
+391	16	3743100	Tiga Juta Tujuh Ratus Empat Puluh Tiga Ribu Seratus Rupiah	25
+392	17	3743100	Tiga Juta Tujuh Ratus Empat Puluh Tiga Ribu Seratus Rupiah	25
+393	18	3861000	Tiga Juta Delapan Ratus Enam Puluh Satu Ribu Rupiah	25
+394	19	3861000	Tiga Juta Delapan Ratus Enam Puluh Satu Ribu Rupiah	25
+395	20	3982600	Tiga Juta Sembilan Ratus Delapan Puluh Dua Ribu Enam Ratus Rupiah	25
+396	21	3982600	Tiga Juta Sembilan Ratus Delapan Puluh Dua Ribu Enam Ratus Rupiah	25
+397	22	4108100	Empat Juta Seratus Delapan Ribu Seratus Rupiah	25
+398	23	4108100	Empat Juta Seratus Delapan Ribu Seratus Rupiah	25
+399	24	4237500	Empat Juta Dua Ratus Tiga Puluh Tujuh Ribu Lima Ratus Rupiah	25
+400	25	4237500	Empat Juta Dua Ratus Tiga Puluh Tujuh Ribu Lima Ratus Rupiah	25
+401	26	4370900	Empat Juta Tiga Ratus Tujuh Puluh Ribu Sembilan Ratus Rupiah	25
+402	27	4370900	Empat Juta Tiga Ratus Tujuh Puluh Ribu Sembilan Ratus Rupiah	25
+403	28	4508600	Empat Juta Lima Ratus Delapan Ribu Enam Ratus Rupiah	25
+404	29	4508600	Empat Juta Lima Ratus Delapan Ribu Enam Ratus Rupiah	25
+405	30	4650600	Empat Juta Enam Ratus Lima Puluh Ribu Enam Ratus Rupiah	25
+406	31	4650600	Empat Juta Enam Ratus Lima Puluh Ribu Enam Ratus Rupiah	25
+407	32	4797000	Empat Juta Tujuh Ratus Sembilan Puluh Tujuh Ribu Rupiah	25
+408	33	4797000	Empat Juta Tujuh Ratus Sembilan Puluh Tujuh Ribu Rupiah	25
+409	0	3044300	Tiga Juta Empat Puluh Empat Ribu Tiga Ratus Rupiah	26
+410	1	3044300	Tiga Juta Empat Puluh Empat Ribu Tiga Ratus Rupiah	26
+411	2	3140200	Tiga Juta Seratus Empat Puluh Ribu Dua Ratus Rupiah	26
+412	3	3140200	Tiga Juta Seratus Empat Puluh Ribu Dua Ratus Rupiah	26
+413	4	3239100	Tiga Juta Dua Ratus Tiga Puluh Sembilan Ribu Seratus Rupiah	26
+414	5	3239100	Tiga Juta Dua Ratus Tiga Puluh Sembilan Ribu Seratus Rupiah	26
+415	6	3341100	Tiga Juta Tiga Ratus Empat Puluh Satu Ribu Seratus Rupiah	26
+416	7	3341100	Tiga Juta Tiga Ratus Empat Puluh Satu Ribu Seratus Rupiah	26
+417	8	3446400	Tiga Juta Empat Ratus Empat Puluh Enam Ribu Empat Ratus Rupiah	26
+418	9	3446400	Tiga Juta Empat Ratus Empat Puluh Enam Ribu Empat Ratus Rupiah	26
+419	10	3554900	Tiga Juta Lima Ratus Lima Puluh Empat Ribu Sembilan Ratus Rupiah	26
+420	11	3554900	Tiga Juta Lima Ratus Lima Puluh Empat Ribu Sembilan Ratus Rupiah	26
+421	12	3666900	Tiga Juta Enam Ratus Enam Puluh Enam Ribu Sembilan Ratus Rupiah	26
+422	13	3666900	Tiga Juta Enam Ratus Enam Puluh Enam Ribu Sembilan Ratus Rupiah	26
+423	14	3782400	Tiga Juta Tujuh Ratus Delapan Puluh Dua Ribu Empat Ratus Rupiah	26
+424	15	3782400	Tiga Juta Tujuh Ratus Delapan Puluh Dua Ribu Empat Ratus Rupiah	26
+425	16	3901500	Tiga Juta Sembilan Ratus Satu Ribu Lima Ratus Rupiah	26
+426	17	3901500	Tiga Juta Sembilan Ratus Satu Ribu Lima Ratus Rupiah	26
+427	18	4024400	Empat Juta Dua Puluh Empat Ribu Empat Ratus Rupiah	26
+428	19	4024400	Empat Juta Dua Puluh Empat Ribu Empat Ratus Rupiah	26
+429	20	4151100	Empat Juta Seratus Lima Puluh Satu Ribu Seratus Rupiah	26
+430	21	4151100	Empat Juta Seratus Lima Puluh Satu Ribu Seratus Rupiah	26
+431	22	4281800	Empat Juta Dua Ratus Delapan Puluh Satu Ribu Delapan Ratus Rupiah	26
+432	23	4281800	Empat Juta Dua Ratus Delapan Puluh Satu Ribu Delapan Ratus Rupiah	26
+433	24	4416700	Empat Juta Empat Ratus Enam Belas Ribu Tujuh Ratus Rupiah	26
+434	25	4416700	Empat Juta Empat Ratus Enam Belas Ribu Tujuh Ratus Rupiah	26
+435	26	4555800	Empat Juta Lima Ratus Lima Puluh Lima Ribu Delapan Ratus Rupiah	26
+436	27	4555800	Empat Juta Lima Ratus Lima Puluh Lima Ribu Delapan Ratus Rupiah	26
+437	28	4699300	Empat Juta Enam Ratus Sembilan Puluh Sembilan Ribu Tiga Ratus Rupiah	26
+438	29	4699300	Empat Juta Enam Ratus Sembilan Puluh Sembilan Ribu Tiga Ratus Rupiah	26
+439	30	4847300	Empat Juta Delapan Ratus Empat Puluh Tujuh Ribu Tiga Ratus Rupiah	26
+440	31	4847300	Empat Juta Delapan Ratus Empat Puluh Tujuh Ribu Tiga Ratus Rupiah	26
+441	32	5000000	Lima Juta Rupiah	26
+442	33	5000000	Lima Juta Rupiah	26
+443	0	3173100	Tiga Juta Seratus Tujuh Puluh Tiga Ribu Seratus Rupiah	27
+444	1	3173100	Tiga Juta Seratus Tujuh Puluh Tiga Ribu Seratus Rupiah	27
+445	2	3273100	Tiga Juta Dua Ratus Tujuh Puluh Tiga Ribu Seratus Rupiah	27
+446	3	3273100	Tiga Juta Dua Ratus Tujuh Puluh Tiga Ribu Seratus Rupiah	27
+447	4	3376100	Tiga Juta Tiga Ratus Tujuh Puluh Enam Ribu Seratus Rupiah	27
+448	5	3376100	Tiga Juta Tiga Ratus Tujuh Puluh Enam Ribu Seratus Rupiah	27
+449	6	3482500	Tiga Juta Empat Ratus Delapan Puluh Dua Ribu Lima Ratus Rupiah	27
+450	7	3482500	Tiga Juta Empat Ratus Delapan Puluh Dua Ribu Lima Ratus Rupiah	27
+451	8	3592100	Tiga Juta Lima Ratus Sembilan Puluh Dua Ribu Seratus Rupiah	27
+452	9	3592100	Tiga Juta Lima Ratus Sembilan Puluh Dua Ribu Seratus Rupiah	27
+453	10	3705300	Tiga Juta Tujuh Ratus Lima Ribu Tiga Ratus Rupiah	27
+454	11	3705300	Tiga Juta Tujuh Ratus Lima Ribu Tiga Ratus Rupiah	27
+455	12	3822000	Tiga Juta Delapan Ratus Dua Puluh Dua Ribu Rupiah	27
+456	13	3822000	Tiga Juta Delapan Ratus Dua Puluh Dua Ribu Rupiah	27
+457	14	3942400	Tiga Juta Sembilan Ratus Empat Puluh Dua Ribu Empat Ratus Rupiah	27
+458	15	3942400	Tiga Juta Sembilan Ratus Empat Puluh Dua Ribu Empat Ratus Rupiah	27
+459	16	4066500	Empat Juta Enam Puluh Enam Ribu Lima Ratus Rupiah	27
+460	17	4066500	Empat Juta Enam Puluh Enam Ribu Lima Ratus Rupiah	27
+461	18	4194600	Empat Juta Seratus Sembilan Puluh Empat Ribu Enam Ratus Rupiah	27
+462	19	4194600	Empat Juta Seratus Sembilan Puluh Empat Ribu Enam Ratus Rupiah	27
+463	20	4326700	Empat Juta Tiga Ratus Dua Puluh Enam Ribu Tujuh Ratus Rupiah	27
+464	21	4326700	Empat Juta Tiga Ratus Dua Puluh Enam Ribu Tujuh Ratus Rupiah	27
+465	22	4463000	Empat Juta Empat Ratus Enam Puluh Tiga Ribu Rupiah	27
+466	23	4463000	Empat Juta Empat Ratus Enam Puluh Tiga Ribu Rupiah	27
+467	24	4603500	Empat Juta Enam Ratus Tiga Ribu Lima Ratus Rupiah	27
+468	25	4603500	Empat Juta Enam Ratus Tiga Ribu Lima Ratus Rupiah	27
+469	26	4748500	Empat Juta Tujuh Ratus Empat Puluh Delapan Ribu Lima Ratus Rupiah	27
+470	27	4748500	Empat Juta Tujuh Ratus Empat Puluh Delapan Ribu Lima Ratus Rupiah	27
+471	28	4898100	Empat Juta Delapan Ratus Sembilan Puluh Delapan Ribu Seratus Rupiah	27
+472	29	4898100	Empat Juta Delapan Ratus Sembilan Puluh Delapan Ribu Seratus Rupiah	27
+473	30	5052300	Lima Juta Lima Puluh Dua Ribu Tiga Ratus Rupiah	27
+474	31	5052300	Lima Juta Lima Puluh Dua Ribu Tiga Ratus Rupiah	27
+475	32	5211500	Lima Juta Dua Ratus Sebelas Ribu Lima Ratus Rupiah	27
+476	33	5211500	Lima Juta Dua Ratus Sebelas Ribu Lima Ratus Rupiah	27
+477	0	3307300	Tiga Juta Tiga Ratus Tujuh Ribu Tiga Ratus Rupiah	28
+478	1	3307300	Tiga Juta Tiga Ratus Tujuh Ribu Tiga Ratus Rupiah	28
+479	2	3411500	Tiga Juta Empat Ratus Sebelas Ribu Lima Ratus Rupiah	28
+480	3	3411500	Tiga Juta Empat Ratus Sebelas Ribu Lima Ratus Rupiah	28
+481	4	3518900	Tiga Juta Lima Ratus Delapan Belas Ribu Sembilan Ratus Rupiah	28
+482	5	3518900	Tiga Juta Lima Ratus Delapan Belas Ribu Sembilan Ratus Rupiah	28
+483	6	3629800	Tiga Juta Enam Ratus Dua Puluh Sembilan Ribu Delapan Ratus Rupiah	28
+484	7	3629800	Tiga Juta Enam Ratus Dua Puluh Sembilan Ribu Delapan Ratus Rupiah	28
+485	8	3744100	Tiga Juta Tujuh Ratus Empat Puluh Empat Ribu Seratus Rupiah	28
+486	9	3744100	Tiga Juta Tujuh Ratus Empat Puluh Empat Ribu Seratus Rupiah	28
+487	10	3862000	Tiga Juta Delapan Ratus Enam Puluh Dua Ribu Rupiah	28
+488	11	3862000	Tiga Juta Delapan Ratus Enam Puluh Dua Ribu Rupiah	28
+489	12	3983600	Tiga Juta Sembilan Ratus Delapan Puluh Tiga Ribu Enam Ratus Rupiah	28
+490	13	3983600	Tiga Juta Sembilan Ratus Delapan Puluh Tiga Ribu Enam Ratus Rupiah	28
+491	14	4109100	Empat Juta Seratus Sembilan Ribu Seratus Rupiah	28
+492	15	4109100	Empat Juta Seratus Sembilan Ribu Seratus Rupiah	28
+493	16	4238500	Empat Juta Dua Ratus Tiga Puluh Delapan Ribu Lima Ratus Rupiah	28
+494	17	4238500	Empat Juta Dua Ratus Tiga Puluh Delapan Ribu Lima Ratus Rupiah	28
+495	18	4372000	Empat Juta Tiga Ratus Tujuh Puluh Dua Ribu Rupiah	28
+496	19	4372000	Empat Juta Tiga Ratus Tujuh Puluh Dua Ribu Rupiah	28
+497	20	4509700	Empat Juta Lima Ratus Sembilan Ribu Tujuh Ratus Rupiah	28
+498	21	4509700	Empat Juta Lima Ratus Sembilan Ribu Tujuh Ratus Rupiah	28
+499	22	4651800	Empat Juta Enam Ratus Lima Puluh Satu Ribu Delapan Ratus Rupiah	28
+500	23	4651800	Empat Juta Enam Ratus Lima Puluh Satu Ribu Delapan Ratus Rupiah	28
+501	24	4798300	Empat Juta Tujuh Ratus Sembilan Puluh Delapan Ribu Tiga Ratus Rupiah	28
+502	25	4798300	Empat Juta Tujuh Ratus Sembilan Puluh Delapan Ribu Tiga Ratus Rupiah	28
+503	26	4949400	Empat Juta Sembilan Ratus Empat Puluh Sembilan Ribu Empat Ratus Rupiah	28
+504	27	4949400	Empat Juta Sembilan Ratus Empat Puluh Sembilan Ribu Empat Ratus Rupiah	28
+505	28	5105300	Lima Juta Seratus Lima Ribu Tiga Ratus Rupiah	28
+506	29	5105300	Lima Juta Seratus Lima Ribu Tiga Ratus Rupiah	28
+507	30	5266100	Lima Juta Dua Ratus Enam Puluh Enam Ribu Seratus Rupiah	28
+508	31	5266100	Lima Juta Dua Ratus Enam Puluh Enam Ribu Seratus Rupiah	28
+509	32	5431900	Lima Juta Empat Ratus Tiga Puluh Satu Ribu Sembilan Ratus Rupiah	28
+510	33	5431900	Lima Juta Empat Ratus Tiga Puluh Satu Ribu Sembilan Ratus Rupiah	28
+511	0	3447200	Tiga Juta Empat Ratus Empat Puluh Tujuh Ribu Dua Ratus Rupiah	29
+512	1	3447200	Tiga Juta Empat Ratus Empat Puluh Tujuh Ribu Dua Ratus Rupiah	29
+513	2	3555800	Tiga Juta Lima Ratus Lima Puluh Lima Ribu Delapan Ratus Rupiah	29
+514	3	3555800	Tiga Juta Lima Ratus Lima Puluh Lima Ribu Delapan Ratus Rupiah	29
+515	4	3667800	Tiga Juta Enam Ratus Enam Puluh Tujuh Ribu Delapan Ratus Rupiah	29
+516	5	3667800	Tiga Juta Enam Ratus Enam Puluh Tujuh Ribu Delapan Ratus Rupiah	29
+517	6	3783300	Tiga Juta Tujuh Ratus Delapan Puluh Tiga Ribu Tiga Ratus Rupiah	29
+518	7	3783300	Tiga Juta Tujuh Ratus Delapan Puluh Tiga Ribu Tiga Ratus Rupiah	29
+519	8	3902500	Tiga Juta Sembilan Ratus Dua Ribu Lima Ratus Rupiah	29
+520	9	3902500	Tiga Juta Sembilan Ratus Dua Ribu Lima Ratus Rupiah	29
+521	10	4025400	Empat Juta Dua Puluh Lima Ribu Empat Ratus Rupiah	29
+522	11	4025400	Empat Juta Dua Puluh Lima Ribu Empat Ratus Rupiah	29
+523	12	4152200	Empat Juta Seratus Lima Puluh Dua Ribu Dua Ratus Rupiah	29
+524	13	4152200	Empat Juta Seratus Lima Puluh Dua Ribu Dua Ratus Rupiah	29
+525	14	4282900	Empat Juta Dua Ratus Delapan Puluh Dua Ribu Sembilan Ratus Rupiah	29
+526	15	4282900	Empat Juta Dua Ratus Delapan Puluh Dua Ribu Sembilan Ratus Rupiah	29
+527	16	4417800	Empat Juta Empat Ratus Tujuh Belas Ribu Delapan Ratus Rupiah	29
+528	17	4417800	Empat Juta Empat Ratus Tujuh Belas Ribu Delapan Ratus Rupiah	29
+529	18	4557000	Empat Juta Lima Ratus Lima Puluh Tujuh Ribu Rupiah	29
+530	19	4557000	Empat Juta Lima Ratus Lima Puluh Tujuh Ribu Rupiah	29
+531	20	4700500	Empat Juta Tujuh Ratus Ribu Lima Ratus Rupiah	29
+532	21	4700500	Empat Juta Tujuh Ratus Ribu Lima Ratus Rupiah	29
+533	22	4848500	Empat Juta Delapan Ratus Empat Puluh Delapan Ribu Lima Ratus Rupiah	29
+534	23	4848500	Empat Juta Delapan Ratus Empat Puluh Delapan Ribu Lima Ratus Rupiah	29
+535	24	5001200	Lima Juta Seribu Dua Ratus Rupiah	29
+536	25	5001200	Lima Juta Seribu Dua Ratus Rupiah	29
+537	26	5158700	Lima Juta Seratus Lima Puluh Delapan Ribu Tujuh Ratus Rupiah	29
+538	27	5158700	Lima Juta Seratus Lima Puluh Delapan Ribu Tujuh Ratus Rupiah	29
+539	28	5321200	Lima Juta Tiga Ratus Dua Puluh Satu Ribu Dua Ratus Rupiah	29
+540	29	5321200	Lima Juta Tiga Ratus Dua Puluh Satu Ribu Dua Ratus Rupiah	29
+541	30	5488800	Lima Juta Empat Ratus Delapan Puluh Delapan Ribu Delapan Ratus Rupiah	29
+542	31	5488800	Lima Juta Empat Ratus Delapan Puluh Delapan Ribu Delapan Ratus Rupiah	29
+543	32	5661700	Lima Juta Enam Ratus Enam Puluh Satu Ribu Tujuh Ratus Rupiah	29
+544	33	5661700	Lima Juta Enam Ratus Enam Puluh Satu Ribu Tujuh Ratus Rupiah	29
+545	34	MAKSIMAL	MAKSIMAL	23
+546	34	MAKSIMAL	MAKSIMAL	24
+547	34	MAKSIMAL	MAKSIMAL	25
+\.
+
+
+--
+-- Data for Name: pegawai_golonganhistorymodel; Type: TABLE DATA; Schema: public; Owner: datainfo
+--
+
+COPY public.pegawai_golonganhistorymodel (id, pengguna, nip, nomor_sk, jenis, tanggal, dokumen, nama_id, mk_bulan, mk_tahun, dasarnominatif, tglpenetapan, pejabat) FROM stdin;
+37210	50434	198504172010011003	521/KEP.GUB/BKD-4.1/2014	pangkat_golongan	2014-04-01		21	7	5	f	\N	GUBERNUR JAMBI
+65287	74401	198612172011011003	1846/KEP.GUB/BKD-2.2/2019	pangkat_golongan	2019-05-01		24	4	8	f	2019-05-24	GUBERNUR JAMBI
+20221	50549	198605192010012011	821.13/793/BKD	pns	2011-09-01		22	8	1	f	\N	GUBERNUR JAMBI
+25858	50497	196310021986031007	SK. 813/581	cpns	1986-03-01		32	0	0	f	\N	GUBERNUR JAMBI
+25859	50497	196310021986031007	SK. 821.11/399/1987	pns	1987-08-01		32	0	0	f	\N	GUBERNUR JAMBI
+25860	50497	196310021986031007	SK. 823.1/83/UP	pangkat_golongan	1990-04-01		33	0	0	f	\N	GUBERNUR JAMBI
+25861	50497	196310021986031007	01-05/00004/KEP/X/1992	pangkat_golongan	1992-10-01		18	0	0	f	\N	GUBERNUR JAMBI
+25862	50497	196310021986031007	01-05/00031/KEP/X/1996	pangkat_golongan	1996-10-01		19	0	0	f	\N	GUBERNUR JAMBI
+63784	50434	198504172010011003	1846/KEP.GUB/BKD-2.2/2019	pangkat_golongan	2019-04-01		22	3	7	f	2019-05-08	GUBERNUR JAMBI
+25863	50497	196310021986031007	R.VII.01-05.04/001/KEP/X/2000/PB	pangkat_golongan	2000-10-01		20	0	0	f	\N	GUBERNUR JAMBI
+25864	50497	196310021986031007	SK. 823/1551/UP	pangkat_golongan	2004-04-01		22	0	0	f	\N	GUBERNUR JAMBI
+25865	50497	196310021986031007	823/1372/UP	pangkat_golongan	2008-04-01		23	0	0	f	\N	GUBERNUR JAMBI
+25866	50497	196310021986031007	823/1034/BKD	pangkat_golongan	2011-04-01		24	0	0	f	\N	GUBERNUR JAMBI
+25867	50497	196310021986031007	481/KEP.GUB/BKD-4.1/2015	pangkat_golongan	2015-04-01		25	0	0	f	\N	GUBERNUR JAMBI
+39725	83880	198007092008011002	SK.813/2053/UP	cpns	2008-08-08		33	0	0	f	\N	GUBERNUR JAMBI
+39726	83880	198007092008011002	821/648/BKD	pns	2009-10-01		33	0	0	f	\N	GUBERNUR JAMBI
+39727	83880	198007092008011002	823/556/BKD	pangkat_golongan	2010-10-01		18	0	0	f	\N	GUBERNUR JAMBI
+21255	50463	198204022010012017	036/KEP.GUB/BKD-2.2/2017	pangkat_golongan	2017-04-01		22	0	0	f	\N	GUBERNUR JAMBI
+36106	88068	196101101985031005	29/K TAHUN 2018	pangkat_golongan	2018-04-01		30	0	0	f	\N	GUBERNUR JAMBI
+21336	50463	198204022010012017	477/KEP.GUB/BKD-4.1/204	pangkat_golongan	2014-04-01		21	0	0	f	\N	GUBERNUR JAMBI
+21337	50463	198204022010012017	821/169/BKP2D	pns	2012-01-01		20	0	0	f	\N	GUBERNUR JAMBI
+21338	50463	198204022010012017	813/013/BKP2D	cpns	2010-01-01		20	0	0	f	\N	GUBERNUR JAMBI
+26605	50507	196403071990012002	477/KEP.GUB/BKD-4.1/2014	pangkat_golongan	2014-04-01		25	0	0	f	\N	GUBERNUR JAMBI
+20231	50536	197712212005011005	813/851/UP	cpns	2005-01-01		22	0	0	f	\N	GUBERNUR JAMBI
+20230	50536	197712212005011005	813/851/UP	pns	2006-04-01		22	3	1	f	\N	GUBERNUR JAMBI
+20145	50536	197712212005011005	036/KEP.GUB/BKD-2.2/2017	pangkat_golongan	2016-04-01		25	3	11	f	\N	GUBERNUR JAMBI
+20229	50536	197712212005011005	823/234/BKD	pangkat_golongan	2009-04-01		23	3	4	f	\N	GUBERNUR JAMBI
+20228	50536	197712212005011005	314/KEP.GUB/BKD-4.1/2013	pangkat_golongan	2013-04-01		24	3	8	f	\N	GUBERNUR JAMBI
+28812	50481	196402141986031005	349/KEP.GUB/BKD-3.2/2017	pangkat_golongan	2018-10-01		27	0	0	f	\N	GUBERNUR JAMBI
+65327	50549	198605192010012011	1846/KEP.GUB/BKD-2.2/2019	pangkat_golongan	2019-04-01		24	3	9	f	\N	GUBERNUR JAMBI
+20176	74401	198612172011011003	481/KEP.GUB/BKD-4.1/2015	pangkat_golongan	2015-04-01		23	3	4	f	\N	GUBERNUR JAMBI
+67284	50434	198504172010011003	821.12/792/BKD	pns	2011-09-01		20	8	4	f	\N	GUBERNUR JAMBI
+21306	50524	196508141986012001	821.12/575	pns	1987-04-01		18	3	1	f	\N	GUBERNUR JAMBI
+20222	50549	198605192010012011	SK. 813/125/BKD	cpns	2010-01-01		22	0	0	f	\N	GUBERNUR JAMBI
+21307	50524	196508141986012001	823.3/3150/UP	pangkat_golongan	2002-04-01		22	3	11	f	\N	GUBERNUR JAMBI
+21308	50524	196508141986012001	01-05/00138/KEP/IV/1994	pangkat_golongan	1994-04-01		20	3	8	f	\N	GUBERNUR JAMBI
+21310	50524	196508141986012001	01-05/00001/KEP/IV/1998	pangkat_golongan	1998-04-01		21	3	12	f	\N	GUBERNUR JAMBI
+64245	50425	198501292011011007	xxx	cpns	2011-01-01		22	0	0	f	\N	WALIKOTA SUNGAI PENUH
+20140	50549	198605192010012011	521/KEP.GUB/BKD-4.1/2014	pangkat_golongan	2014-04-01		23	3	4	f	\N	GUBERNUR JAMBI
+21311	50524	196508141986012001	823.2/102/UP	pangkat_golongan	1990-04-01		19	0	0	f	\N	GUBERNUR JAMBI
+31944	73906	196312311984021002	812.533-2197	pangkat_golongan	1996-10-01		22	8	7	f	\N	GUBERNUR JAMBI
+31950	73906	196312311984021002	823/234/BKD	pangkat_golongan	2009-04-01		26	2	20	f	\N	GUBERNUR JAMBI
+31946	73906	196312311984021002	812.533.31631	pangkat_golongan	2001-04-01		24	2	12	f	\N	GUBERNUR JAMBI
+31942	73906	196312311984021002	01-05/00152/KEPO/IV/92	pangkat_golongan	1992-04-01		20	2	8	f	\N	GUBERNUR JAMBI
+31945	73906	196312311984021002	812.533.33359	pangkat_golongan	2000-10-01		23	8	11	f	\N	GUBERNUR JAMBI
+21305	50524	196508141986012001	813.2/32	cpns	1986-01-01		18	0	0	f	\N	GUBERNUR JAMBI
+31947	73906	196312311984021002	823/1234/UP	pangkat_golongan	2005-04-01		25	2	16	f	\N	GUBERNUR JAMBI
+31940	73906	196312311984021002	SUB.812.12/864	pns	1985-03-01		18	1	1	f	\N	GUBERNUR JAMBI
+31948	73906	196312311984021002	314/KEP.GUB/BKD-4.3/2013	pangkat_golongan	2013-04-01		27	2	24	f	\N	GUBERNUR JAMBI
+31949	73906	196312311984021002	00042/KEP/AA/201500/15	pangkat_golongan	2015-10-01		28	8	26	f	\N	GUBERNUR JAMBI
+20253	74401	198612172011011003	813/173/BKD	cpns	2011-01-01		22	0	0	f	\N	GUBERNUR JAMBI
+37211	50434	198504172010011003	SK.813/125/BKD	cpns	2010-01-01		20	0	3	f	\N	GUBERNUR JAMBI
+21259	50524	196508141986012001	823/273/up	pangkat_golongan	2006-04-01		23	3	15	f	2006-04-25	GUBERNUR JAMBI
+64247	50425	198501292011011007	xxx	pns	2012-01-01		22	0	1	f	\N	GUBERNUR JAMBI
+64246	50425	198501292011011007	1846/KEP.GUB/BKD-2.2/2019	pangkat_golongan	2018-04-01		24	3	7	f	2019-05-27	GUBERNUR JAMBI
+20721	53048	196209041985031006	SK.01.05/00297/KEP/IV/1994	pangkat_golongan	1994-04-01		33	1	9	f	\N	GUBERNUR JAMBI
+67698	74401	198612172011011003	297/KEP.GUB/BKD-4.2/2012	pns	2012-04-01		22	3	1	f	\N	GUBERNUR JAMBI
+20718	53048	196209041985031006	812.513.1-3075	cpns	1985-03-01		31	0	0	f	\N	GUBERNUR JAMBI
+20719	53048	196209041985031006	821.11/1149	pns	1986-09-01		31	6	1	f	\N	GUBERNUR JAMBI
+20720	53048	196209041985031006	822.1/2340/UP	pangkat_golongan	1987-03-01		32	0	2	f	\N	GUBERNUR JAMBI
+31941	73906	196312311984021002	823.2/151/UP	pangkat_golongan	1988-04-01		19	2	4	f	\N	GUBERNUR JAMBI
+20726	53048	196209041985031006	823/715/BKD	pangkat_golongan	2015-04-01		22	1	30	f	\N	GUBERNUR JAMBI
+20725	53048	196209041985031006	823/715/BKD	pangkat_golongan	2010-04-01		20	1	25	f	\N	GUBERNUR JAMBI
+20137	50425	198501292011011007	174/KEP.GUB/BKD-2.2/2015	pangkat_golongan	2015-04-01		23	3	4	f	\N	GUBERNUR JAMBI
+38867	53046	197009022005011007	175 TAHUN 2012	pangkat_golongan	2012-04-01		24	3	7	f	\N	GUBERNUR JAMBI
+38868	53046	197009022005011007	86 TAHUN 2005	cpns	2005-01-01		22	0	0	f	\N	GUBERNUR JAMBI
+38869	53046	197009022005011007	192 TAHUN 2006	pns	2006-04-01		22	3	1	f	\N	GUBERNUR JAMBI
+38870	53046	197009022005011007	94 TAHUN 2009	pangkat_golongan	2009-04-01		23	3	4	f	\N	GUBERNUR JAMBI
+20724	53048	196209041985031006	823/273/UP	pangkat_golongan	2006-04-01		19	1	21	f	\N	GUBERNUR JAMBI
+38871	53046	197009022005011007	082/KEP.GUB/BKD-4.1/2016	pangkat_golongan	2016-04-01		25	3	11	f	\N	GUBERNUR JAMBI
+31943	73906	196312311984021002	01-05/0007/KEP/IV/96	pangkat_golongan	1996-04-01		21	2	12	f	\N	GUBERNUR JAMBI
+37482	50473	196912261993031003	SK.813.2/1985/UP	cpns	1993-03-01		18	0	0	f	\N	GUBERNUR JAMBI
+37483	50473	196912261993031003	SK.821.12/3344/UP	pns	1994-09-01		18	6	1	f	\N	GUBERNUR JAMBI
+37512	50473	196912261993031003	SK.314/KEP.GUB/BKD-4.1/2013	pangkat_golongan	2013-04-01		23	1	15	f	\N	GUBERNUR JAMBI
+34687	53024	196308031983031002	477/KEP.GUB/BKD-4.1/2014	pangkat_golongan	2014-04-01		27	0	0	f	\N	GUBERNUR JAMBI
+34688	53024	196308031983031002	823/715/BKD	pangkat_golongan	2010-04-01		26	0	0	f	\N	GUBERNUR JAMBI
+34689	53024	196308031983031002	823/2254/UP	pangkat_golongan	2008-10-01		25	0	0	f	\N	GUBERNUR JAMBI
+20848	50545	197604212007012009	813/2389/UP	cpns	2007-07-01		18	0	0	f	\N	GUBERNUR JAMBI
+20849	50545	197604212007012009	821.12/1937/UP	pns	2008-08-01		18	1	1	f	\N	GUBERNUR JAMBI
+20850	50545	197604212007012009	823/1034/BKD	pangkat_golongan	2011-04-01		19	9	3	f	\N	GUBERNUR JAMBI
+33959	50545	197604212007012009	376/KEP.GUB/BKD-4.1/2013	pangkat_golongan	2013-04-01		22	9	0	f	\N	GUBERNUR JAMBI
+33960	50545	197604212007012009	036/KEP.GUB/BKD-2.2/2017	pangkat_golongan	2017-04-01		23	9	4	f	\N	GUBERNUR JAMBI
+67692	50545	197604212007012009	222/KEP.GUB/BKD-3.2/2021	pangkat_golongan	2021-04-01		24	11	15	f	2021-03-17	GUBERNUR JAMBI
+20723	53048	196209041985031006	823.2/3132/UP	pangkat_golongan	2002-04-01		18	1	17	f	\N	GUBERNUR JAMBI
+31939	73906	196312311984021002	813.2/321	cpns	1984-02-01		18	0	0	f	\N	GUBERNUR JAMBI
+20722	53048	196209041985031006	43-1500/00044/KEP/P/01	pangkat_golongan	1998-04-01		34	1	13	f	\N	GUBERNUR JAMBI
+\.
+
+
+--
+-- Data for Name: pegawai_golonganmodel; Type: TABLE DATA; Schema: public; Owner: datainfo
+--
+
+COPY public.pegawai_golonganmodel (id, nama, nilai, simbol, grade) FROM stdin;
+18	Pengatur Muda	137	II/a	2
+19	Pengatur Muda Tingkat I	171	II/b	2
+20	Pengatur	205	II/c	2
+21	Pengatur Tingkat I	239	II/d	2
+22	Penata Muda	273	III/a	3
+23	Penata Muda Tingkat I	307	III/b	3
+24	Penata	341	III/c	3
+25	Penata Tingkat I	375	III/d	3
+26	Pembina	409	IV/a	4
+27	Pembina Tingkat I	443	IV/b	4
+28	Pembina Utama Muda	477	IV/c	4
+29	Pembina Utama Madya	511	IV/d	4
+30	Pembina Utama	533	IV/e	4
+31	Juru Muda	0	I/a	1
+32	Juru Muda Tingkat I	35	I/b	1
+33	Juru	69	I/c	1
+34	Juru Tingkat I	103	I/d	1
+\.
+
+
+--
+-- Data for Name: pegawai_jabatanmodel; Type: TABLE DATA; Schema: public; Owner: datainfo
+--
+
+COPY public.pegawai_jabatanmodel (id, bup, jenjang, jenis, nama) FROM stdin;
+6	58	jft4	Fungsional Tertentu	Fungsional Terampil
+3	60	jft1	Fungsional Tertentu	Fungsional Tertentu Ahli Utama
+4	60	jft2	Fungsional Tertentu	Fungsional Tertentu Ahli Madya
+5	58	jft3	Fungsional Tertentu	Fungsional Tertentu Ahli Pertama
+1	60	jpt	struktural	Jabatan Pimpinan Tinggi Pratama\n
+2	58	struktural	struktural	Jabatan Administrator dan Pengawas
+9	58	jft	Fungsional Tertentu	Fungsional Tertentu Ahli Muda
+10	60	struktural	struktural	Jabatan Pimpinan Tinggi Madya
+7	58	jfu	Fungsional Umum	Fungsional Umum
+\.
+
+
+--
+-- Data for Name: pegawai_nominatifselesaimodels; Type: TABLE DATA; Schema: public; Owner: datainfo
+--
+
+COPY public.pegawai_nominatifselesaimodels (id, mk_tahun, mk_bulan, mkb_tahun, mkb_bulan, tanggal, tmt_kgb, gaji_id, golongan_id, jabatan_id, opd_id, pegawai_id) FROM stdin;
+67	7	3	10	0	2021-08-09 12:27:14.986556+07	2022-01-01	280	22	6	937	50434
+68	7	3	12	0	2021-08-09 12:44:18.074736+07	2023-01-01	348	24	9	937	50425
+69	11	3	18	0	2021-08-09 12:47:14.532524+07	2023-01-01	386	25	2	937	50536
+70	11	3	18	0	2021-08-10 11:56:17.087274+07	2023-01-01	386	25	7	942	53046
+71	9	3	12	0	2021-08-10 21:12:55.097322+07	2022-01-01	350	24	7	937	50549
+\.
+
+
+--
+-- Data for Name: pegawai_nominatiftundamodel; Type: TABLE DATA; Schema: public; Owner: datainfo
+--
+
+COPY public.pegawai_nominatiftundamodel (id, mk_tahun, mk_bulan, mkb_tahun, mkb_bulan, tanggal, tmt_kgb, keterangan, gaji_id, golongan_id, jabatan_id, opd_id, pegawai_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: pegawai_nominatifxmodels; Type: TABLE DATA; Schema: public; Owner: datainfo
+--
+
+COPY public.pegawai_nominatifxmodels (id, mk_tahun, mk_bulan, mkb_tahun, mkb_bulan, tanggal, tmt_kgb, bahan, gaji_id, jabatan_id, pegawai_id, golongan_id, opd_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: pegawai_opdmodel; Type: TABLE DATA; Schema: public; Owner: datainfo
+--
+
+COPY public.pegawai_opdmodel (id, nama, kepala_opd_id, alamat, email, telpon, website, operator_id, plt) FROM stdin;
+911	Sekretariat Daerah	88761	\N	\N	\N	\N	\N	f
+912	Sekretariat DPRD	88761	\N	\N	\N	\N	\N	f
+913	Inspektorat	88761	\N	\N	\N	\N	\N	f
+914	Dinas Pendidikan	88761	\N	\N	\N	\N	\N	f
+915	Dinas Kesehatan	88761	\N	\N	\N	\N	\N	f
+916	Dinas Kehutanan	88761	\N	\N	\N	\N	\N	f
+917	Dinas Kepemudaan dan Olahraga	88761	\N	\N	\N	\N	\N	f
+918	Dinas Komunikasi dan Informatika	88761	\N	\N	\N	\N	\N	f
+919	Dinas Kebudayaan dan Pariwisata	88761	\N	\N	\N	\N	\N	f
+921	Dinas Tanaman Pangan Hortikultura dan Peternakan	88761	\N	\N	\N	\N	\N	f
+922	Dinas Perkebunan	88761	\N	\N	\N	\N	\N	f
+923	Dinas Sosial Kependudukan dan Pencatatan Sipil	88761	\N	\N	\N	\N	\N	f
+924	Dinas Pekerjaan Umum dan Perumahan Rakyat	88761	\N	\N	\N	\N	\N	f
+925	Dinas Perpustakaan dan Arsip Daerah	88761	\N	\N	\N	\N	\N	f
+926	Dinas Perindustrian dan Perdagangan	88761	\N	\N	\N	\N	\N	f
+927	Dinas Koperasi Usaha Kecil dan Menengah	88761	\N	\N	\N	\N	\N	f
+928	Dinas Energi dan Sumber Daya Mineral	88761	\N	\N	\N	\N	\N	f
+929	Satuan Polisi Pamong Praja dan Pemadam Kebakaran	88761	\N	\N	\N	\N	\N	f
+930	Dinas Kelautan dan Perikanan	88761	\N	\N	\N	\N	\N	f
+931	Dinas Lingkungan Hidup	88761	\N	\N	\N	\N	\N	f
+932	Dinas Ketahanan Pangan	88761	\N	\N	\N	\N	\N	f
+933	Dinas Penanaman Modal dan Pelayanan Terpadu Satu Pintu	88761	\N	\N	\N	\N	\N	f
+934	Dinas Perhubungan	88761	\N	\N	\N	\N	\N	f
+935	Dinas Tenaga Kerja dan Transmigrasi	88761	\N	\N	\N	\N	\N	f
+936	Badan Perencanaan dan Pembangunan Daerah	88761	\N	\N	\N	\N	\N	f
+938	Badan Pengembangan Sumber Daya Manusia	88761	\N	\N	\N	\N	\N	f
+939	Badan Penelitian dan Pengembangan Daerah	88761	\N	\N	\N	\N	\N	f
+940	Badan Keuangan Daerah	88761	\N	\N	\N	\N	\N	f
+941	Badan Penanggulangan Bencana Daerah	88761	\N	\N	\N	\N	\N	f
+943	Badan Penghubung Daerah Provinsi	88761	\N	\N	\N	\N	\N	f
+944	Rumah Sakit Umum Daerah Raden Mattaher Provinsi Jambi	88761	\N	\N	\N	\N	\N	f
+945	Rumah Sakit Jiwa Daerah Provinsi Jambi	88761	\N	\N	\N	\N	\N	f
+1422	Dinas Pemberdayaan Perempuan Perlindungan Anak dan Pengendalian Penduduk	88761	\N	\N	\N	\N	\N	f
+1437	xxx	88761	\N	\N	\N	\N	\N	f
+1438	xxx	88761	\N	\N	\N	\N	\N	f
+1445	xxx	88761	\N	\N	\N	\N	\N	f
+1446	xxx	88761	\N	\N	\N	\N	\N	f
+1447	xxx	88761	\N	\N	\N	\N	\N	f
+1448	xxx	88761	\N	\N	\N	\N	\N	f
+1451	xxx	88761	\N	\N	\N	\N	\N	f
+1	ALL	88761	\N	\N	\N	\N	\N	f
+937	Badan Kepegawaian Daerah	88761	\N	\N	\N	\N	10	t
+942	Badan Kesatuan Bangsa dan Politik	53084	\N	\N	\N	\N	10	f
+\.
+
+
+--
+-- Data for Name: pegawai_pegawaimodel; Type: TABLE DATA; Schema: public; Owner: datainfo
+--
+
+COPY public.pegawai_pegawaimodel (id, nama, nip, pengguna, alamat, telpon, gaji_skrg, tmt_cpns, fhoto, golongan_id, jabatan_id, opd_id, nominasi, jenis_kelamin, tempat_lahir, jabatan_data, jenis_jabatan, pddk_terakhir, tmt_pns, tgllahir) FROM stdin;
+50452	ANASTASIA ENDANG SRI SUKANINGSIH	196804151995102001	49155			0	1995-10-01		23	7	937	f	P	Magelang	Pengadministrasi Kepegawaian	jfu	D2	\N	1968-04-15
+50416	ARIANTY	197209072006042006	49119			0	2006-04-01		25	7	937	f	\N	\N	Analis Kepegawaian Muda	jft	S1	\N	1972-09-07
+50433	YESSY AMELIA PUTRIANA	198305062011012004	49136			0	2011-01-01		24	7	937	f	\N	\N	Analis Kepegawaian Muda	jft	\N	\N	1983-05-06
+50457	FITRAMADANI	197808302011011001	49160			0	2011-01-01		23	7	937	f	L	SRIDADI, BATANGHARI	Pranata Komputer Pertama	jft	S1	\N	1978-08-30
+50510	GAMAL HUSIN	196410021994031003	49213			0	1994-03-01		28	7	937	f	L	JAMBI	Analis Pengembangan Kompetensi	jfu	\N	\N	1964-10-02
+88610	LINDA JUNITA	198306242015032001	85337			0	2015-03-01		24	7	937	f	P	SAROLANGUN	Analis Pengembangan Kompetensi	jfu	Strata 2	\N	1983-06-24
+50550	NORA PALUPIANTARI	197608172000122002	49253			0	2000-12-01		24	7	937	f	P	kuala tungkal	Analis Kepegawaian Penyelia	jft	D3 	\N	1976-08-17
+92443	MERYANA	198205252005012007	88915			0	2005-01-01		23	7	937	f	\N	\N	Analis Pengembangan Karir	jfu	\N	\N	1982-05-25
+50471	FERADILA SUSANTI	198102242002122003	49174			0	2002-12-01		24	7	937	f	P	Jambi	Analis Tata Usaha	jfu	S1	\N	1981-02-24
+50517	JAMALLUDIN	198605302011011008	49220			0	2011-01-01		22	7	937	f	L	Jambi	Pranata Komputer Mahir	jft	D3 	\N	1986-05-30
+73665	YUSMANIAR	198201252008012003	70767			0	2008-01-01		19	7	937	t	\N	\N	Pengadministrasi Persuratan	jfu	\N	\N	1982-01-25
+73263	WIWIN LUSWANI	196706171992032006	70365			0	1992-03-01		25	7	937	f	P	Tegal	Pengelola Surat	jfu	S1	\N	1967-06-17
+50462	OKTA TRISNAWATI	198410252010012002	49165			0	2010-01-01		22	7	937	t	\N	\N	Pengelola Penilaian Kinerja Pegawai	jfu	\N	\N	1984-10-25
+50486	ARIMILDO RISMAN	199205012014061002	49189			0	2014-06-01		23	7	937	f	L	Jambi	Analis Kepegawaian Pertama	jft	SMA	\N	1992-05-01
+50539	AFRIANTI SULNI	196904251992032003	49242			0	1992-03-01		25	7	937	f	\N	\N	Analis Kepegawaian Muda	jft	\N	\N	1969-04-25
+84948	BANGUNID DIAMIN	198406282009011009	81717			0	2009-01-01		23	7	937	f	L	Merangin	Analis Kepegawaian Pertama	jft	S1	\N	1984-06-28
+92244	HERMANSYAH	198705232015041001	88734			0	2015-04-01		23	7	937	f	L	Jambi	Analis Kepegawaian Pertama	jft	\N	\N	1987-05-23
+92396	FUTI RAMA SARI	198904182014022001	88868			0	2014-02-01		23	7	937	f	P	Sungai Penuh	Bendahara	jfu	S1	\N	1989-04-18
+50501	DEVI ROHIMI	198008152005012004	49204			0	2005-01-01		24	7	937	f	\N	\N	Analis Kepegawaian Pertama	jfu	\N	\N	1980-08-15
+50437	SARTIKA SARI	198008232011012004	49140			0	2011-01-01		24	7	937	f	P	Jambi	Pengelola Penilaian Kinerja Pegawai	jfu	S1	\N	1980-08-23
+50547	ALTABRI	197610052000031002	49250			0	2000-03-01		25	7	937	f	L	Muara Enim	Kepala Subbagian Umum dan Kepegawaian Badan Kepegawaian Daerah	struktural	Strata 2	\N	1976-10-05
+58113	MUHAMMAD AMIN	197008092000121002	55279			0	2000-12-01		25	7	937	f	L	JAMBI	Kepala Subbidang Organisasi Profesi ASN Badan Kepegawaian Daerah	struktural	\N	\N	1970-08-09
+50451	A. NAWIR	197612302006041002	49154			0	2006-04-01		22	7	937	f	L	Jambi	Arsiparis Pertama	jft	S1	\N	1976-12-30
+83880	HEPNI ANSORI	198007092008011002	80719			0	2008-01-01		18	7	937	t	L	Jambi	Petugas Keamanan	jfu	Paket C	\N	1980-07-09
+50513	UNTUNG	196308101990031008	49216			0	1990-03-01		24	7	937	f	L	Jambi	Pengadministrasi Keuangan	jfu	D3 	\N	1963-08-10
+50464	YUNIA MONALISA	198706252011012006	49167			0	2011-01-01		22	7	937	f	P	Jambi	Arsiparis Mahir	jft	D3 	\N	1987-06-25
+92415	RIZKY REDITA SARI	199707152019082001	88887			0	2019-08-01		22	7	937	f	P	Jambi	Analis Tata Praja	jfu	\N	\N	1997-07-15
+50540	MUKTARIDI	197909072006041008	\N			0	2006-04-01		\N	7	937	f	\N	\N	\N	\N	\N	\N	1979-09-07
+50544	SUDIYONO	196807061993031007	49247			0	1993-03-01		25	7	937	f	L	kebon IX	Pengadministrasi Persuratan	jfu	S1	\N	1968-07-06
+50428	NAILATUSSILMIYATI	198212172011012003	49131			0	2011-01-01		22	7	937	f	P	SAROLANGUN	Arsiparis Pertama	jft	D3 	\N	1982-12-17
+50463	IDAWATI	198204022010012017	49166			0	2010-01-01		22	7	937	t	P	MERANGIN 	Analis Sumber Daya Manusia Aparatur	jfu	S1	\N	1982-04-02
+50468	AGUS SUTEISNA	196812301989081001	49171			0	1989-08-01		23	7	937	f	L	Jambi	Pengelola Sistem Informasi Manajemen Kepegawaian	jfu	S1	\N	1968-12-30
+50417	ROMIYANTI	197811202009012005	49120			0	2009-01-01		22	7	937	f	\N	\N	Pengelola Disiplin Pegawai	jfu	\N	\N	1978-11-20
+50477	SUSILAWATI	197202192003122003	49180			0	2003-12-01		22	7	937	f	\N	\N	Analis Rencana Program Dan Kegiatan	jfu	S1	\N	1972-02-19
+92400	KEMAS MUAMMAR	198103112010011013	88872			0	2010-01-01		24	7	937	t	L	Jambi	Analis Kinerja	jfu	S1	\N	1981-03-11
+50502	YOGO HANANTO	197801212007011004	49205			0	2007-01-01		24	7	937	f	L	Jambi	Analis Pelanggaran Disiplin	jfu	\N	\N	1978-01-21
+92449	STEFANI HAT	199410072017082001	88921			0	2017-08-01		22	7	937	f	\N	\N	Analis Perencanaan, Evaluasi Dan Pelaporan	jfu	\N	\N	1994-10-07
+81748	TAHARUDIN	198211022011011003	78649			0	2011-01-01		24	7	937	f	L	KOTA AGUNG	Pranata Komputer Muda	jft	S1	\N	1982-11-02
+50419	MASRIL	196411171986031007	\N			0	1986-03-01		\N	7	937	f	\N	\N	\N	\N	\N	\N	1964-11-17
+50432	INTA NILYA BAHAR	198409172009022008	49135			0	2009-02-01		24	7	937	f	P	JAKARTA	Analis Kepegawaian Muda	jft	S1	\N	1984-09-17
+50503	MULYANTO	196706101995031001	49206			0	1995-03-01		25	7	937	f	L	JAMBI	Pengelola Penilaian Kinerja Pegawai	jfu	\N	\N	1967-06-10
+50545	IDA ROYANI	197604212007012009	49248			0	2007-01-01		23	7	937	f	P	Muara Sabak	Sekretaris	jfu	S1	\N	1976-04-21
+73919	MOHD. SADAM ARIFIN PUTRA	199203092012061001	71021			0	2012-06-01		23	7	937	f	L	JAMBI	Analis Penegakan Integritas Dan Disiplin Sumber Daya Manusia Aparatur	jfu	Strata 2	\N	1992-03-09
+50473	AHMAD BAYUNI	196912261993031003	49176			0	1993-03-01		23	7	937	f	L	JAMBI	Pengadministrasi Persuratan	jfu	Starata IV	\N	1969-12-26
+53423	LINDA RINI	197710262000122003	51080			0	2000-12-01		25	7	937	f	P	Jambi	Penyusun Rencana Mutasi	jfu	S1	\N	1977-10-26
+50497	BUDI SARTONO	196310021986031007	49200			0	1986-03-01		25	7	937	f	L	Jambi	Penyusun Bahan Pembinaan Minat Dan Bakat	jfu	S1	\N	1963-10-02
+50466	EVARIYANTI	197506151995032001	49169			0	1995-03-01		23	7	937	f	P	Jambi	Pengelola Penilaian Kinerja Pegawai	jfu	S1	\N	1975-06-15
+92408	DIAH KURNIA SARI	198912022014032001	88880			0	2014-03-01		23	7	937	f	P	bangko	Analis Kepegawaian Pertama	jft	S 2	\N	1989-12-02
+50529	ANDANA ADYTIA KUSUMA	199212122014061001	49232			0	2014-06-01		23	7	937	f	L	Baturaja	Tugas Belajar	jfu	 	\N	1992-12-12
+50430	SULISTIAWATI	196412291988112001	49133			0	1988-11-01		25	7	937	f	P	TANJUNG JABUNG BARAT	Arsiparis Penyelia	jft	SMAN	\N	1964-12-29
+50515	ASNAH	197602102007012002	49218			0	2007-01-01		24	7	937	f	P	Jambi	Arsiparis Muda	jft	S1	\N	1976-02-10
+50435	ISWENTO RIZKI MANA RISSAR RAJAGUKGUK	198610232010011005	49138			0	2010-01-01		22	7	937	t	\N	\N	Verifikator Data Laporan Keuangan	jfu	S1	\N	1986-10-23
+53062	ELYZA MASRY	197010212000122001	50719			0	2000-12-01		26	7	937	f	P	Jambi	Analis Kepegawaian Madya	jft	\N	\N	1970-10-21
+92388	YUDI ALAMSYAH	198504022003121003	88864			0	2003-12-01		24	7	937	f	L	Jambi	Pengelola Kepegawaian	jfu	S1	\N	1985-04-02
+78414	R. ZAKI	198010082008011004	75316			0	2008-01-01		23	7	937	t	L	Jambi 	Arsiparis Pertama	jft	S1	\N	1980-10-08
+50505	APNAWITA	198104182011012005	49208			0	2011-01-01		24	7	937	f	P	Jambi	Kepala Subbidang Kepangkatan Badan Kepegawaian Daerah	struktural	Strata 2	\N	1981-04-18
+92312	SUWARTINI	197106161990022001	88794			0	1990-02-01		23	7	937	f	\N	\N	Pengadministrasi Persuratan	jfu	\N	\N	1971-06-16
+92398	EGI PRADANA	199501162016091001	88870			0	2016-09-01		23	7	937	f	\N	\N	Analis Rencana Program Dan Kegiatan	jfu	\N	\N	1995-01-16
+50541	FREDI  KUSUMA	198412222006041002	49244			0	2006-04-01		24	7	937	f	L	MUARA BULIAN	Analis Kepegawaian Pertama	jft	S1	\N	1984-12-22
+92377	SARIFAH ARIWIJAYANTI	199205202014062002	88854			0	2014-06-01		23	7	937	f	\N	\N	Analis Rencana Program Dan Kegiatan	jfu	\N	\N	1992-05-20
+73518	MASTHURIYAH	197705141999032002	70620			0	1999-03-01		25	7	937	f	P	Jambi	Analis Sumber Daya Manusia Aparatur	jfu	STIE 	\N	1977-05-14
+50459	NYIMAS ASNI	197502111997032005	49162			0	1997-03-01		24	7	937	f	P	Ds Teluk  Batanghari	Arsiparis Muda	jft	S1	\N	1975-02-11
+50439	FERY ANDIKA PUTRAWAN	198302282011011004	49142			0	2011-01-01		24	7	937	f	L	Jambi	Kepala Subbidang Pendidikan Pelatihan dan Sertifikasi Jabatan Badan Kepegawaian Daerah	struktural	\N	\N	1983-02-28
+74401	SIGIT EKA KARSA,	198612172011011003	71478			0	2011-01-01		24	9	937	f	L	Jambi	Pranata Komputer Muda	jft	Strata 2	\N	1986-12-17
+50536	TRI CAHYA CHRISTIANTO	197712212005011005	49239			0	2005-01-01		25	2	937	f	L	Curup	Kepala Subbidang Data dan Informasi Badan Kepegawaian Daerah	struktural	S1	\N	1977-12-21
+50498	FIRMAN KURNIAWAN	197802061998031002	49201			0	1998-03-01		26	7	937	f	L	Jambi	Kepala Bidang Pengembangan Aparatur Badan Kepegawaian Daerah	struktural	\N	\N	1978-02-06
+50507	AGUSTINI	196403071990012002	49210			0	1990-01-01		25	7	937	t	\N	\N	Arsiparis Muda	jft	\N	\N	1964-03-07
+50420	YANRIIL	197912132010011002	49123			0	2010-01-01		25	7	937	t	L	PADANG	Kepala Subbagian Perencanaan Badan Kepegawaian Daerah	struktural	Strata 2	\N	1979-12-13
+50461	MARDAYANI	197503071999032005	49164			0	1999-03-01		24	7	937	f	P	Teluk Singkawang	Pengelola Surat	jfu	S1	\N	1975-03-07
+50538	AMELIYA SRI WAHYUNI	198406072008012003	49241			0	2008-01-01		24	7	937	t	P	Kerinci	Kepala Subbidang Penghargaan Badan Kepegawaian Daerah	struktural	S1	\N	1984-06-07
+80727	SUSANTI	197601122011012004	77628			0	2011-01-01		21	7	937	f	P	JAMBI	Pengelola Barang Milik Negara	jfu	D3 	\N	1976-01-12
+83957	DADI	196801242002121001	80796			0	2002-12-01		24	7	937	f	L	Tasikmalaya	Analis Perencanaan, Evaluasi Dan Pelaporan	jfu	Perguruan Tinggi 	\N	1968-01-24
+50527	PRATITI WEDYANTI	196908061989022001	49230			0	1989-02-01		24	7	937	f	P	Jambi	Penyusun Rencana Mutasi	jfu	\N	\N	1969-08-06
+53468	M. SHOLIKUL HUDA	197704092010011008	51119			0	2010-01-01		25	7	937	t	L	Jepara	Kepala Subbidang Penilaian dan Evaluasi Kinerja Aparatur Badan Kepegawaian Daerah	struktural	S2	\N	1977-04-09
+92441	FITRI AMALIA	199602172017082001	88913			0	2017-08-01		22	7	937	f	\N	\N	Analis Sumber Daya Manusia Aparatur	jfu	\N	\N	1996-02-17
+50434	TARMIDI	198504172010011003	49137			0	2010-01-01		22	6	937	t	L	Jakarta	Pranata Komputer Mahir	jft	D3 	\N	1985-04-17
+88669	INE SYAFRIKA	198012262009032001	85391			0	2009-03-01		25	7	937	f	P	jambi	Kepala Subbidang Pembinaan Jabatan Fungsional Badan Kepegawaian Daerah	struktural	\N	\N	1980-12-26
+50422	TOGU ULI PASARIBU	196610221989032004	49125			0	1989-03-01		23	7	937	f	\N	\N	Pengadministrasi Persuratan	jfu	Starata IV	\N	1966-10-22
+53155	SIGIT WAHYU WIDODO SUDARTO	198606222010011008	50812			0	2010-01-01		24	7	937	t	L	Jambi	Kepala Subbidang Pengadaan dan Pemberhentian Badan Kepegawaian Daerah	struktural	\N	\N	1986-06-22
+50481	ABDULLAH HAVIS	196402141986031005	49184			0	1986-03-01		27	2	937	f	L	Jambi	Kepala Bidang Penilaian Kinerja Aparatur dan Penghargaan Badan Kepegawaian Daerah	struktural	\N	\N	1964-02-14
+50450	WAHYUDI ARDIANSYAH	198206012006041010	49153			0	2006-04-01		24	7	937	f	L	JAMBI	Kepala Subbidang Promosi Badan Kepegawaian Daerah	struktural	D3 	\N	1982-06-01
+58647	HAMBALI	197304261992031002	55813			0	1992-03-01		27	7	937	f	\N	\N	Sekretaris Badan Kepegawaian Daerah	struktural	\N	\N	1973-04-26
+78398	SUHARYANTO	198301092006041002	75300			0	2006-04-01		24	7	937	f	L	Jakarta	Kepala Subbidang Mutasi Badan Kepegawaian Daerah	struktural	\N	\N	1983-01-09
+50531	EKA WINARNI	197408142000122003	49234			0	2000-12-01		25	7	937	f	P	BATANG ASAI, KAB. SAROLANGUN	Arsiparis Muda	jft	S1	\N	1974-08-14
+73872	PAHARI	197008101990031005	70974			0	1990-03-01		27	7	937	f	L	Kedotan	Kepala Bidang Mutasi dan Promosi Badan Kepegawaian Daerah	struktural	S1	\N	1970-08-10
+92386	FIRDAUS	197806172000121001	88862			0	2000-12-01		22	7	938	f	\N	\N	Bendahara	jfu	\N	\N	1978-06-17
+50549	LINDA PUSPASARI	198605192010012011	49252			0	2010-01-01		24	7	937	t	P	Batanghari Lampung	Pranata Komputer Muda	jft	S1	\N	1986-05-19
+50485	DESSY MILAYATY, S.STP, MH	198112262000122001	49188			0	2000-12-01		26	7	937	f	P	Jambi	Kepala Bidang Pengadaan, Pemberhentian dan Informasi Kepegawaian Badan Kepegawaian Daerah	struktural	Strata 2	\N	1981-12-26
+50425	EDO JEKTA FRIZA	198501292011011007	49128			0	2011-01-01		24	9	937	f	L	Lawang Agung	Pranata Komputer Muda	9	S1	\N	1985-01-29
+88786	OLSEN TIGER,SE,MM	197301252009031001	85455			0	2009-03-01		24	7	938	f	\N	\N	Kepala Subbag Program dan Pelaporan Badan Pengembangan Sumber Daya Manusia	struktural	\N	\N	1973-01-25
+53390	FATHIYAH	197402151998112001	51047			0	1998-11-01		26	7	938	f	P	Jambi	Widyaiswara Madya	jft	Strata 2	\N	1974-02-15
+83810	MUNAWAR ZULFIKAR	198403012012121001	80649			0	2012-12-01		23	7	938	f	L	Jambi	Pengelola Penyelenggaraan Diklat	jfu	S1 ILMU HUKUM	\N	1984-03-01
+78230	SAODAH	197510041994032001	75132			0	1994-03-01		24	7	938	f	P	JAMBI	Penyusun Program Penyelenggaraan Diklat	jfu	S1	\N	1975-10-04
+81013	MELAHANI	197604282003122003	77914			0	2003-12-01		26	7	938	f	P	mendalo darat	Kepala Bidang  Pengembangan  Kompetensi Teknis Inti	struktural	Strata 2	\N	1976-04-28
+78212	BRAMANA JAYA SAFUTRA	198307302010011007	75114			0	2010-01-01		23	7	938	f	L	jambi	Widyaiswara Muda	jft	\N	\N	1983-07-30
+78239	ROMMY FWIDAWIJAYA	197611062011011002	75141			0	2011-01-01		24	7	938	f	L	bangko	Pengelola Pemanfaatan Barang Milik Daerah	jfu	S1	\N	1976-11-06
+87614	M YUSUF	197207102008011016	84354			0	2008-01-01		32	7	938	f	\N	\N	Pramu Bakti	jfu	\N	\N	1972-07-10
+83811	ASMADI	198504122012121005	80650			0	2012-12-01		19	7	938	f	L	Jambi	Pengadministrasi Umum	jfu	Paket C	\N	1985-04-12
+78190	SUTORO	196501101988031005	75092			0	1988-03-01		28	7	938	f	L	SRAGEN	Widyaiswara Madya	jft	Strata 2	\N	1965-01-10
+80981	NUR`AIDA	196505211993032005	77882			0	1993-03-01		24	7	938	f	P	Jambi	Pengadministrasi Umum	jfu	DIPLOMA - III	\N	1965-05-21
+78201	NATALIS APAY	196408091989031005	75103			0	1989-03-01		23	7	938	f	L	Nidiptana	Pranata Pasukan Pengamanan Dalam	jfu	SMA	\N	1964-08-09
+78240	HAMID	196609061993031005	75142			0	1993-03-01		27	7	938	f	L	Muara Sabak	Widyaiswara Madya	jft	Strata 2	\N	1966-09-06
+78195	RD. ZULKIFLI	196408142007011004	75097			0	2007-01-01		20	7	938	f	L	Jambi	Pengadministrasi Persuratan	jfu	\N	\N	1964-08-14
+73914	MUHAMMAD ISLAHUDDIN	198406142002121002	71016			0	2002-12-01		25	7	938	f	L	Jambi	Kepala Subbag Umum dan Kepegawaian Badan Pengembangan Sumber Daya Manusia	struktural	 	\N	1984-06-14
+78238	ETI FITRIANI	197909111997112001	75140			0	1997-11-01		25	7	938	f	P	Manna	Widyaiswara Muda	jft	Strata 2	\N	1979-09-11
+73908	THOHIROH	198410262012122001	71010			0	2012-12-01		19	7	938	f	P	Sarolangun	Pengadministrasi Penerimaan	jfu	SMK	\N	1984-10-26
+78196	JOHN EKA POWA	196812201988101001	75098			0	1988-10-01		28	7	938	f	\N	\N	Widyaiswara Madya	jft	\N	\N	1968-12-20
+58673	SYAFRUDIN	196812021997101001	55839			0	1997-10-01		27	7	938	f	L	Muaro Bungo	Analis Pengembangan Kompetensi	jfu	\N	\N	1968-12-02
+73915	ABDI SUKMANA	196910191990031005	71017			0	1990-03-01		26	7	938	f	\N	\N	Widyaiswara Madya	jft	\N	\N	1969-10-19
+78302	ZARMAILI	197107151998031007	75204			0	1998-03-01		26	7	938	f	L	Kerinci	Sekretaris Badan Pengembangan Sumber Daya Manusia	struktural	Strata 2	\N	1971-07-15
+78241	MARYATUN	198112062008012009	75143			0	2008-01-01		23	7	938	f	P	Rantau-rasau	Pengelola Program Dan Kegiatan	jfu	S1	\N	1981-12-06
+78206	INDRIA MAYESTI,SE	197505112011012001	75108			0	2011-01-01		26	7	938	f	\N	\N	Widyaiswara Madya	jft	S2	\N	1975-05-11
+78236	FIANITA DHANY	198205192008032001	75138			0	2008-03-01		25	7	938	f	\N	\N	Widyaiswara Madya	jft	Strata 2	\N	1982-05-19
+78218	ERMAYENI	197603292006042003	75120			0	2006-04-01		25	7	938	f	P	Jambi	Penyusun Bahan Kebijakan	jfu	S1	\N	1976-03-29
+78219	JULIANA	198107172000022001	75121			0	2000-02-01		22	7	938	f	P	JAMBI	Pengelola Penyelenggaraan Diklat	jfu	S1	\N	1981-07-17
+78193	MUHAMMAD	196705221993021001	75095			0	1993-02-01		27	7	938	f	L	Sarolangun	Kepala Bidang  Sertifikasi,  Kompetensi  dan Pengelolaan Kelembagaan	struktural	PASCA SARJANA (S2)	\N	1967-05-22
+78226	MUSLIM ANSORI	197107272007011008	75128			0	2007-01-01		24	7	938	f	L	Jambi	Pengelola Asrama	jfu	S1	\N	1971-07-27
+88792	DESITA ALIANA	197112022002122004	85459			0	2002-12-01		22	7	938	f	P	Jambi	Pengelola Perpustakaan	jfu	\N	\N	1971-12-02
+78203	JAMILAH,SE	198101122011012003	75105			0	2011-01-01		22	7	938	f	P	Jambi	Penyusun Program Penyelenggaraan Diklat	jfu	S1	\N	1981-01-12
+83043	HARMEN	196505171992031005	79882			0	1992-03-01		28	7	938	f	L	KERINCI	Penyusun Bahan Kebijakan	jfu	SMA	\N	1965-05-17
+85744	ELPI TRISNA	197903202011012002	82513			0	2011-01-01		22	7	938	f	P	Kerinci	Pranata Teknologi Informasi Komputer	jfu	S1	\N	1979-03-20
+78187	ENADARLITA	196406211987032004	75089			0	1987-03-01		28	7	938	f	\N	\N	Widyaiswara Madya	jft	Strata 2	\N	1964-06-21
+78229	LAILATUL ISNAINI	196311041983032002	75131			0	1983-03-01		27	7	938	f	\N	\N	Widyaiswara Madya	jft	Strata 2	\N	1963-11-04
+78192	ALAMSYAH	198304092009011012	75094			0	2009-01-01		20	7	938	f	L	Sei,abang	Pengadministrasi Pelatihan	jfu	Starata IV	\N	1983-04-09
+73913	ENY YULIANI	196807281995032002	71015			0	1995-03-01		26	7	938	f	P	Jambi	Analis Jabatan	jfu	S1	\N	1968-07-28
+89049	MAINI, SE	196805182000122001	85580			0	2000-12-01		25	7	938	f	\N	\N	Kepala Subbid Pengembangan Kompetensi Jabatan Fungsional	struktural	S1	\N	1968-05-18
+88074	ISMAIL BUHARI	197006031989121001	84813			0	1989-12-01		27	7	938	f	L	Jambi	Widyaiswara Madya	jft	Strata 2	\N	1970-06-03
+78186	YAHMAN	197010301994031004	75088			0	1994-03-01		25	7	938	f	L	Magelang	Widyaiswara Muda	jft	Strata 2	\N	1970-10-30
+68057	AGUS HERIANTO	196908181997031004	65159			0	1997-03-01		28	7	938	f	L	JAMBI	Penyusun Bahan Proses Pengembangan Kelembagaan Dan Ketenagaan	jfu	S1	\N	1969-08-18
+66290	ABDUL MUKTI	197211082000121001	63392			0	2000-12-01		26	7	938	f	L	Pekan Baru	Kepala Bidang  Pengembangan  Kompetensi Manajerial	struktural	\N	\N	1972-11-08
+82964	AGUSTI HERI M	196608101991101002	79803			0	1991-10-01		27	7	938	f	L	Bandung	Penyusun Bahan Kebijakan	jfu	Strata 2	\N	1966-08-10
+78194	BAILAH	197002081998051001	75096			0	1998-05-01		28	7	938	f	L	Tanjung Jabung	Widyaiswara Madya	jft	\N	\N	1970-02-08
+53373	EFRIYANI	196812251994032007	51030			0	1994-03-01		25	7	938	f	P	Jambi	Kepala Subbid Sertifikasi Kompetensi	struktural	S1	\N	1968-12-25
+78209	NOVA WARDANELA	197711052010012003	75111			0	2010-01-01		24	7	938	f	P	Jambi	Pengelola Gaji	jfu	S1	\N	1977-11-05
+78231	TETY ERDA NINGSIH	197602072010012002	75133			0	2010-01-01		24	7	938	f	P	Jambi	Verifikator Keuangan	jfu	S1	\N	1976-02-07
+73910	SUCI HARISTIOKO	198609142011011001	71012			0	2011-01-01		24	7	938	f	L	Jambi	Kepala Subbid Pengelolaan Kelembagaan dan Tenaga Pengembangan Kompetensi	struktural	Strata 2	\N	1986-09-14
+78205	MUSFARITA AFFIANI	197609222010012004	75107			0	2010-01-01		25	7	938	f	P	Jambi	Widyaiswara Muda	jft	Strata 2	\N	1976-09-22
+73923	ATTIYAH	197104141998032004	71025			0	1998-03-01		\N	7	938	f	\N	\N	\N	\N	\N	\N	1971-04-14
+88469	ABDUL RASYID	198107072010011018	85208			0	2010-01-01		24	7	938	f	L	JAMBI	Kepala Subbid Pengembangan Kompetensi Inti Jabatan Administrasi Perangkat Daerah Penunjang	struktural	S1	\N	1981-07-07
+73909	NURLINA ISMAIL	196710101989012002	71011			0	1989-01-01		24	7	938	f	P	Muara Sabak	Pengelola Program Dan Kegiatan	jfu	S1	\N	1967-10-10
+78191	RINA WIDIASIH	197701072010012005	75093			0	2010-01-01		24	7	938	f	P	PATI	Widyaiswara Muda	jft	Strata 2	\N	1977-01-07
+50495	ZUBAIDI AR	196312311992011006	49198			0	1992-01-01		29	7	938	f	L	JAMBI	Widyaiswara Madya	jft	Strata 2	\N	1963-12-31
+73917	HASRA ENI	196306051995032002	71019			0	1995-03-01		25	7	938	f	P	JAMBI	Penyusun Program Penyelenggaraan Diklat	jfu	S1	\N	1963-06-05
+78199	HARIMAN ADEPATI	196309081992031005	75101			0	1992-03-01		27	7	938	f	\N	\N	Penyusun Program Penyelenggaraan Diklat	jfu	S1	\N	1963-09-08
+73857	HAYATI	198211242009022005	70959			0	2009-02-01		24	7	938	f	P	Jambi	Pengelola Data Pelaksanaan Program Dan Anggaran	jfu	S1	\N	1982-11-24
+73918	H. M. ISKANDAR NASUTION	196503311994031006	71020			0	1994-03-01		29	7	938	f	\N	\N	Kepala Badan Pengembangan Sumber Daya Manusia	struktural	\N	\N	1965-03-31
+92445	RESI ANGGRAINI,SH,MH	198305132009022005	88917			0	2009-02-01		25	7	938	f	P	Jambi, 13 Mei 1983	Penyusun Program Penyelenggaraan Diklat	jfu	Strata 2	\N	1983-05-13
+78222	SUPRAYETNO	196207211988031005	75124			0	1988-03-01		27	7	938	f	L	\N	Widyaiswara Madya	jft	Pasca Sarjana	\N	1962-07-21
+78214	ISKANDAR	197905022011011003	75116			0	2011-01-01		22	7	938	f	L	JAMBI	Penyusun Program Penyelenggaraan Diklat	jfu	S1	\N	1979-05-02
+78223	SUWARTO	196601021986101001	75125			0	1986-10-01		28	7	938	f	L	JAMBI	Widyaiswara Madya	jft	Strata 2	\N	1966-01-02
+78204	SAID PARIQ	197606062011011008	75106			0	2011-01-01		26	7	938	f	L	Jambi	Widyaiswara Madya	jft	\N	\N	1976-06-06
+78184	SULTONI	196406281986031005	75086			0	1986-03-01		28	7	938	f	L	RAO UTARA	Widyaiswara Utama	jft	S2	\N	1964-06-28
+50444	H. HUSAIRI, S.I.P. M.E	196412011985031008	49147			0	1985-03-01		28	7	938	f	\N	\N	Penyusun Program Penyelenggaraan Diklat	jfu	\N	\N	1964-12-01
+78208	TEDY SUANDI PUTRA	198501022011011003	75110			0	2011-01-01		24	7	938	f	L	JAMBI	Bendahara	jfu	Strata 2	\N	1985-01-02
+50519	MUHAMMAD YUFRIZAL YUSUF	197804212009011012	49222			0	2009-01-01		20	7	938	f	\N	\N	Pengadministrasi Perencanaan Dan Program	jfu	\N	\N	1978-04-21
+58510	BAMBANG NIKO PASLA	197903232011011004	55676			0	2011-01-01		25	7	938	f	\N	\N	Analis Pengembangan Kompetensi	jfu	\N	\N	1979-03-23
+78197	SITI PATONAH	196405011992022002	75099			0	1992-02-01		24	7	938	f	P	PACITAN	Pengelola Penyelenggaraan Diklat	jfu	S1	\N	1964-05-01
+58759	AMSYARNEDI	196404041989011001	55925			0	1989-01-01		28	7	938	f	\N	\N	Analis Pengembangan Kompetensi	jfu	\N	\N	1964-04-04
+78213	SRI RAHAYU	198208142010012012	75115			0	2010-01-01		22	7	938	f	P	Pelabuhan Dagang	Pengelola Penyelenggaraan Diklat	jfu	Diploma 3	\N	1982-08-14
+87101	NURBAITI	197203211991012001	83841			0	1991-01-01		27	7	938	f	P	JAMBI	Widyaiswara Madya	jft	Strata 2	\N	1972-03-21
+78188	Dr. Ir. Hj. Susilawati N., MTP	196203201990032001	75090			0	1990-03-01		26	7	938	f	\N	\N	Widyaiswara Madya	jft	\N	\N	1962-03-20
+78402	VALENTINA ZENDRATO 	198702142011012008	75304			0	2011-01-01		22	7	938	f	P	AWA'AI	Pengelola Perpustakaan	jfu	Diploma 3	\N	1987-02-14
+78207	REVITA FRANSISKA	197605202006042003	75109			0	2006-04-01		25	7	938	f	P	Jambi	Analis Rencana Program Dan Kegiatan	jfu	S1	\N	1976-05-20
+58147	QUTNI	196507161999031002	55313			0	1999-03-01		25	7	938	f	L	ulak balam	Kepala Subbid Pengembangan Kompetensi Umum Jabatan Administrasi	struktural	S1 EKONOMI	\N	1965-07-16
+73925	YULIANA	197110102005012008	71027			0	2005-01-01		22	7	938	f	P	Jambi	Pranata Teknologi Informasi Komputer	jfu	D3 	\N	1971-10-10
+78872	DODY IRAWAN	197301232000121002	75774			0	2000-12-01		27	7	938	f	\N	\N	Analis Pengembangan Kompetensi	jfu	Strata 2	\N	1973-01-23
+78244	PARYOTO	198211072009011004	75146			0	2009-01-01		20	7	938	f	L	REJOSARI SARKO	Pengelola Instalasi Air Dan Listrik	jfu	STM	\N	1982-11-07
+78200	RADEN  ADRIANSYAH	197611262006041003	75102			0	2006-04-01		24	7	938	f	L	Jakarta	Kepala Subbid Pengembangan Kompetensi Pimpinan Daerah	struktural	S1	\N	1976-11-26
+73907	ADI WIJAYA	197007032000121002	71009			0	2000-12-01		25	7	938	f	L	Martapura	Kepala Subbid Pengembangan Kompetensi Kepemipinan dan Prajabatan	struktural	S1	\N	1970-07-03
+58539	ORIYENTATI	197112092007012018	55705			0	2007-01-01		25	7	938	f	P	BUNGO	Pengelola Penyelenggaraan Diklat	jfu	S1	\N	1971-12-09
+58149	YUNITATI	196506251985032002	55315			0	1985-03-01		24	7	938	f	P	Muara Bungo	Pengelola Penyelenggaraan Diklat	jfu	D3 	\N	1965-06-25
+78232	ANISATUL FADHILAH	196304221991092001	75134			0	1991-09-01		24	7	938	f	P	JAMBI	Pengelola Penyelenggaraan Diklat	jfu	D3 	\N	1963-04-22
+87073	MARIANI	197703142000032003	83813			0	2000-03-01		25	7	938	f	P	Jambi	Penyusun Program Anggaran Dan Pelaporan	jfu	S1	\N	1977-03-14
+85745	RISNANDAR	197402112007011010	82514			0	2007-01-01		25	7	938	f	L	Jambi	Kepala Subbag Keuangan dan Aset Badan Pengembangan Sumber Daya Manusia	struktural	S1	\N	1974-02-11
+78224	ASNOFIDAL	196311061989031003	75126			0	1989-03-01		29	7	938	f	L	Jambi	Widyaiswara Utama	jft	S2	\N	1963-11-06
+85743	HANNA ARDIANI	197912312002122004	82512			0	2002-12-01		24	7	938	f	P	Jambi	Pengelola Bahan Perencanaan	jfu	 	\N	1979-12-31
+78220	TRI KURNIATI	197106211992032004	75122			0	1992-03-01		25	7	938	f	P	JAMBI	Penyusun Rencana Kegiatan Dan Anggaran	jfu	S1	\N	1971-06-21
+78215	SYADIYAH	197707022008012007	75117			0	2008-01-01		21	7	938	f	P	JAMBI	Pranata Sistem Informasi Diklat Aparatur	jfu	SLTA	\N	1977-07-02
+78211	SUSI MARYANI	198108212006042008	75113			0	2006-04-01		25	7	938	f	P	JAMBI	Analis Jabatan	jfu	S1	\N	1981-08-21
+92502	MOH. SAHRONI NURKODRI, S.STP.	199502272017081002	88971			0	2017-08-01		22	7	938	f	\N	\N	Pengadministrasi Perencanaan Dan Program	jfu	\N	\N	1995-02-27
+88068	H.M. DIANTO	196101101985031005	84807			0	1985-03-01		30	3	938	f	\N	\N	Widyaiswara Utama	jft	\N	\N	1961-01-10
+73906	SULTAN	196312311984021002	71008			0	1984-02-01		28	4	938	f	L	Sulawesi Selatan	Widyaiswara Madya	jft	S2	\N	1963-12-31
+88761	H. APANI SAHARUDIN	196806031988101001	85435			0	1988-10-01		29	7	911	f	L	Muara Tembesi	Asisten Pemerintahan dan Kesejahteraan Rakyat	struktural	S1	\N	1968-06-03
+50427	DWI MELVITASARI	198105282010012001	49130			0	2010-01-01		24	7	937	t	P	Bengkulu Selatan	Kepala Subbagian Keuangan Badan Kepegawaian Daerah	struktural	S1	\N	1981-05-28
+81016	M ISNAINI	197201271998031004	77917			0	1998-03-01		27	7	942	f	\N	\N	Kepala Sub Bidang Fasilitasi Partai Politik dan Lembaga Perwakilan	struktural	\N	\N	1972-01-27
+53061	BADAWI	196212311995031015	50718			0	1995-03-01		27	7	942	f	L	TELUK INDAH	Pengelola Program Dan Laporan	jfu	STRATA 2 ( S2 )	\N	1962-12-31
+53352	CHAIRUL SALEH	196407171992031005	51009			0	1992-03-01		25	7	942	f	L	Kuala Tungkal	Kepala Sub Bagian Keuangan Badan Kesatuan Bangsa Dan Politik	struktural	SD	\N	1964-07-17
+58654	MUHAMMAD ALMUNAWAR	196309091993031006	55820			0	1993-03-01		25	7	942	f	\N	\N	Kepala Sub Bidang Organisasi Masyarakat, LSM dan Keagamaan	struktural	\N	\N	1963-09-09
+53053	LISA ANGRAINI,S.Kom	197906012007012011	50710			0	2007-01-01		23	7	942	f	P	Jambi	Pengelola Barang Milik Negara	jfu	S1	\N	1979-06-01
+58692	AHMAD SANUSI	196902051990021001	55858			0	1990-02-01		26	7	942	f	L	JAMBI	Penyusun Rencana Kebijakan	jfu	Strata 2	\N	1969-02-05
+53066	A. MUSTHOHARI	196710091992031003	\N			0	1992-03-01		\N	7	942	f	\N	\N	\N	\N	\N	\N	1967-10-09
+53081	IRIAWATI SUDARSINI	196302181991032003	50738			0	1991-03-01		24	7	942	f	P	Sidoarjo	Analis Partai Politik	jfu	S1	\N	1963-02-18
+53043	HARRIS IQBAL	198807202011011006	50700			0	2011-01-01		24	7	942	f	L	Muara Bulian	Kepala Sub Bidang Bela Negara	struktural	S1	\N	1988-07-20
+73360	NURBAITI	196801091994032006	70462			0	1994-03-01		25	7	942	f	P	JAMBI	Pengelola Laporan Keuangan Daerah	jfu	S1	\N	1968-01-09
+53069	BAMBANG SUPRIYADI	196904031996031003	50726			0	1996-03-01		25	7	942	f	L	JAMBI	Kepala Sub Bidang Wawasan Kebangsaan	struktural	S1	\N	1969-04-03
+53393	HUSNI MUBARRAK, SE, MMb	198203172009021003	51050			0	2009-02-01		25	7	942	f	L	JAMBI	Kepala Sub Bagian Umum dan Kepegawaian Badan Kesatuan Bangsa Dan Politik	struktural	Strata 2	\N	1982-03-17
+53068	ADE SISKAMINANGSARI	198410212011012006	50725			0	2011-01-01		22	7	942	f	P	Jambi	Bendahara	jfu	S1	\N	1984-10-21
+53036	NORA OKTAVIA	198010152011012008	50693			0	2011-01-01		24	7	942	f	P	JAMBI	Pengelola Gaji	jfu	S1	\N	1980-10-15
+50414	YOSHENDRI	196302161986011002	49117			0	1986-01-01		27	7	942	f	L	AGAM	Penyusun Data Dan Dokumentasi Kebutuhan Sarana Pemilu	jfu	S1	\N	1963-02-16
+53395	MUHAMAD ZUHRI	196301121990091002	51052			0	1990-09-01		27	7	942	f	L	JAMBI	Penyusun Data Dan Dokumentasi Kebutuhan Sarana Pemilu	jfu	S2	\N	1963-01-12
+73847	NURMINSYAH	196804161992031004	70949			0	1992-03-01		25	7	942	f	L	\N	Pengelola Monitoring Dan Evaluasi	jfu	S1	\N	1968-04-16
+68066	ZAINUL HAVIS	198101012006041013	65168			0	2006-04-01		25	7	942	f	L	Jambi	Pengelola Bahan Perencanaan	jfu	S1	\N	1981-01-01
+53042	UMAR	196504181987031003	50699			0	1987-03-01		25	7	942	f	L	Batanghari	Penyuluh Pertahanan Negara	jfu	S1	\N	1965-04-18
+53075	TRI WULANDARI, SSTP	198108151999122001	50732			0	1999-12-01		25	7	942	f	P	Ampenan	Kepala Sub Bidang Budaya Politik	struktural	\N	\N	1981-08-15
+53038	AULIA INSANI	198602102009022005	50695			0	2009-02-01		24	7	942	f	P	Jambi	Verifikator Perseorangan Peserta Pemilu	jfu	S1	\N	1986-02-10
+85737	HERI PEBRITA	197308261994032003	82506			0	1994-03-01		24	7	942	f	P	Koto Teluk	Pengelola Bahan Demokratisasi Dan Pemilu	jfu	S1	\N	1973-08-26
+53033	ALMUNZIR H	196910281992031004	50690			0	1992-03-01		26	7	942	f	L	Sarolangun	Kepala Sub Bagian Perencanaan, Program, Monev dan Pelaporan	struktural	Strata 2	\N	1969-10-28
+88010	MULYADI	196710181996021001	84749			0	1996-02-01		22	7	942	f	L	JAMBI	Pengadministrasi Umum	jfu	SMA	\N	1967-10-18
+53055	ZULKARNAIN	197005151990091001	50712			0	1990-09-01		21	7	942	f	\N	\N	Pengelola Program Dan Kegiatan	jfu	\N	\N	1970-05-15
+53083	DAIMAN	197101171996011003	50740			0	1996-01-01		26	7	942	f	L	pasar teluk rendah	Kepala Sub Bidang Partisipasi Politik	struktural	Strata 2	\N	1971-01-17
+53034	DEKA WELDIA	198412272009021007	50691			0	2009-02-01		24	7	942	f	L	RANGKILING	Analis Partai Politik	jfu	S1	\N	1984-12-27
+58704	H. NUR MUHAMMAD, SE, MM	196211051985031006	55870			0	1985-03-01		27	7	942	f	\N	\N	Kepala Bidang Partisipasi Politik	struktural	\N	\N	1962-11-05
+53041	FIET HARYADI	198104072010011016	50698			0	2010-01-01		24	7	942	f	\N	\N	Kepala Sub Bidang Konflik Pemerintahan dan Keamanan	struktural	\N	\N	1981-04-07
+53052	MURNIATI	197608142000122003	50709			0	2000-12-01		25	7	942	f	P	JAMBI	Penyusun Bahan Pengembangan Program Keagamaan	jfu	S1	\N	1976-08-14
+53047	EVI GUSTINA	197708182011012001	50704			0	2011-01-01		22	7	942	f	P	Tanjung Jabung Timur	Verifikator Partai Politik Peserta Pemilu	jfu	S1	\N	1977-08-18
+88623	NOPRI ANUGRAH PUTRA	199411022016091002	85350			0	2016-09-01		22	7	942	f	\N	\N	Pengelola Laporan Keuangan Daerah	jfu	\N	\N	1994-11-02
+87102	ATMA JAYA	197010161990031004	83842			0	1990-03-01		27	7	942	f	L	Sungai Penuh	Kepala Bidang Fasilitasi Organisasi Politik Kemasyarakatan dan Lembaga Perwakilan	struktural	Strata 2	\N	1970-10-16
+53025	NURHAYATI	196610301991032004	50682			0	1991-03-01		23	7	942	f	P	Tuik	Verifikator Partai Politik Peserta Pemilu	jfu	Starata IV	\N	1966-10-30
+53072	M YUSUF	196810141993031003	50729			0	1993-03-01		21	7	942	f	L	jambi	Pengolah Data Informasi Dan Hukum	jfu	Paket C	\N	1968-10-14
+53026	NURMELI	196705201991082001	50683			0	1991-08-01		24	7	942	f	\N	\N	Pengelola Monitoring Dan Evaluasi	jfu	\N	\N	1967-05-20
+53050	ALFRIYANTINA	196901271992112001	50707			0	1992-11-01		24	7	942	f	\N	\N	Kepala Sub Bidang Analisis Potensi Konflik	struktural	\N	\N	1969-01-27
+53064	MUHAMMAD THABRI	196409101994031004	50721			0	1994-03-01		25	7	942	f	\N	\N	Analis Forum Kewaspadaan Dini Masyarakat	jfu	\N	\N	1964-09-10
+53056	IWING MARYADI	197708202007011005	50713			0	2007-01-01		20	7	942	f	L	jambi	Pengadministrasi Perencanaan Dan Program	jfu	\N	\N	1977-08-20
+53049	SUPRIATI	196802221992032005	50706			0	1992-03-01		24	7	942	f	\N	\N	Pengelola Data Keamanan Dan Ketertiban	jfu	\N	\N	1968-02-22
+53057	HERINDA FEBRINUR	196502161985032005	50714			0	1985-03-01		25	7	942	f	P	JAMBI	Analis Kelembagaan	jfu	\N	\N	1965-02-16
+53085	H.HUSEIN	196612311989031065	50742			0	1989-03-01		26	7	942	f	L	Pemusiran	Analis Partai Politik	jfu	S1	\N	1966-12-31
+53084	H. MUKTI, SE, ME	197011121999031002	50741			0	1999-03-01		27	7	942	f	\N	\N	Kepala Badan Kesatuan Bangsa Dan Politik	struktural	\N	\N	1970-11-12
+53045	NASRI	196204151989031007	50702			0	1989-03-01		22	7	942	f	L	Ture	Pengelola Laporan Keuangan Daerah	jfu	STM	\N	1962-04-15
+53079	ARDIANSYAH	198110182010011013	50736			0	2010-01-01		23	7	942	f	L	Dusun Empih	Analis Program Kerjasama Lembaga Masyarakat	jfu	S1	\N	1981-10-18
+53031	ULYA	198203192009032019	50688			0	2009-03-01		23	7	942	f	P	Sarolangun	Analis Forum Kerukunan Umat	jfu	S1	\N	1982-03-19
+73912	NELLI BAIYANI	196312101985032006	71014			0	1985-03-01		26	7	942	f	P	JAMBI	Kepala Bidang Pengembangan Nilai-Nilai Kebangsaan	struktural	S1	\N	1963-12-10
+92481	ELYA	196804121991082001	88951			0	1991-08-01		25	7	942	f	P	JEMBATAN MAS	Analis Politik Dalam Negeri	jfu	\N	\N	1968-04-12
+78182	SYOFIAN HADI	196510011986031006	75084			0	1986-03-01		25	7	942	f	L	INDERAPURA	Pemandu Kerukunan Umat Beragama	jfu	S1	\N	1965-10-01
+53282	A EFFENDI KASMIYADI	196608201992101001	50939			0	1992-10-01		27	7	942	f	L	Jambi	Penyuluh Pertahanan Negara	jfu	Strata 2	\N	1966-08-20
+53039	DEWI NURMALIS	198706022011012008	50696			0	2011-01-01		21	7	942	f	P	JAMBI	Analis Jabatan	jfu	D3 	\N	1987-06-02
+53048	ROZI	196209041985031006	50705			0	1985-03-01		22	7	942	f	L	Jambi	Pengolah Data Sistem Informasi Perbendaharaan	jfu	S1	\N	1962-09-04
+53046	MUHAMMAD NASIR	197009022005011007	50703			0	2005-01-01		25	6	942	f	L	Muara Sabak	Analis Data Dan Informasi	jfu	S1	\N	1970-09-02
+92254	ADE SURVEYANTO	197905182006041010	88744			0	2006-04-01		22	7	942	f	\N	\N	Pengadministrasi Umum	jfu	\N	\N	1979-05-18
+53029	SYAHRELI	198606252011011006	50686			0	2011-01-01		23	7	942	f	L	Batam	Pengolah Data Kebijakan Intelijen	jfu	D1	\N	1986-06-25
+53067	SUHERMAN	196505201997031004	50724			0	1997-03-01		27	7	942	f	L	JAMBI	Analis Forum Kerukunan Umat	jfu	S1	\N	1965-05-20
+84194	RAHMI,SP	198410102011012010	80963			0	2011-01-01		24	7	942	f	P	JAMBI	Penyusun Norma, Standar, Prosedur Dan Kriteria	jfu	\N	\N	1984-10-10
+53073	INDRA GUNAWAN	197205061998031003	50730			0	1998-03-01		24	7	942	f	L	Jambi	Penyuluh Pemilihan Umum	jfu	S1	\N	1972-05-06
+53074	SRI ARTATI	198007092010012008	50731			0	2010-01-01		24	7	942	f	P	Sungai Penuh	Analis Pemilihan Umum	jfu	S1	\N	1980-07-09
+53027	YELFITRINA	197301181998032007	50684			0	1998-03-01		25	7	942	f	P	PAYAKUMBUH	Penyusun Rencana Kegiatan Dan Anggaran	jfu	S1	\N	1973-01-18
+53024	SIGIT EKO YUWONO	196308031983031002	50681			0	1983-03-01		27	7	942	f	L	Magelang	Kepala Bidang Penanganan Konflik	struktural	Starata IV	\N	1963-08-03
+50524	GUSTINAR	196508141986012001	49227			0	1986-01-01		23	7	937	t	P	JAMBI	Pengadministrasi Kepegawaian	8	SMA	\N	1965-08-14
+\.
+
+
+--
+-- Data for Name: pegawai_prosesberkalamodel; Type: TABLE DATA; Schema: public; Owner: datainfo
+--
+
+COPY public.pegawai_prosesberkalamodel (id, tanggal, status, pegawai_id, gaji_id, jabatan_id, mk_bulan, mk_tahun, golongan_id, mkb_bulan, mkb_tahun, opd_id, tmt_kgb) FROM stdin;
+\.
+
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: datainfo
+--
+
+SELECT pg_catalog.setval('public.auth_group_id_seq', 1, false);
+
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: datainfo
+--
+
+SELECT pg_catalog.setval('public.auth_group_permissions_id_seq', 1, false);
+
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: datainfo
+--
+
+SELECT pg_catalog.setval('public.auth_permission_id_seq', 76, true);
+
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: datainfo
+--
+
+SELECT pg_catalog.setval('public.auth_user_groups_id_seq', 1, false);
+
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: datainfo
+--
+
+SELECT pg_catalog.setval('public.auth_user_id_seq', 11, true);
+
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: datainfo
+--
+
+SELECT pg_catalog.setval('public.auth_user_user_permissions_id_seq', 1, false);
+
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: datainfo
+--
+
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 50, true);
+
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: datainfo
+--
+
+SELECT pg_catalog.setval('public.django_content_type_id_seq', 19, true);
+
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: datainfo
+--
+
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 50, true);
+
+
+--
+-- Name: pegawai_akunmodel_id_seq; Type: SEQUENCE SET; Schema: public; Owner: datainfo
+--
+
+SELECT pg_catalog.setval('public.pegawai_akunmodel_id_seq', 10, true);
+
+
+--
+-- Name: pegawai_berkalahistorymodel_id_seq; Type: SEQUENCE SET; Schema: public; Owner: datainfo
+--
+
+SELECT pg_catalog.setval('public.pegawai_berkalahistorymodel_id_seq', 1, false);
+
+
+--
+-- Name: pegawai_daftarnominatifmodel_id_seq; Type: SEQUENCE SET; Schema: public; Owner: datainfo
+--
+
+SELECT pg_catalog.setval('public.pegawai_daftarnominatifmodel_id_seq', 1, false);
+
+
+--
+-- Name: pegawai_gajimodel_id_seq; Type: SEQUENCE SET; Schema: public; Owner: datainfo
+--
+
+SELECT pg_catalog.setval('public.pegawai_gajimodel_id_seq', 6, true);
+
+
+--
+-- Name: pegawai_golonganhistorymodel_id_seq; Type: SEQUENCE SET; Schema: public; Owner: datainfo
+--
+
+SELECT pg_catalog.setval('public.pegawai_golonganhistorymodel_id_seq', 9, true);
+
+
+--
+-- Name: pegawai_golonganmodel_id_seq; Type: SEQUENCE SET; Schema: public; Owner: datainfo
+--
+
+SELECT pg_catalog.setval('public.pegawai_golonganmodel_id_seq', 1, false);
+
+
+--
+-- Name: pegawai_jabatanmodel_id_seq; Type: SEQUENCE SET; Schema: public; Owner: datainfo
+--
+
+SELECT pg_catalog.setval('public.pegawai_jabatanmodel_id_seq', 16, true);
+
+
+--
+-- Name: pegawai_nominatifselesaimodels_id_seq; Type: SEQUENCE SET; Schema: public; Owner: datainfo
+--
+
+SELECT pg_catalog.setval('public.pegawai_nominatifselesaimodels_id_seq', 71, true);
+
+
+--
+-- Name: pegawai_nominatiftundamodel_id_seq; Type: SEQUENCE SET; Schema: public; Owner: datainfo
+--
+
+SELECT pg_catalog.setval('public.pegawai_nominatiftundamodel_id_seq', 3, true);
+
+
+--
+-- Name: pegawai_nominatifxmodels_id_seq; Type: SEQUENCE SET; Schema: public; Owner: datainfo
+--
+
+SELECT pg_catalog.setval('public.pegawai_nominatifxmodels_id_seq', 222, true);
+
+
+--
+-- Name: pegawai_opdmodel_id_seq; Type: SEQUENCE SET; Schema: public; Owner: datainfo
+--
+
+SELECT pg_catalog.setval('public.pegawai_opdmodel_id_seq', 1, true);
+
+
+--
+-- Name: pegawai_pegawaimodel_id_seq; Type: SEQUENCE SET; Schema: public; Owner: datainfo
+--
+
+SELECT pg_catalog.setval('public.pegawai_pegawaimodel_id_seq', 1, true);
+
+
+--
+-- Name: pegawai_prosesberkalamodel_id_seq; Type: SEQUENCE SET; Schema: public; Owner: datainfo
+--
+
+SELECT pg_catalog.setval('public.pegawai_prosesberkalamodel_id_seq', 77, true);
+
+
+--
+-- Name: auth_group auth_group_name_key; Type: CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.auth_group
+    ADD CONSTRAINT auth_group_name_key UNIQUE (name);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_group_id_permission_id_0cd325b0_uniq; Type: CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_permission_id_0cd325b0_uniq UNIQUE (group_id, permission_id);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_group auth_group_pkey; Type: CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.auth_group
+    ADD CONSTRAINT auth_group_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_permission auth_permission_content_type_id_codename_01ab375a_uniq; Type: CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_codename_01ab375a_uniq UNIQUE (content_type_id, codename);
+
+
+--
+-- Name: auth_permission auth_permission_pkey; Type: CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_groups auth_user_groups_pkey; Type: CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_groups auth_user_groups_user_id_group_id_94350c0c_uniq; Type: CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_user_id_group_id_94350c0c_uniq UNIQUE (user_id, group_id);
+
+
+--
+-- Name: auth_user auth_user_pkey; Type: CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.auth_user
+    ADD CONSTRAINT auth_user_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_pkey; Type: CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_user_id_permission_id_14a6b632_uniq; Type: CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_user_id_permission_id_14a6b632_uniq UNIQUE (user_id, permission_id);
+
+
+--
+-- Name: auth_user auth_user_username_key; Type: CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.auth_user
+    ADD CONSTRAINT auth_user_username_key UNIQUE (username);
+
+
+--
+-- Name: django_admin_log django_admin_log_pkey; Type: CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_content_type django_content_type_app_label_model_76bd3d3b_uniq; Type: CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.django_content_type
+    ADD CONSTRAINT django_content_type_app_label_model_76bd3d3b_uniq UNIQUE (app_label, model);
+
+
+--
+-- Name: django_content_type django_content_type_pkey; Type: CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.django_content_type
+    ADD CONSTRAINT django_content_type_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_migrations django_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.django_migrations
+    ADD CONSTRAINT django_migrations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: django_session django_session_pkey; Type: CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.django_session
+    ADD CONSTRAINT django_session_pkey PRIMARY KEY (session_key);
+
+
+--
+-- Name: pegawai_akunmodel pegawai_akunmodel_pkey; Type: CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_akunmodel
+    ADD CONSTRAINT pegawai_akunmodel_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pegawai_berkalahistorymodel pegawai_berkalahistorymodel_pkey; Type: CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_berkalahistorymodel
+    ADD CONSTRAINT pegawai_berkalahistorymodel_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pegawai_daftarnominatifmodel pegawai_daftarnominatifmodel_pkey; Type: CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_daftarnominatifmodel
+    ADD CONSTRAINT pegawai_daftarnominatifmodel_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pegawai_gajimodel pegawai_gajimodel_pkey; Type: CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_gajimodel
+    ADD CONSTRAINT pegawai_gajimodel_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pegawai_golonganhistorymodel pegawai_golonganhistorymodel_pkey; Type: CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_golonganhistorymodel
+    ADD CONSTRAINT pegawai_golonganhistorymodel_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pegawai_golonganmodel pegawai_golonganmodel_pkey; Type: CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_golonganmodel
+    ADD CONSTRAINT pegawai_golonganmodel_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pegawai_jabatanmodel pegawai_jabatanmodel_pkey; Type: CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_jabatanmodel
+    ADD CONSTRAINT pegawai_jabatanmodel_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pegawai_nominatifselesaimodels pegawai_nominatifselesaimodels_pkey; Type: CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_nominatifselesaimodels
+    ADD CONSTRAINT pegawai_nominatifselesaimodels_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pegawai_nominatiftundamodel pegawai_nominatiftundamodel_pkey; Type: CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_nominatiftundamodel
+    ADD CONSTRAINT pegawai_nominatiftundamodel_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pegawai_nominatifxmodels pegawai_nominatifxmodels_pkey; Type: CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_nominatifxmodels
+    ADD CONSTRAINT pegawai_nominatifxmodels_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pegawai_opdmodel pegawai_opdmodel_pkey; Type: CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_opdmodel
+    ADD CONSTRAINT pegawai_opdmodel_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pegawai_pegawaimodel pegawai_pegawaimodel_pkey; Type: CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_pegawaimodel
+    ADD CONSTRAINT pegawai_pegawaimodel_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: pegawai_prosesberkalamodel pegawai_prosesberkalamodel_pkey; Type: CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_prosesberkalamodel
+    ADD CONSTRAINT pegawai_prosesberkalamodel_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: auth_group_name_a6ea08ec_like; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX auth_group_name_a6ea08ec_like ON public.auth_group USING btree (name varchar_pattern_ops);
+
+
+--
+-- Name: auth_group_permissions_group_id_b120cbf9; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX auth_group_permissions_group_id_b120cbf9 ON public.auth_group_permissions USING btree (group_id);
+
+
+--
+-- Name: auth_group_permissions_permission_id_84c5c92e; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX auth_group_permissions_permission_id_84c5c92e ON public.auth_group_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_permission_content_type_id_2f476e4b; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX auth_permission_content_type_id_2f476e4b ON public.auth_permission USING btree (content_type_id);
+
+
+--
+-- Name: auth_user_groups_group_id_97559544; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX auth_user_groups_group_id_97559544 ON public.auth_user_groups USING btree (group_id);
+
+
+--
+-- Name: auth_user_groups_user_id_6a12ed8b; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX auth_user_groups_user_id_6a12ed8b ON public.auth_user_groups USING btree (user_id);
+
+
+--
+-- Name: auth_user_user_permissions_permission_id_1fbb5f2c; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX auth_user_user_permissions_permission_id_1fbb5f2c ON public.auth_user_user_permissions USING btree (permission_id);
+
+
+--
+-- Name: auth_user_user_permissions_user_id_a95ead1b; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX auth_user_user_permissions_user_id_a95ead1b ON public.auth_user_user_permissions USING btree (user_id);
+
+
+--
+-- Name: auth_user_username_6821ab7c_like; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX auth_user_username_6821ab7c_like ON public.auth_user USING btree (username varchar_pattern_ops);
+
+
+--
+-- Name: django_admin_log_content_type_id_c4bce8eb; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX django_admin_log_content_type_id_c4bce8eb ON public.django_admin_log USING btree (content_type_id);
+
+
+--
+-- Name: django_admin_log_user_id_c564eba6; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX django_admin_log_user_id_c564eba6 ON public.django_admin_log USING btree (user_id);
+
+
+--
+-- Name: django_session_expire_date_a5c62663; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX django_session_expire_date_a5c62663 ON public.django_session USING btree (expire_date);
+
+
+--
+-- Name: django_session_session_key_c0390e0f_like; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX django_session_session_key_c0390e0f_like ON public.django_session USING btree (session_key varchar_pattern_ops);
+
+
+--
+-- Name: pegawai_akunmodel_akun_id_a1292413; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX pegawai_akunmodel_akun_id_a1292413 ON public.pegawai_akunmodel USING btree (akun_id);
+
+
+--
+-- Name: pegawai_akunmodel_opd_akses_id_584c9d0f; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX pegawai_akunmodel_opd_akses_id_584c9d0f ON public.pegawai_akunmodel USING btree (opd_akses_id);
+
+
+--
+-- Name: pegawai_gajimodel_golongan_id_9dbc6e6c; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX pegawai_gajimodel_golongan_id_9dbc6e6c ON public.pegawai_gajimodel USING btree (golongan_id);
+
+
+--
+-- Name: pegawai_golonganhistorymodel_nama_id_4bf9e717; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX pegawai_golonganhistorymodel_nama_id_4bf9e717 ON public.pegawai_golonganhistorymodel USING btree (nama_id);
+
+
+--
+-- Name: pegawai_nominatifselesaimodels_gaji_id_d5b14d01; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX pegawai_nominatifselesaimodels_gaji_id_d5b14d01 ON public.pegawai_nominatifselesaimodels USING btree (gaji_id);
+
+
+--
+-- Name: pegawai_nominatifselesaimodels_golongan_id_79564b8d; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX pegawai_nominatifselesaimodels_golongan_id_79564b8d ON public.pegawai_nominatifselesaimodels USING btree (golongan_id);
+
+
+--
+-- Name: pegawai_nominatifselesaimodels_jabatan_id_c22b9567; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX pegawai_nominatifselesaimodels_jabatan_id_c22b9567 ON public.pegawai_nominatifselesaimodels USING btree (jabatan_id);
+
+
+--
+-- Name: pegawai_nominatifselesaimodels_opd_id_11d55fb1; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX pegawai_nominatifselesaimodels_opd_id_11d55fb1 ON public.pegawai_nominatifselesaimodels USING btree (opd_id);
+
+
+--
+-- Name: pegawai_nominatifselesaimodels_pegawai_id_383b2ca7; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX pegawai_nominatifselesaimodels_pegawai_id_383b2ca7 ON public.pegawai_nominatifselesaimodels USING btree (pegawai_id);
+
+
+--
+-- Name: pegawai_nominatiftundamodel_gaji_id_a4d0ca5b; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX pegawai_nominatiftundamodel_gaji_id_a4d0ca5b ON public.pegawai_nominatiftundamodel USING btree (gaji_id);
+
+
+--
+-- Name: pegawai_nominatiftundamodel_golongan_id_ad164f4a; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX pegawai_nominatiftundamodel_golongan_id_ad164f4a ON public.pegawai_nominatiftundamodel USING btree (golongan_id);
+
+
+--
+-- Name: pegawai_nominatiftundamodel_jabatan_id_6e99e44e; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX pegawai_nominatiftundamodel_jabatan_id_6e99e44e ON public.pegawai_nominatiftundamodel USING btree (jabatan_id);
+
+
+--
+-- Name: pegawai_nominatiftundamodel_opd_id_2354d459; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX pegawai_nominatiftundamodel_opd_id_2354d459 ON public.pegawai_nominatiftundamodel USING btree (opd_id);
+
+
+--
+-- Name: pegawai_nominatiftundamodel_pegawai_id_d7b119e0; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX pegawai_nominatiftundamodel_pegawai_id_d7b119e0 ON public.pegawai_nominatiftundamodel USING btree (pegawai_id);
+
+
+--
+-- Name: pegawai_nominatifxmodels_gaji_id_d56c7998; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX pegawai_nominatifxmodels_gaji_id_d56c7998 ON public.pegawai_nominatifxmodels USING btree (gaji_id);
+
+
+--
+-- Name: pegawai_nominatifxmodels_golongan_id_806a311a; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX pegawai_nominatifxmodels_golongan_id_806a311a ON public.pegawai_nominatifxmodels USING btree (golongan_id);
+
+
+--
+-- Name: pegawai_nominatifxmodels_jabatan_id_6421908f; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX pegawai_nominatifxmodels_jabatan_id_6421908f ON public.pegawai_nominatifxmodels USING btree (jabatan_id);
+
+
+--
+-- Name: pegawai_nominatifxmodels_opd_id_d10ed285; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX pegawai_nominatifxmodels_opd_id_d10ed285 ON public.pegawai_nominatifxmodels USING btree (opd_id);
+
+
+--
+-- Name: pegawai_nominatifxmodels_pegawai_id_eadd7b64; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX pegawai_nominatifxmodels_pegawai_id_eadd7b64 ON public.pegawai_nominatifxmodels USING btree (pegawai_id);
+
+
+--
+-- Name: pegawai_opdmodel_kepala_opd_id_7a28529e; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX pegawai_opdmodel_kepala_opd_id_7a28529e ON public.pegawai_opdmodel USING btree (kepala_opd_id);
+
+
+--
+-- Name: pegawai_opdmodel_operator_id_e6da600c; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX pegawai_opdmodel_operator_id_e6da600c ON public.pegawai_opdmodel USING btree (operator_id);
+
+
+--
+-- Name: pegawai_pegawaimodel_golongan_id_fd183675; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX pegawai_pegawaimodel_golongan_id_fd183675 ON public.pegawai_pegawaimodel USING btree (golongan_id);
+
+
+--
+-- Name: pegawai_pegawaimodel_jabatan_id_714007e5; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX pegawai_pegawaimodel_jabatan_id_714007e5 ON public.pegawai_pegawaimodel USING btree (jabatan_id);
+
+
+--
+-- Name: pegawai_pegawaimodel_opd_id_9807877a; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX pegawai_pegawaimodel_opd_id_9807877a ON public.pegawai_pegawaimodel USING btree (opd_id);
+
+
+--
+-- Name: pegawai_prosesberkalamodel_gaji_id_0616a498; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX pegawai_prosesberkalamodel_gaji_id_0616a498 ON public.pegawai_prosesberkalamodel USING btree (gaji_id);
+
+
+--
+-- Name: pegawai_prosesberkalamodel_golongan_id_d36da7fd; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX pegawai_prosesberkalamodel_golongan_id_d36da7fd ON public.pegawai_prosesberkalamodel USING btree (golongan_id);
+
+
+--
+-- Name: pegawai_prosesberkalamodel_jabatan_id_fe308268; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX pegawai_prosesberkalamodel_jabatan_id_fe308268 ON public.pegawai_prosesberkalamodel USING btree (jabatan_id);
+
+
+--
+-- Name: pegawai_prosesberkalamodel_opd_id_c7744218; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX pegawai_prosesberkalamodel_opd_id_c7744218 ON public.pegawai_prosesberkalamodel USING btree (opd_id);
+
+
+--
+-- Name: pegawai_prosesberkalamodel_pegawai_id_97cedfa0; Type: INDEX; Schema: public; Owner: datainfo
+--
+
+CREATE INDEX pegawai_prosesberkalamodel_pegawai_id_97cedfa0 ON public.pegawai_prosesberkalamodel USING btree (pegawai_id);
+
+
+--
+-- Name: auth_group_permissions auth_group_permissio_permission_id_84c5c92e_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissio_permission_id_84c5c92e_fk_auth_perm FOREIGN KEY (permission_id) REFERENCES public.auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_group_permissions auth_group_permissions_group_id_b120cbf9_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.auth_group_permissions
+    ADD CONSTRAINT auth_group_permissions_group_id_b120cbf9_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_permission auth_permission_content_type_id_2f476e4b_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.auth_permission
+    ADD CONSTRAINT auth_permission_content_type_id_2f476e4b_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_groups auth_user_groups_group_id_97559544_fk_auth_group_id; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_group_id_97559544_fk_auth_group_id FOREIGN KEY (group_id) REFERENCES public.auth_group(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_groups auth_user_groups_user_id_6a12ed8b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.auth_user_groups
+    ADD CONSTRAINT auth_user_groups_user_id_6a12ed8b_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm FOREIGN KEY (permission_id) REFERENCES public.auth_permission(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: auth_user_user_permissions auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.auth_user_user_permissions
+    ADD CONSTRAINT auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log django_admin_log_content_type_id_c4bce8eb_fk_django_co; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_content_type_id_c4bce8eb_fk_django_co FOREIGN KEY (content_type_id) REFERENCES public.django_content_type(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: django_admin_log django_admin_log_user_id_c564eba6_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.django_admin_log
+    ADD CONSTRAINT django_admin_log_user_id_c564eba6_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pegawai_akunmodel pegawai_akunmodel_akun_id_a1292413_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_akunmodel
+    ADD CONSTRAINT pegawai_akunmodel_akun_id_a1292413_fk_auth_user_id FOREIGN KEY (akun_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pegawai_akunmodel pegawai_akunmodel_opd_akses_id_584c9d0f_fk_pegawai_opdmodel_id; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_akunmodel
+    ADD CONSTRAINT pegawai_akunmodel_opd_akses_id_584c9d0f_fk_pegawai_opdmodel_id FOREIGN KEY (opd_akses_id) REFERENCES public.pegawai_opdmodel(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pegawai_gajimodel pegawai_gajimodel_golongan_id_9dbc6e6c_fk_pegawai_g; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_gajimodel
+    ADD CONSTRAINT pegawai_gajimodel_golongan_id_9dbc6e6c_fk_pegawai_g FOREIGN KEY (golongan_id) REFERENCES public.pegawai_golonganmodel(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pegawai_golonganhistorymodel pegawai_golonganhist_nama_id_4bf9e717_fk_pegawai_g; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_golonganhistorymodel
+    ADD CONSTRAINT pegawai_golonganhist_nama_id_4bf9e717_fk_pegawai_g FOREIGN KEY (nama_id) REFERENCES public.pegawai_golonganmodel(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pegawai_nominatifselesaimodels pegawai_nominatifsel_gaji_id_d5b14d01_fk_pegawai_g; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_nominatifselesaimodels
+    ADD CONSTRAINT pegawai_nominatifsel_gaji_id_d5b14d01_fk_pegawai_g FOREIGN KEY (gaji_id) REFERENCES public.pegawai_gajimodel(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pegawai_nominatifselesaimodels pegawai_nominatifsel_golongan_id_79564b8d_fk_pegawai_g; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_nominatifselesaimodels
+    ADD CONSTRAINT pegawai_nominatifsel_golongan_id_79564b8d_fk_pegawai_g FOREIGN KEY (golongan_id) REFERENCES public.pegawai_golonganmodel(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pegawai_nominatifselesaimodels pegawai_nominatifsel_jabatan_id_c22b9567_fk_pegawai_j; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_nominatifselesaimodels
+    ADD CONSTRAINT pegawai_nominatifsel_jabatan_id_c22b9567_fk_pegawai_j FOREIGN KEY (jabatan_id) REFERENCES public.pegawai_jabatanmodel(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pegawai_nominatifselesaimodels pegawai_nominatifsel_opd_id_11d55fb1_fk_pegawai_o; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_nominatifselesaimodels
+    ADD CONSTRAINT pegawai_nominatifsel_opd_id_11d55fb1_fk_pegawai_o FOREIGN KEY (opd_id) REFERENCES public.pegawai_opdmodel(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pegawai_nominatifselesaimodels pegawai_nominatifsel_pegawai_id_383b2ca7_fk_pegawai_p; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_nominatifselesaimodels
+    ADD CONSTRAINT pegawai_nominatifsel_pegawai_id_383b2ca7_fk_pegawai_p FOREIGN KEY (pegawai_id) REFERENCES public.pegawai_pegawaimodel(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pegawai_nominatiftundamodel pegawai_nominatiftun_gaji_id_a4d0ca5b_fk_pegawai_g; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_nominatiftundamodel
+    ADD CONSTRAINT pegawai_nominatiftun_gaji_id_a4d0ca5b_fk_pegawai_g FOREIGN KEY (gaji_id) REFERENCES public.pegawai_gajimodel(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pegawai_nominatiftundamodel pegawai_nominatiftun_golongan_id_ad164f4a_fk_pegawai_g; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_nominatiftundamodel
+    ADD CONSTRAINT pegawai_nominatiftun_golongan_id_ad164f4a_fk_pegawai_g FOREIGN KEY (golongan_id) REFERENCES public.pegawai_golonganmodel(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pegawai_nominatiftundamodel pegawai_nominatiftun_jabatan_id_6e99e44e_fk_pegawai_j; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_nominatiftundamodel
+    ADD CONSTRAINT pegawai_nominatiftun_jabatan_id_6e99e44e_fk_pegawai_j FOREIGN KEY (jabatan_id) REFERENCES public.pegawai_jabatanmodel(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pegawai_nominatiftundamodel pegawai_nominatiftun_opd_id_2354d459_fk_pegawai_o; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_nominatiftundamodel
+    ADD CONSTRAINT pegawai_nominatiftun_opd_id_2354d459_fk_pegawai_o FOREIGN KEY (opd_id) REFERENCES public.pegawai_opdmodel(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pegawai_nominatiftundamodel pegawai_nominatiftun_pegawai_id_d7b119e0_fk_pegawai_p; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_nominatiftundamodel
+    ADD CONSTRAINT pegawai_nominatiftun_pegawai_id_d7b119e0_fk_pegawai_p FOREIGN KEY (pegawai_id) REFERENCES public.pegawai_pegawaimodel(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pegawai_nominatifxmodels pegawai_nominatifxmo_gaji_id_d56c7998_fk_pegawai_g; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_nominatifxmodels
+    ADD CONSTRAINT pegawai_nominatifxmo_gaji_id_d56c7998_fk_pegawai_g FOREIGN KEY (gaji_id) REFERENCES public.pegawai_gajimodel(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pegawai_nominatifxmodels pegawai_nominatifxmo_golongan_id_806a311a_fk_pegawai_g; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_nominatifxmodels
+    ADD CONSTRAINT pegawai_nominatifxmo_golongan_id_806a311a_fk_pegawai_g FOREIGN KEY (golongan_id) REFERENCES public.pegawai_golonganmodel(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pegawai_nominatifxmodels pegawai_nominatifxmo_jabatan_id_6421908f_fk_pegawai_j; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_nominatifxmodels
+    ADD CONSTRAINT pegawai_nominatifxmo_jabatan_id_6421908f_fk_pegawai_j FOREIGN KEY (jabatan_id) REFERENCES public.pegawai_jabatanmodel(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pegawai_nominatifxmodels pegawai_nominatifxmo_pegawai_id_eadd7b64_fk_pegawai_p; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_nominatifxmodels
+    ADD CONSTRAINT pegawai_nominatifxmo_pegawai_id_eadd7b64_fk_pegawai_p FOREIGN KEY (pegawai_id) REFERENCES public.pegawai_pegawaimodel(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pegawai_nominatifxmodels pegawai_nominatifxmodels_opd_id_d10ed285_fk_pegawai_opdmodel_id; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_nominatifxmodels
+    ADD CONSTRAINT pegawai_nominatifxmodels_opd_id_d10ed285_fk_pegawai_opdmodel_id FOREIGN KEY (opd_id) REFERENCES public.pegawai_opdmodel(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pegawai_opdmodel pegawai_opdmodel_kepala_opd_id_7a28529e_fk_pegawai_p; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_opdmodel
+    ADD CONSTRAINT pegawai_opdmodel_kepala_opd_id_7a28529e_fk_pegawai_p FOREIGN KEY (kepala_opd_id) REFERENCES public.pegawai_pegawaimodel(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pegawai_opdmodel pegawai_opdmodel_operator_id_e6da600c_fk_pegawai_akunmodel_id; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_opdmodel
+    ADD CONSTRAINT pegawai_opdmodel_operator_id_e6da600c_fk_pegawai_akunmodel_id FOREIGN KEY (operator_id) REFERENCES public.pegawai_akunmodel(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pegawai_pegawaimodel pegawai_pegawaimodel_golongan_id_fd183675_fk_pegawai_g; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_pegawaimodel
+    ADD CONSTRAINT pegawai_pegawaimodel_golongan_id_fd183675_fk_pegawai_g FOREIGN KEY (golongan_id) REFERENCES public.pegawai_golonganmodel(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pegawai_pegawaimodel pegawai_pegawaimodel_jabatan_id_714007e5_fk_pegawai_j; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_pegawaimodel
+    ADD CONSTRAINT pegawai_pegawaimodel_jabatan_id_714007e5_fk_pegawai_j FOREIGN KEY (jabatan_id) REFERENCES public.pegawai_jabatanmodel(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pegawai_pegawaimodel pegawai_pegawaimodel_opd_id_9807877a_fk_pegawai_opdmodel_id; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_pegawaimodel
+    ADD CONSTRAINT pegawai_pegawaimodel_opd_id_9807877a_fk_pegawai_opdmodel_id FOREIGN KEY (opd_id) REFERENCES public.pegawai_opdmodel(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pegawai_prosesberkalamodel pegawai_prosesberkal_gaji_id_0616a498_fk_pegawai_g; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_prosesberkalamodel
+    ADD CONSTRAINT pegawai_prosesberkal_gaji_id_0616a498_fk_pegawai_g FOREIGN KEY (gaji_id) REFERENCES public.pegawai_gajimodel(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pegawai_prosesberkalamodel pegawai_prosesberkal_golongan_id_d36da7fd_fk_pegawai_g; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_prosesberkalamodel
+    ADD CONSTRAINT pegawai_prosesberkal_golongan_id_d36da7fd_fk_pegawai_g FOREIGN KEY (golongan_id) REFERENCES public.pegawai_golonganmodel(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pegawai_prosesberkalamodel pegawai_prosesberkal_jabatan_id_fe308268_fk_pegawai_j; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_prosesberkalamodel
+    ADD CONSTRAINT pegawai_prosesberkal_jabatan_id_fe308268_fk_pegawai_j FOREIGN KEY (jabatan_id) REFERENCES public.pegawai_jabatanmodel(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pegawai_prosesberkalamodel pegawai_prosesberkal_opd_id_c7744218_fk_pegawai_o; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_prosesberkalamodel
+    ADD CONSTRAINT pegawai_prosesberkal_opd_id_c7744218_fk_pegawai_o FOREIGN KEY (opd_id) REFERENCES public.pegawai_opdmodel(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: pegawai_prosesberkalamodel pegawai_prosesberkal_pegawai_id_97cedfa0_fk_pegawai_p; Type: FK CONSTRAINT; Schema: public; Owner: datainfo
+--
+
+ALTER TABLE ONLY public.pegawai_prosesberkalamodel
+    ADD CONSTRAINT pegawai_prosesberkal_pegawai_id_97cedfa0_fk_pegawai_p FOREIGN KEY (pegawai_id) REFERENCES public.pegawai_pegawaimodel(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- PostgreSQL database dump complete
+--
+

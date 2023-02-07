@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="col-md-8">
+    <div class="card">
+        <div class="card-header bg-light">
+         <h1>USULAN NOMINATIF MANUAL</h1> 
+        </div>
+        <div class="card-body">
+            <form class="row" id="tambah-nominatif-form" method="post" action="">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="form-control-label">Nama</label>
+						<input id="nip" name="nip" class="form-control" value=" {{pegawai.nama}}" readonly />
+                    </div>
+                    <div class="form-group">
+                        <label for="golterakhir" class="form-control-label">NIP :</label>
+                        <input id="golterakhir" name="pangol" class="form-control" value=" {{pegawai.nip}}" readonly />
+                    </div>
+                    <div class="form-group">
+                        <label for="jnsklmn" class="form-control-label">Golongan :</label>
+                        <input id="jnsklmn" name="skpd" class="form-control" value="{{golongan.nama}}/({{golongan.simbol}})" size=auto readonly />
+                    </div> 
+                </div>
+                <form action="#" method="post">
+                    {% csrf_token %}
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="tmtpns" class="form-control-label">TMT KGB :</label>
+                            <input type="date" id="tmtkgb" name="tmtkgb" class="form-control"  />
+                        </div>
+                        <div class="form-group">
+                            <label for="jnsklmn" class="form-control-label">Masa Kerja Lama :</label>
+                            <input id="masakerja" name="masakerja" class="form-control" value="{{golajuan.mk_tahun}} Tahun {{golajuan.mk_bulan}} Bulan" size=auto readonly />
+                        </div>  
+                        <div>
+                            <td><button type="submit"  class="btn btn-primary my-4">Proses</button></td>
+                        </div>
+                
+                    </div>
+                </form>
+                
+                <div class="col-md-12">
+                    <hr>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

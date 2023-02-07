@@ -1,0 +1,101 @@
+<div class="sidebar">
+    <nav class="sidebar-nav">
+        <ul class="nav">
+            <li class="nav-title">Menu</li>
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a href="{% url 'pegawai:index' %}" class="nav-link">
+                     <i class="icon icon-screen-desktop"></i> Dashboard
+                    </a>
+                </li>
+            {% endif %}
+
+            {%if user.is_authenticated and user.is_staff %}
+                <li class="nav-item">
+                    <a href="{% url 'pegawai:pegawai' %}" class="nav-link">
+                        <i class="icon icon-people"></i> Data Pegawai
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'pegawai:nominatif' %}" class="nav-link">
+                        <i class="icon icon-user-following"></i> Buat Daftar Nominatif
+                    </a>
+                </li>
+
+                <li class="nav-item nav-dropdown">
+                    <a href="#" class="nav-link nav-dropdown-toggle">
+                        <i class="icon icon-refresh"></i> Proses KGB <i class="fa fa-caret-left"></i>
+                    </a>
+                    <ul class="nav-dropdown-items">
+                        <li class="nav-item">
+                            <a href="{% url 'pegawai:nominatiflist' %}" class="nav-link">
+                                <i class="icon icon-share-alt"></i> Daftar Usulan KGB
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav-dropdown-items">
+                        <li class="nav-item">
+                            <a href="{% url 'pegawai:berkalalist' %}" class="nav-link">
+                                <i class="icon icon-share-alt"></i> Usulan KGB Dalam Proses
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav-dropdown-items">
+                        <li class="nav-item">
+                            <a href="{% url 'pegawai:selesai' %}" class="nav-link">
+                                <i class="icon icon-share-alt"></i> KGB Selesai
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav-dropdown-items">
+                        <li class="nav-item">
+                            <a href="{% url 'pegawai:tunda' %}" class="nav-link">
+                                <i class="icon icon-share-alt"></i> Usulan KGB Ditunda
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+            {% endif %}
+            
+
+
+
+
+            {%if user.is_authenticated and user.is_superuser %}
+            <li class="nav-item">
+                <a href='#' class="nav-link">
+                    <i class="icon icon-book-open"></i> Laporan
+                </a>
+            </li>
+            <li class="nav-item nav-dropdown">
+                <a href="#" class="nav-link nav-dropdown-toggle">
+                    <i class="icon icon-options-vertical"></i> Setting <i class="fa fa-caret-left"></i>
+                </a>
+                <ul class="nav-dropdown-items">
+                    detail                    </li>
+                </ul>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a href='#' class="nav-link">
+                            <i class="icon icon-layers"></i>Gaji Pokok
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href='#' class="nav-link">
+                            <i class="icon icon-layers"></i>Dinas Instansi
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href='#' class="nav-link">
+                            <i class="icon icon-layers"></i>Setting Operator
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</div>
+<div>
+</div>
+{%endif %}
