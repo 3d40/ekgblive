@@ -1248,7 +1248,7 @@ class DeletePangkatView(DeleteView):
     # can specify success url
     # url to redirect after successfully
     # deleting object
-    success_url = reverse_lazy ("pegawai:index")
+    success_url = reverse_lazy ("pegawai:pegawai")
      
     template_name = "pegawai/confirmdelete.html"
     
